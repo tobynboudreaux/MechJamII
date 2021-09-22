@@ -1,18 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.0705882, 0.592157, 0.603922, 1 )
 
-[sub_resource type="CapsuleMesh" id=2]
+[sub_resource type="CapsuleMesh" id=3]
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.0509804, 0.223529, 0.54902, 1 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CapsuleMesh" id=7]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -31,12 +37,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 
 [node name="Body" type="MeshInstance" parent="Rotation_Helper/Model"]
 transform = Transform( 1, 0, 0, 0, 2, 9.34925e-15, 0, -3.7397e-14, 0.5, 0, 0, 0 )
-material_override = SubResource( 4 )
-mesh = SubResource( 2 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="Face" type="MeshInstance" parent="Rotation_Helper/Model/Body"]
 transform = Transform( 0.33, 0, 0, 0, -0.2, 2.99176e-15, 0, -4.06024e-14, 0.6, 0, 0.526316, 1.21399 )
-material_override = SubResource( 5 )
-mesh = SubResource( 3 )
+material_override = SubResource( 4 )
+mesh = SubResource( 5 )
 material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper/Model"]
+transform = Transform( 0.22, 0, 0, 0, 0.33, 0, 0, 0, 0.715, -1.08352, 0.141922, 1.51372 )
+material_override = SubResource( 6 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="WeaponMuzzle" type="Position3D" parent="Rotation_Helper/Model/MeshInstance"]
+transform = Transform( -4.54545, 0, -3.97376e-07, 0, 3.0303, 0, 1.2227e-07, 0, -1.3986, -0.0022006, 0.000236988, 1.50805 )
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+autostart = true
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
