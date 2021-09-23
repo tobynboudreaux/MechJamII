@@ -16,30 +16,16 @@ var rotation_helper
 
 var MOUSE_SENS = 0.05
 
-var p = preload("res://Projectile/Projectile.tscn").instance()
-onready var fire_timer = get_node("FireTimer")
-const DEFAULT_MAG_SIZE = 7
-var mag_size
-
-onready var animation_tree = $AnimationTree
-
 func _ready():
 	camera = $Camera
 	rotation_helper = $Rotation_Helper
 	
-	# ----------------------------------
-	# Ammunition SET
-	mag_size = DEFAULT_MAG_SIZE
-	p.set_vars(10, Vector3.DOWN * 20)
-	
 func _physics_process(delta):
-	process_input()
+	process_input(delta)
 	process_movement(delta)
-	process_camera_rotation()
-	process_fire()
-	process_animations()
+	process_camera_rotation(delta)
 	
-func process_input():
+func process_input(delta):
 	
 	# ----------------------------------
 	# Walking
@@ -70,12 +56,6 @@ func process_input():
 		if Input.is_action_just_pressed("jump"):
 			vel.y = JUMP_SPEED
 	# ----------------------------------
-	
-	# ----------------------------------
-	# Reload
-	if Input.is_action_just_pressed("reload"):
-		mag_size = DEFAULT_MAG_SIZE
-		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 		
 func process_movement(delta):
 	dir.y = 0
@@ -99,29 +79,10 @@ func process_movement(delta):
 	vel.x = hvel.x
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
-	animation_tree["parameters/Walk/blend_position"] = Vector2(dir.x, dir.z)
 
-func process_camera_rotation():
+func process_camera_rotation(delta):
 	var offset = -PI * 0.5
 	var screen_pos = camera.unproject_position(rotation_helper.global_transform.origin)
 	var mouse_pos = get_viewport().get_mouse_position()
 	var angle = screen_pos.angle_to_point(mouse_pos)
 	rotation_helper.rotation.y = -angle + offset
-
-func process_fire():
-	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0:
-		owner.add_child(p)
-		p.transform = $WeaponMuzzle.global_transform
-		p.velocity = -p.transform.basis.z * p.muzzle_velocity
-		mag_size -= 1
-		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
-		fire_timer.start()
-
-func process_animations():
-	if Input.is_action_pressed("fire"):
-		animation_tree["parameters/IsItShooting/blend_amount"] = 1
-	elif vel != Vector3(0,0,0):
-		animation_tree["parameters/Transition/current"] = 1
-	else:
-		animation_tree["parameters/Transition/current"] = 0
-		animation_tree["parameters/IsItShooting/blend_amount"] = 0
