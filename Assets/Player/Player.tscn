@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/Material_001.material" type="Material" id=2]
@@ -763,6 +763,9 @@ surfaces/0 = {
 "vertex_count": 160
 }
 
+[sub_resource type="BoxShape" id=29]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
 [sub_resource type="ArrayMesh" id=8]
 resource_name = "Sword_trail"
 surfaces/0 = {
@@ -791,26 +794,26 @@ albedo_color = Color( 0.0509804, 0.223529, 0.54902, 1 )
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "08_Dash"
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "01_Idle"
 
-[sub_resource type="AnimationNodeOneShot" id=16]
+[sub_resource type="AnimationNodeOneShot" id=15]
 
-[sub_resource type="AnimationNodeBlend2" id=28]
+[sub_resource type="AnimationNodeBlend2" id=16]
 filter_enabled = true
 filters = [ "rig/Skeleton/Pistol_flash:visible", "rig/Skeleton:DEF-breast.L", "rig/Skeleton:DEF-breast.R", "rig/Skeleton:DEF-forearm.R", "rig/Skeleton:DEF-forearm.R.001", "rig/Skeleton:DEF-hand.R", "rig/Skeleton:DEF-shoulder.R", "rig/Skeleton:DEF-upper_arm.R", "rig/Skeleton:DEF-upper_arm.R.001", "rig/Skeleton:MCH-forearm_ik.R", "rig/Skeleton:MCH-forearm_tweak.R", "rig/Skeleton:MCH-forearm_tweak.R.001", "rig/Skeleton:MCH-hand_fk.R", "rig/Skeleton:MCH-hand_tweak.R", "rig/Skeleton:MCH-spine.002", "rig/Skeleton:MCH-spine.003", "rig/Skeleton:MCH-torso.parent", "rig/Skeleton:MCH-upper_arm_ik_stretch.R", "rig/Skeleton:MCH-upper_arm_parent.R", "rig/Skeleton:MCH-upper_arm_parent_socket.R", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:MCH-upper_arm_tweak.R", "rig/Skeleton:MCH-upper_arm_tweak.R.001", "rig/Skeleton:ORG-breast.L", "rig/Skeleton:ORG-breast.R", "rig/Skeleton:ORG-forearm.R", "rig/Skeleton:ORG-hand.R", "rig/Skeleton:ORG-shoulder.R", "rig/Skeleton:ORG-spine.003", "rig/Skeleton:ORG-upper_arm.R", "rig/Skeleton:breast.L", "rig/Skeleton:breast.R", "rig/Skeleton:forearm_fk.R", "rig/Skeleton:forearm_tweak.R", "rig/Skeleton:forearm_tweak.R.001", "rig/Skeleton:hand_fk.R", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:hand_tweak.R", "rig/Skeleton:shoulder.L", "rig/Skeleton:shoulder.R", "rig/Skeleton:spine_fk.002", "rig/Skeleton:spine_fk.003", "rig/Skeleton:torso", "rig/Skeleton:tweak_spine.003", "rig/Skeleton:upper_arm_fk.R", "rig/Skeleton:upper_arm_ik.R", "rig/Skeleton:upper_arm_parent.R", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001", "rig/Skeleton:upper_arm_tweak.R", "rig/Skeleton:upper_arm_tweak.R.001" ]
 
-[sub_resource type="AnimationNodeOneShot" id=18]
+[sub_resource type="AnimationNodeOneShot" id=17]
 filter_enabled = true
 filters = [ "rig/Skeleton/Sword_trail:visible", "rig/Skeleton:DEF-forearm.L", "rig/Skeleton:DEF-forearm.L.001", "rig/Skeleton:DEF-hand.L", "rig/Skeleton:DEF-shoulder.L", "rig/Skeleton:DEF-upper_arm.L", "rig/Skeleton:DEF-upper_arm.L.001", "rig/Skeleton:MCH-forearm_ik.L", "rig/Skeleton:MCH-forearm_tweak.L", "rig/Skeleton:MCH-forearm_tweak.L.001", "rig/Skeleton:MCH-hand_fk.L", "rig/Skeleton:MCH-hand_tweak.L", "rig/Skeleton:MCH-upper_arm_ik_stretch.L", "rig/Skeleton:MCH-upper_arm_parent.L", "rig/Skeleton:MCH-upper_arm_parent_socket.L", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:ORG-forearm.L", "rig/Skeleton:ORG-hand.L", "rig/Skeleton:ORG-shoulder.L", "rig/Skeleton:ORG-upper_arm.L", "rig/Skeleton:forearm_fk.L", "rig/Skeleton:forearm_tweak.L", "rig/Skeleton:forearm_tweak.L.001", "rig/Skeleton:hand_fk.L", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:upper_arm_fk.L", "rig/Skeleton:upper_arm_ik.L", "rig/Skeleton:upper_arm_parent.L", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001" ]
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "07_Slicing"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "06_Shooting"
 
-[sub_resource type="AnimationNodeTransition" id=29]
+[sub_resource type="AnimationNodeTransition" id=20]
 input_count = 2
 xfade_time = 0.15
 input_0/name = "Idle"
@@ -841,34 +844,34 @@ blend_point_3/node = SubResource( 24 )
 blend_point_3/pos = Vector2( -1, 0 )
 
 [sub_resource type="AnimationNodeBlendTree" id=26]
-graph_offset = Vector2( -247, -3 )
+graph_offset = Vector2( 0, 117.354 )
 nodes/Dash/node = SubResource( 13 )
 nodes/Dash/position = Vector2( 540, 300 )
-nodes/Idle/node = SubResource( 27 )
+nodes/Idle/node = SubResource( 14 )
 nodes/Idle/position = Vector2( -220, 80 )
-nodes/IsItDashing/node = SubResource( 16 )
+nodes/IsItDashing/node = SubResource( 15 )
 nodes/IsItDashing/position = Vector2( 800, 100 )
-nodes/IsItShooting/node = SubResource( 28 )
+nodes/IsItShooting/node = SubResource( 16 )
 nodes/IsItShooting/position = Vector2( 280, 80 )
-nodes/IsItSlicing/node = SubResource( 18 )
+nodes/IsItSlicing/node = SubResource( 17 )
 nodes/IsItSlicing/position = Vector2( 540, 100 )
-nodes/Melee/node = SubResource( 19 )
+nodes/Melee/node = SubResource( 18 )
 nodes/Melee/position = Vector2( 280, 300 )
-nodes/Shoot/node = SubResource( 20 )
+nodes/Shoot/node = SubResource( 19 )
 nodes/Shoot/position = Vector2( 20, 260 )
-nodes/Transition/node = SubResource( 29 )
+nodes/Transition/node = SubResource( 20 )
 nodes/Transition/position = Vector2( 20, 80 )
 nodes/Walk/node = SubResource( 25 )
 nodes/Walk/position = Vector2( -220, 220 )
 nodes/output/position = Vector2( 1020, 140 )
-node_connections = [ "output", 0, "IsItDashing", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee" ]
+node_connections = [ "output", 0, "IsItDashing", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash" ]
 
-[sub_resource type="DynamicFont" id=30]
+[sub_resource type="DynamicFont" id=27]
 size = 52
 font_data = ExtResource( 14 )
 
-[sub_resource type="Theme" id=31]
-default_font = SubResource( 30 )
+[sub_resource type="Theme" id=28]
+default_font = SubResource( 27 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -879,7 +882,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10 )
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 8 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
@@ -1986,6 +1989,9 @@ mesh = SubResource( 2 )
 skin = SubResource( 3 )
 material/0 = null
 
+[node name="WeaponMuzzle" type="Position3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol"]
+transform = Transform( -4.54545, 0, -3.97376e-07, 0, 3.0303, 0, 1.2227e-07, 0, -1.3986, -0.16497, 1.23179, 1.50805 )
+
 [node name="Pistol_flash" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 visible = false
 mesh = SubResource( 4 )
@@ -2008,6 +2014,13 @@ material/1 = null
 mesh = SubResource( 7 )
 skin = SubResource( 3 )
 material/0 = null
+
+[node name="Hitbox" type="Area" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Sword"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95225, 1.15147 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Sword/Hitbox"]
+transform = Transform( 1, 0, 0, 0, 1.75205, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 29 )
 
 [node name="Sword_trail" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 visible = false
@@ -2057,7 +2070,4 @@ one_shot = true
 autostart = true
 
 [node name="HUD" parent="." instance=ExtResource( 13 )]
-theme = SubResource( 31 )
-
-[node name="WeaponMuzzle" type="Position3D" parent="."]
-transform = Transform( -4.54545, 0, -3.97376e-07, 0, 3.0303, 0, 1.2227e-07, 0, -1.3986, -0.0022006, 0.000236988, 1.50805 )
+theme = SubResource( 28 )

@@ -2,9 +2,10 @@ extends KinematicBody
 
 const GRAVITY = -24.8
 var vel = Vector3()
-const MAX_SPEED = 20
+const MAX_SPEED = 15
 const JUMP_SPEED = 18
-const ACCEL = 4.5
+const ACCEL = 3
+const DASH_SPEED = 50
 
 var dir = Vector3()
 
@@ -30,7 +31,7 @@ func _ready():
 	# ----------------------------------
 	# Ammunition SET
 	mag_size = DEFAULT_MAG_SIZE
-	p.set_vars(10, Vector3.DOWN * 20)
+	p.set_vars(65, Vector3.DOWN * 10)
 	
 func _physics_process(delta):
 	process_input()
@@ -65,10 +66,12 @@ func process_input():
 	# ----------------------------------
 	
 	# ----------------------------------
-	# Jumping
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
-			vel.y = JUMP_SPEED
+	# Dash
+	if Input.is_action_just_pressed("dash"):
+		vel.x = input_movement_vector.x * DASH_SPEED
+		vel.z = -input_movement_vector.y * DASH_SPEED
+		vel.y = 2
+		animation_tree["parameters/IsItDashing/active"] = true
 	# ----------------------------------
 	
 	# ----------------------------------
@@ -76,6 +79,13 @@ func process_input():
 	if Input.is_action_just_pressed("reload"):
 		mag_size = DEFAULT_MAG_SIZE
 		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
+	# ----------------------------------
+	
+	# ----------------------------------
+	# Melee
+	if Input.is_action_just_pressed("melee"):
+		print("SWING")
+		animation_tree["parameters/IsItSlicing/active"] = true
 		
 func process_movement(delta):
 	dir.y = 0
@@ -111,7 +121,7 @@ func process_camera_rotation():
 func process_fire():
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0:
 		owner.add_child(p)
-		p.transform = $WeaponMuzzle.global_transform
+		p.transform = $Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol/WeaponMuzzle.global_transform
 		p.velocity = -p.transform.basis.z * p.muzzle_velocity
 		mag_size -= 1
 		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
