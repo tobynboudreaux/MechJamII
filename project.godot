@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="MechJam II"
-run/main_scene="res://StartScreen/StartScreen.tscn"
+run/main_scene="res://Util/SceneSwitcher.tscn"
 config/icon="res://icon.png"
 
 [input]

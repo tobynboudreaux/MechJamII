@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://StartScreen/StartScreen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Util/SceneSwitcher.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Transition_In"
+tracks/0/type = "value"
+tracks/0/path = NodePath("OverlayLayer/Overlay:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.176777, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 675.5 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Transition_Out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("OverlayLayer/Overlay:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 3.24901, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -675.5 ) ]
+}
+
+[node name="SceneSwitcher" type="Node"]
+script = ExtResource( 2 )
+
+[node name="OverlayLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Overlay" type="ColorRect" parent="OverlayLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 675.5
+margin_bottom = 675.502
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartScreen" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+margin_left = 0.0
+margin_top = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Transition_In = SubResource( 1 )
+anims/Transition_Out = SubResource( 2 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
