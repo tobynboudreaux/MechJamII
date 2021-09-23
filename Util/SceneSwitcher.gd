@@ -25,13 +25,15 @@ func handle_level_changed(current_level_name: String):
 		_:
 			return
 	
-	
 	next_level = load(next_level_path).instance();
 	add_child(next_level)
 	anim_player.play("Transition_In")
+	print("current level: ",current_level)
+	print("next level: ",next_level)
 	
 	next_level.connect("level_changed", self, "handle_level_changed")
-	current_level = next_level
+	#current_level = next_level
+	
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
