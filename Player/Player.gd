@@ -27,11 +27,50 @@ var is_mech = false
 
 # Status check vars
 var is_reloading = false
+var is_moving_forward = false
+var is_moving_back = false
+var is_moving_right = false
+var is_moving_left = false
 
 # Timers
-onready var fire_timer = get_node("FireTimer")
-onready var reload_timer = get_node("ReloadTimer")
-onready var dash_timer = get_node("DashTimer")
+onready var fire_timer = get_node("Timers/FireTimer")
+onready var reload_timer = get_node("Timers/ReloadTimer")
+onready var dash_timer = get_node("Timers/DashTimer")
+onready var sword_timer = get_node("Timers/SwordTimer")
+onready var footstep_timer = get_node("Timers/FootstepTimer")
+
+# Sounds
+onready var sounds = get_node("Sounds")
+onready var sword_sounds = [
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Sword1"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Sword2"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Sword3")
+]
+onready var pistol_sounds = [
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Pistol1"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Pistol2"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Pistol3"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Pistol4")
+]
+
+onready var pistol_reload_sounds = [
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/PistolReload1"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/PistolReload2"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/PistolReload3")
+]
+
+onready var dash_sounds = [
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Dash1"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Dash2"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Dash3")
+]
+
+onready var footstep_sounds = [
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Footstep1"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Footstep2"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Footstep3"),
+	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Footstep4")
+]
 
 func _ready():
 	camera = $Camera
@@ -61,16 +100,29 @@ func process_input():
 	var cam_xform = camera.get_global_transform()
 	
 	var input_movement_vector = Vector2()
-	
+
 	if Input.is_action_pressed("forward"):
 		input_movement_vector.y += 1
+		is_moving_forward = true
 	if Input.is_action_pressed("back"):
 		input_movement_vector.y -= 1
+		is_moving_back = true
 	if Input.is_action_pressed("left"):
 		input_movement_vector.x -= 1
+		is_moving_left = true
 	if Input.is_action_pressed("right"):
 		input_movement_vector.x += 1
+		is_moving_right = true
 		
+	if Input.is_action_just_released("forward"):
+		is_moving_forward = false
+	if Input.is_action_just_released("back"):
+		is_moving_back = false
+	if Input.is_action_just_released("left"):
+		is_moving_left = false
+	if Input.is_action_just_released("right"):
+		is_moving_right = false
+			
 	input_movement_vector = input_movement_vector.normalized()
 	
 	# Basic vectors are already normalized
@@ -85,16 +137,20 @@ func process_input():
 		vel.z = -input_movement_vector.y * DASH_SPEED
 		vel.y = 2
 		animation_tree["parameters/IsItDashing/active"] = true
-		$DashTimer.start()
+		dash_timer.start()
+		var random_sound = randi() % 3
+		dash_sounds[random_sound].play()
 	# ----------------------------------
 	
 	# ----------------------------------
 	# Reload
-	if Input.is_action_just_pressed("reload"):
+	if Input.is_action_just_pressed("reload") && is_reloading == false && mag_size < DEFAULT_MAG_SIZE:
 		is_reloading = true
 		mag_size = DEFAULT_MAG_SIZE
 		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
-		$ReloadTimer.start()
+		reload_timer.start()
+		var random_sound = randi() % 3
+		pistol_reload_sounds[random_sound].play()
 		
 	if reload_timer.time_left == 0:
 		is_reloading = false
@@ -102,9 +158,13 @@ func process_input():
 	
 	# ----------------------------------
 	# Melee
-	if Input.is_action_just_pressed("melee"):
+	if Input.is_action_just_pressed("melee") && sword_timer.time_left == 0:
 		print("SWING")
 		animation_tree["parameters/IsItSlicing/active"] = true
+		var random_sound = randi() % 3
+		sword_sounds[random_sound].play()
+		sword_timer.start()
+		
 		
 func process_movement(delta):
 	dir.y = 0
@@ -155,26 +215,32 @@ func process_fire():
 		owner.add_child(p)
 		p.transform = $Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol/WeaponMuzzle.global_transform
 		p.velocity = -p.transform.basis.z * p.muzzle_velocity
+		
+func process_animations():
+	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:
+		animation_tree["parameters/IsItShooting/blend_amount"] = 1
+		var random_sound = randi() % 4
+		pistol_sounds[random_sound].play()
 		mag_size -= 1
 		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 		fire_timer.start()
-		
-func process_animations():
-	if Input.is_action_pressed("fire") && mag_size > 1 && is_reloading != true:
+	elif Input.is_action_pressed("fire") && mag_size == 0 && fire_timer.time_left == 0 && is_reloading != true:
 		animation_tree["parameters/IsItShooting/blend_amount"] = 1
-	elif Input.is_action_just_released("fire") || mag_size < 1 || is_reloading == true:
+		$Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/PistolDry.play()
+		fire_timer.start()
+	elif Input.is_action_just_released("fire") || is_reloading == true:
 		animation_tree["parameters/IsItShooting/blend_amount"] = 0
 	elif vel != Vector3(0,0,0):
 		animation_tree["parameters/Transition/current"] = 1
-	elif Input.is_action_just_pressed("interact") && is_mech == false:
-		var player_parent = self.get_parent()
-		var mech_scene = load("res://Player/Mech/Mech.tscn")
-		var mech = mech_scene.instance()
-		player_parent.add_child(mech)
-		mech.transform = self.transform
-		self.queue_free()
-
-		print("Did you see that??")
+#	elif Input.is_action_just_pressed("interact") && is_mech == false:
+#		var player_parent = self.get_parent()
+#		var mech_scene = load("res://Player/Mech/Mech.tscn")
+#		var mech = mech_scene.instance()
+#		player_parent.add_child(mech)
+#		mech.transform = self.transform
+#		self.queue_free()
+#
+#		print("Did you see that??")
 #	elif Input.is_action_just_pressed("interact") && is_mech:
 #		var player_parent = self.get_parent()
 #		var pilot_scene = load("res://Player/Pilot/Pilot.tscn")
@@ -186,3 +252,8 @@ func process_animations():
 #		print("Did you see that??")
 	else:
 		animation_tree["parameters/Transition/current"] = 0
+
+	if is_moving_back && footstep_timer.time_left == 0 || is_moving_forward && footstep_timer.time_left == 0 || is_moving_left && footstep_timer.time_left == 0 || is_moving_right && footstep_timer.time_left == 0:
+		var random_sound = randi() % 4
+		footstep_sounds[random_sound].play()
+		footstep_timer.start()

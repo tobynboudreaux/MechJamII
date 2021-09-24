@@ -12,7 +12,8 @@ config_version=4
 
 config/name="MechJam II"
 run/main_scene="res://Core/StartScreen/StartScreen.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
+config/icon="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
 
 [input]
 

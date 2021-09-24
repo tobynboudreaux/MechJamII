@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/whoosh_swish_high_big_03.ogg-50fc1b86c0c44a9b7548573b637b0f55.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Pilot/whoosh_swish_high_big_03.ogg"
+dest_files=[ "res://.import/whoosh_swish_high_big_03.ogg-50fc1b86c0c44a9b7548573b637b0f55.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

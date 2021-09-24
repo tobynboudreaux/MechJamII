@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gun_pistol_shot_silenced_01.ogg-bc189a6d95e8949bd16459c4e2db22e5.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Pilot/gun_pistol_shot_silenced_01.ogg"
+dest_files=[ "res://.import/gun_pistol_shot_silenced_01.ogg-bc189a6d95e8949bd16459c4e2db22e5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
