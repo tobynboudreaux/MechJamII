@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/MechJam_Player.glb-d64193b983ab5a86eb17f25f487960c0.scn"
+path="res://.import/MechJam_Player.glb-19eec3e367eb1a5823a0ce5b2e85ce6b.scn"
 
 [deps]
 
-source_file="res://Assets/Player/MechJam_Player.glb"
-dest_files=[ "res://.import/MechJam_Player.glb-d64193b983ab5a86eb17f25f487960c0.scn" ]
+source_file="res://Assets/Models/Player/MechJam_Player.glb"
+dest_files=[ "res://.import/MechJam_Player.glb-19eec3e367eb1a5823a0ce5b2e85ce6b.scn" ]
 
 [params]
 

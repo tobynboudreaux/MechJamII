@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Fonts/FashionVictim.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://StartScreen/StartScreen.gd" type="Script" id=2]
+[ext_resource path="res://Core/StartScreen/StartScreen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 use_mipmaps = true
 extra_spacing_char = 4
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
@@ -43,7 +43,7 @@ anchor_bottom = 1.0
 margin_left = -1024.0
 margin_top = -600.0
 theme = SubResource( 2 )
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,5 +76,5 @@ margin_bottom = 78.0
 text = "Start"
 script = SubResource( 3 )
 
-[connection signal="pressed" from="ColorRect/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/StartButton" to="ColorRect/VBoxContainer/StartButton" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
