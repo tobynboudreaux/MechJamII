@@ -40,7 +40,6 @@ onready var sword_timer = get_node("Timers/SwordTimer")
 onready var footstep_timer = get_node("Timers/FootstepTimer")
 
 # Sounds
-onready var sounds = get_node("Sounds")
 onready var sword_sounds = [
 	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Sword1"),
 	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Sword2"),

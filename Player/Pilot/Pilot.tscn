@@ -3565,92 +3565,92 @@ material/1 = null
 [node name="Sword1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 16 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Sword2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 18 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Sword3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 17 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Pistol1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 21 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Pistol2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 19 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Pistol3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 20 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Pistol4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 15 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="PistolReload1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 23 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="PistolReload2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 24 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="PistolReload3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 25 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="PistolDry" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 22 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Dash1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 26 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Dash2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 28 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Dash3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 27 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Footstep1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 29 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Footstep2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 31 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Footstep3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 30 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Footstep4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 32 )
-unit_db = 2.0
+unit_db = 5.0
 
 [node name="Sword" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 mesh = SubResource( 7 )
