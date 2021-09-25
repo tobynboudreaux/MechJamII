@@ -18,21 +18,18 @@ func handle_level_changed(current_level_name: String):
 	match current_level_name:
 		"menu":
 			# Load main game level
-			next_level_path = "res://Levels/Level1.tscn"
+			next_level_path = "res://World/World.tscn"
 		"level1":
 			# Load menu level
-			next_level_path = "res://StartScreen/StartScreen.tscn"
+			next_level_path = "res://Core/StartScreen/StartScreen.tscn"
 		_:
 			return
 	
 	next_level = load(next_level_path).instance();
 	add_child(next_level)
 	anim_player.play("Transition_In")
-	print("current level: ",current_level)
-	print("next level: ",next_level)
 	
 	next_level.connect("level_changed", self, "handle_level_changed")
-	#current_level = next_level
 	
 
 func _on_AnimationPlayer_animation_finished(anim_name):

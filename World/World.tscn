@@ -8,6 +8,7 @@
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0.00784314, 0.00784314, 1 )
+
 [node name="World" type="Spatial"]
 
 [node name="Terrain" type="Node" parent="."]
