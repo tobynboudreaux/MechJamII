@@ -4,7 +4,7 @@
 script/source = "extends KinematicBody
 
 func _physics_process(delta):	
-	if Input.is_action_just_pressed(\"interact\"):
+	if Input.is_action_just_released(\"interact\"):
 			var player_parent = self.get_parent()
 			var mech_scene = load(\"res://Player/Mech/Mech.tscn\")
 			var mech = mech_scene.instance()

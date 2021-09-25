@@ -2,6 +2,7 @@
 
 [resource]
 resource_name = "02_Forward"
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("rig/Skeleton:ORG-toe.L")
 tracks/0/interp = 1

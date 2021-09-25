@@ -2431,6 +2431,9 @@ transform = Transform( 1, 0, 0, 0, 2, 8.49932e-15, 0, -3.39973e-14, 0.5, 0, 0.23
 visible = false
 shape = SubResource( 1 )
 
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 8 )
+
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 8 )
 
@@ -3715,3 +3718,5 @@ one_shot = true
 [node name="FootstepTimer" type="Timer" parent="Timers"]
 wait_time = 0.54
 one_shot = true
+
+[node name="ToMechTimer" type="Timer" parent="Timers"]
