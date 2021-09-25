@@ -38,6 +38,7 @@ onready var reload_timer = get_node("Timers/ReloadTimer")
 onready var dash_timer = get_node("Timers/DashTimer")
 onready var sword_timer = get_node("Timers/SwordTimer")
 onready var footstep_timer = get_node("Timers/FootstepTimer")
+onready var to_mech_timer = get_node("Timers/ToMechTimer")
 
 # Sounds
 onready var sword_sounds = [
@@ -72,7 +73,7 @@ onready var footstep_sounds = [
 ]
 
 func _ready():
-	camera = $Camera
+	camera = get_parent().get_node("Camera")
 	rotation_helper = $Rotation_Helper
 	
 	# ----------------------------------
@@ -211,7 +212,7 @@ func process_camera_rotation():
 
 func process_fire():
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:
-		owner.add_child(p)
+		get_parent().add_child(p)
 		p.transform = $Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol/WeaponMuzzle.global_transform
 		p.velocity = -p.transform.basis.z * p.muzzle_velocity
 		
@@ -231,24 +232,6 @@ func process_animations():
 		animation_tree["parameters/IsItShooting/blend_amount"] = 0
 	elif vel != Vector3(0,0,0):
 		animation_tree["parameters/Transition/current"] = 1
-#	elif Input.is_action_just_pressed("interact") && is_mech == false:
-#		var player_parent = self.get_parent()
-#		var mech_scene = load("res://Player/Mech/Mech.tscn")
-#		var mech = mech_scene.instance()
-#		player_parent.add_child(mech)
-#		mech.transform = self.transform
-#		self.queue_free()
-#
-#		print("Did you see that??")
-#	elif Input.is_action_just_pressed("interact") && is_mech:
-#		var player_parent = self.get_parent()
-#		var pilot_scene = load("res://Player/Pilot/Pilot.tscn")
-#		var pilot = pilot_scene.instance()
-#		player_parent.add_child(pilot)
-#		pilot.transform = self.transform
-#		self.queue_free()
-#		is_mech = false
-#		print("Did you see that??")
 	else:
 		animation_tree["parameters/Transition/current"] = 0
 
@@ -256,3 +239,10 @@ func process_animations():
 		var random_sound = randi() % 4
 		footstep_sounds[random_sound].play()
 		footstep_timer.start()
+		
+	if Input.is_action_just_released("interact"):
+		var mech = get_parent().get_node("Mech")
+		mech.transform = self.transform
+		self.hide()
+		camera.set_current_target("mech")
+		print("Did you see that??")

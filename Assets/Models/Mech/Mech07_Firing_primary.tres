@@ -3,6 +3,7 @@
 [resource]
 resource_name = "07_Firing_primary"
 length = 0.25
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("rig/Skeleton:ORG-toe.L")
 tracks/0/interp = 1

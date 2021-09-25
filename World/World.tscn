@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Music/Juhani Junkala [Retro Game Music Pack] Level 3.wav" type="AudioStream" id=1]
 [ext_resource path="res://Player/Pilot/Pilot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/Mech/Mech.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Camera.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0.00784314, 0.00784314, 1 )
@@ -124,8 +126,14 @@ height = 20.0
 
 [node name="RayCast" type="RayCast" parent="."]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Camera" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 20, 3 )
+
+[node name="Pilot" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -1 )
+
+[node name="Mech" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

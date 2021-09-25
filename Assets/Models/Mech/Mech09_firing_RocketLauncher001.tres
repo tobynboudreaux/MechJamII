@@ -3,7 +3,6 @@
 [resource]
 resource_name = "09_firing_RocketLauncher001"
 length = 1.29167
-loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("rig/Skeleton:ORG-toe.L")
 tracks/0/interp = 1
