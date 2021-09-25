@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gun_pistol_cock_02.ogg-d905f31f54ef1f635df7bb433c34a30e.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Pilot/gun_pistol_cock_02.ogg"
+dest_files=[ "res://.import/gun_pistol_cock_02.ogg-d905f31f54ef1f635df7bb433c34a30e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
