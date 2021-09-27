@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Core/StartScreen/StartScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Core/StartScreen/PilotModelForMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/MechTitle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/BackArrow.png" type="Texture" id=5]
+[ext_resource path="res://Core/StartScreen/SSRFloorMaterial.tres" type="Material" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -35,46 +39,323 @@ func _on_StartButton_pressed():
 	pass # Replace with function body.
 "
 
+[sub_resource type="PlaneMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 0.996078, 0.85098, 1 )
+emission_enabled = true
+emission = Color( 1, 0.960784, 0, 1 )
+emission_energy = 1.41
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="PlaneMesh" id=6]
+
+[sub_resource type="Animation" id=9]
+resource_name = "Camera_Pan"
+length = 20.0
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("MenuCamera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0.35, 2, 0.173648, 0, 0, 0.984808, 1, 1, 1, 2.5, 1, 1.5, 0.35, 1.5, 0.16043, 0.37687, -0.0664523, 0.909844, 1, 1, 1, 5, 1, 2, 0.35, 0, 0.122788, 0.696364, -0.122788, 0.696364, 1, 1, 1, 7.5, 1, 1.5, 0.35, -1.5, 0.0664523, 0.909844, -0.16043, 0.376869, 1, 1, 1, 10, 1, 0, 0.35, -2, -7.5904e-09, 0.984808, -0.173648, -4.30473e-08, 1, 1, 1, 12.5, 1, -1.5, 0.35, -1.5, -0.0664523, 0.909844, -0.16043, -0.37687, 1, 1, 1, 15, 1, -2, 0.35, 0, 0.122788, -0.696364, 0.122788, 0.696364, 1, 1, 1, 17.5, 1, -1.5, 0.35, 1.5, 0.16043, -0.37687, 0.0664523, 0.909844, 1, 1, 1, 20, 1, 0, 0.35, 2, 0.173648, 0, 0, 0.984808, 1, 1, 1 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("PilotNode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 2, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 4, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 5, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 6, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 7, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 8, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 9, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 10, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 11, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 12, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 13, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 14, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 15, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 16, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 17, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 18, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 19, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 20, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+tracks/2/type = "transform"
+tracks/2/path = NodePath("ViewportBlock")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = PoolRealArray( 3.2, 1, 1.7, -2, -4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911, 3.25, 1, 1.7, 0.4, -4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911, 6, 1, 1.7, 0.4, 4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911, 6.05, 1, -1.7, -2, 4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911, 12.95, 1, -1.7, -2, 4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911, 13, 1, -1.7, 0.4, 4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911, 16, 1, -1.7, 0.4, -4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911, 16.05, 1, -1.7, -4, -4, 0, 0, 0, 1, 0.109588, 0.4, 0.194911 )
+tracks/3/type = "transform"
+tracks/3/path = NodePath("MenuSphereBackdrop")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 20, 1, 0, 0, 0, 0, -0.707107, 0, 0.707107, 1, 1, 1 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "Pilot_Bob"
+length = 8.0
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("PilotNode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 4, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 8, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="Gradient" id=11]
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+width = 2050
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.537255, 0.105882, 0.105882, 1 )
+albedo_texture = SubResource( 12 )
+
+[sub_resource type="CubeMesh" id=14]
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.117647, 0.0156863, 0.0156863, 1 )
+
 [node name="StartScreen" type="Control"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1024.0
-margin_top = -600.0
+margin_left = -1280.0
+margin_top = -720.0
 theme = SubResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
+[node name="MainVBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.275
+anchor_right = 0.5
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+margin_left = -91.5
+margin_right = 91.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sprite" type="Sprite" parent="MainVBoxContainer"]
+position = Vector2( 91.5, -64 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 34.0
-text = "MechJam II"
-align = 1
-
-[node name="StartButton" type="Button" parent="ColorRect/VBoxContainer"]
-margin_top = 38.0
-margin_right = 1024.0
-margin_bottom = 78.0
-text = "Start"
+[node name="StartButton" type="Button" parent="MainVBoxContainer"]
+margin_right = 183.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+action_mode = 0
+text = "Begin"
 script = SubResource( 3 )
 
-[connection signal="pressed" from="ColorRect/VBoxContainer/StartButton" to="ColorRect/VBoxContainer/StartButton" method="_on_StartButton_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[node name="ContinueButton" type="Button" parent="MainVBoxContainer"]
+visible = false
+margin_top = 44.0
+margin_right = 183.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+action_mode = 0
+text = "Continue"
+script = SubResource( 3 )
+
+[node name="PrevLevelsButton" type="Button" parent="MainVBoxContainer"]
+visible = false
+margin_top = 44.0
+margin_right = 183.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -1047.95, -88 )
+action_mode = 0
+text = "Replay Levels"
+script = SubResource( 3 )
+
+[node name="OptionsButton" type="Button" parent="MainVBoxContainer"]
+margin_top = 44.0
+margin_right = 183.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -1047.95, -88 )
+action_mode = 0
+text = "Options"
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="MainVBoxContainer"]
+margin_top = 88.0
+margin_right = 183.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+action_mode = 0
+text = "Abort"
+script = SubResource( 3 )
+
+[node name="LevelsVBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.4
+anchor_top = 0.05
+anchor_right = 0.6
+anchor_bottom = 1.0
+margin_left = -56.5
+margin_right = 56.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level1Button" type="Button" parent="LevelsVBoxContainer"]
+margin_right = 369.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+focus_neighbour_top = NodePath("../LevelBackButton2")
+focus_neighbour_bottom = NodePath("../Level2Button")
+disabled = true
+action_mode = 0
+text = "Level 1"
+script = SubResource( 3 )
+
+[node name="Level2Button" type="Button" parent="LevelsVBoxContainer"]
+margin_top = 44.0
+margin_right = 369.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+focus_neighbour_top = NodePath("../Level1Button")
+focus_neighbour_bottom = NodePath("../Level3Button")
+disabled = true
+action_mode = 0
+text = "Level 2"
+script = SubResource( 3 )
+
+[node name="Level3Button" type="Button" parent="LevelsVBoxContainer"]
+margin_top = 88.0
+margin_right = 369.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+focus_neighbour_top = NodePath("../Level2Button")
+focus_neighbour_bottom = NodePath("../LevelBackButton")
+disabled = true
+action_mode = 0
+text = "Level 3"
+script = SubResource( 3 )
+
+[node name="LevelBackButton" type="Button" parent="LevelsVBoxContainer"]
+margin_top = 132.0
+margin_right = 369.0
+margin_bottom = 172.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+focus_neighbour_top = NodePath("../Level3Button")
+focus_neighbour_bottom = NodePath("../Level1Button")
+action_mode = 0
+text = "Back"
+icon = ExtResource( 5 )
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.4
+anchor_top = 0.202
+anchor_right = 0.6
+anchor_bottom = 1.0
+margin_left = -56.5
+margin_right = 56.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraphicsLabel" type="Label" parent="OptionsVBoxContainer"]
+margin_right = 369.0
+margin_bottom = 34.0
+text = "Graphics"
+align = 1
+
+[node name="GraphicsOptionButton" type="OptionButton" parent="OptionsVBoxContainer"]
+margin_top = 38.0
+margin_right = 369.0
+margin_bottom = 78.0
+text = "-- Select an Option --"
+align = 1
+
+[node name="FullscreenButton" type="CheckButton" parent="OptionsVBoxContainer"]
+margin_top = 126.0
+margin_right = 369.0
+margin_bottom = 168.0
+text = "Fullscreen"
+
+[node name="OptionsBackButton" type="Button" parent="OptionsVBoxContainer"]
+margin_top = 82.0
+margin_right = 369.0
+margin_bottom = 122.0
+rect_pivot_offset = Vector2( -1057.25, 20 )
+action_mode = 0
+text = "Back"
+icon = ExtResource( 5 )
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3DMenuWorld" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+
+[node name="MenuCamera" type="Camera" parent="3DMenuWorld"]
+transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0.35, 2 )
+
+[node name="EmissivePlaneMesh" type="CSGMesh" parent="3DMenuWorld"]
+transform = Transform( 2, 0, 0, 0, -2, 1.74846e-07, 0, -1.74846e-07, -2, 0, 4, 0 )
+mesh = SubResource( 4 )
+material = SubResource( 5 )
+
+[node name="ReflectiveFloorMesh" type="CSGMesh" parent="3DMenuWorld"]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+mesh = SubResource( 6 )
+material = ExtResource( 6 )
+
+[node name="ReflectionViewport" type="Viewport" parent="3DMenuWorld/ReflectiveFloorMesh"]
+size = Vector2( 350, 350 )
+fxaa = true
+hdr = false
+
+[node name="ReflectionCamera" type="Camera" parent="3DMenuWorld/ReflectiveFloorMesh/ReflectionViewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.001, 4.003, -0.001 )
+fov = 163.5
+
+[node name="PilotNode" type="Spatial" parent="3DMenuWorld"]
+
+[node name="MechJam_Player" parent="3DMenuWorld/PilotNode" instance=ExtResource( 3 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.2, 0 )
+
+[node name="MenuSpotlight" type="SpotLight" parent="3DMenuWorld"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.305, 0 )
+light_color = Color( 1, 0.937255, 0, 1 )
+light_energy = 6.0
+light_specular = 0.7
+spot_range = 3.6
+spot_angle = 30.5
+
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="3DMenuWorld"]
+anims/Camera_Pan = SubResource( 9 )
+anims/Pilot_Bob = SubResource( 10 )
+
+[node name="MenuSphereBackdrop" type="CSGSphere" parent="3DMenuWorld"]
+invert_faces = true
+radius = 4.2
+radial_segments = 8
+rings = 10
+material = SubResource( 13 )
+
+[node name="ViewportBlock" type="CSGMesh" parent="3DMenuWorld"]
+transform = Transform( 0.109588, 0, 0, 0, 0.4, 0, 0, 0, 0.194911, 0.178322, -2.8951, -4 )
+mesh = SubResource( 14 )
+material = SubResource( 15 )
+
+[connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MainVBoxContainer/StartButton" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/PrevLevelsButton" to="." method="_on_PrevLevelsButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="." method="_on_LevelBackButton_pressed"]
+[connection signal="item_selected" from="OptionsVBoxContainer/GraphicsOptionButton" to="." method="_on_GraphicsOptionButton_item_selected"]
+[connection signal="toggled" from="OptionsVBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]
+[connection signal="pressed" from="OptionsVBoxContainer/OptionsBackButton" to="." method="_on_OptionsBackButton_pressed"]

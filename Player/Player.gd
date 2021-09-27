@@ -22,8 +22,12 @@ const DEFAULT_MAG_SIZE = 7
 var mag_size
 
 onready var animation_tree = $AnimationTree
+var pause_menu = preload("res://Core/Pause/PauseMenu.tscn").instance()
 
+# Misc. global booleans
 var is_mech = false
+var is_paused = false
+var is_near_interable = false
 
 # Status check vars
 var is_reloading = false
@@ -165,6 +169,12 @@ func process_input():
 		sword_sounds[random_sound].play()
 		sword_timer.start()
 		
+	# Activate/Deactivate pause menu
+	if Input.is_action_just_pressed("pause"):
+		if (!is_paused):
+			pause_menu.get_child(0).hide()
+		else:
+			pause_menu.get_child(0).show()
 		
 func process_movement(delta):
 	dir.y = 0

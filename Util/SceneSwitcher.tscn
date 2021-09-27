@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Core/StartScreen/StartScreen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Util/SceneSwitcher.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Images/BarCodeFull.png" type="Texture" id=3]
+[ext_resource path="res://Util/MechEnvironment.tres" type="Environment" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Transition_In"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("OverlayLayer/Overlay:rect_position")
 tracks/0/interp = 1
@@ -13,13 +16,26 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.176777, 1 ),
+"transitions": PoolRealArray( 1, 9.84914 ),
 "update": 0,
-"values": [ Vector2( 0, 675.5 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( -1360, 900 ), Vector2( -1360, -136 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OverlayLayer/BarsSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.170755 ),
+"update": 0,
+"values": [ Vector2( 649.385, 1400 ), Vector2( 649.385, 366 ) ]
 }
 
 [sub_resource type="Animation" id=2]
 resource_name = "Transition_Out"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("OverlayLayer/Overlay:rect_position")
 tracks/0/interp = 1
@@ -27,28 +43,64 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 3.24901, 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.0769466 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -675.5 ) ]
+"values": [ Vector2( -1360, -131 ), Vector2( -1360, -1231 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OverlayLayer/BarsSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("OverlayLayer/BarsSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 13.752 ),
+"update": 0,
+"values": [ Vector2( 649.385, 366 ), Vector2( 649.385, -700 ) ]
 }
 
 [node name="SceneSwitcher" type="Node"]
 script = ExtResource( 2 )
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 4 )
+
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
 layer = 10
 
 [node name="Overlay" type="ColorRect" parent="OverlayLayer"]
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = 675.5
-margin_bottom = 675.502
+margin_left = -2000.0
+margin_top = -1231.0
+margin_right = 2000.0
+margin_bottom = -950.994
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BarsSprite" type="Sprite" parent="OverlayLayer"]
+position = Vector2( 649.385, -700 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+flip_h = true
 
 [node name="StartScreen" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.0

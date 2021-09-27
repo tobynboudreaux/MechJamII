@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Core/Pause/PauseMenu.gd" type="Script" id=1]
+
+[node name="PauseMenuControl" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level_name = "level1"
+
+[node name="PauseMenuPopup" type="Popup" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="PauseMenuPopup"]
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenuPopup/PauseMenuCanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.196078 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -130.0
+margin_right = 130.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseLabel" type="Label" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
+margin_top = 329.0
+margin_right = 260.0
+margin_bottom = 343.0
+text = "P A U S E D"
+align = 1
+valign = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
+margin_top = 347.0
+margin_right = 260.0
+margin_bottom = 367.0
+rect_pivot_offset = Vector2( -810.412, -18 )
+focus_neighbour_bottom = NodePath("../BackToMenuButton")
+custom_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+action_mode = 0
+text = "Resume"
+flat = true
+
+[node name="BackToMenuButton" type="Button" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
+margin_top = 371.0
+margin_right = 260.0
+margin_bottom = 391.0
+rect_pivot_offset = Vector2( -810.412, -18 )
+focus_neighbour_top = NodePath("../ResumeButton")
+custom_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+action_mode = 0
+text = "Back to Menu"
+flat = true
+
+[connection signal="pressed" from="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
