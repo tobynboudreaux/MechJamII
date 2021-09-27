@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Assets/Models/Pilot/Material_001.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Pilot/Material_EMIT.material" type="Material" id=2]
@@ -2363,6 +2363,8 @@ animation = "07_Slicing"
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "06_Shooting"
 
+[sub_resource type="AnimationNodeTimeScale" id=27]
+
 [sub_resource type="AnimationNodeTransition" id=18]
 input_count = 2
 xfade_time = 0.15
@@ -2394,7 +2396,7 @@ blend_point_3/node = SubResource( 22 )
 blend_point_3/pos = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeBlendTree" id=24]
-graph_offset = Vector2( -266.283, -15.562 )
+graph_offset = Vector2( -266.283, 49.938 )
 nodes/Dash/node = SubResource( 11 )
 nodes/Dash/position = Vector2( 540, 300 )
 nodes/Idle/node = SubResource( 12 )
@@ -2409,19 +2411,21 @@ nodes/Melee/node = SubResource( 16 )
 nodes/Melee/position = Vector2( 280, 300 )
 nodes/Shoot/node = SubResource( 17 )
 nodes/Shoot/position = Vector2( 0, 240 )
+nodes/TimeScale/node = SubResource( 27 )
+nodes/TimeScale/position = Vector2( -180, 220 )
 nodes/Transition/node = SubResource( 18 )
 nodes/Transition/position = Vector2( 20, 80 )
 nodes/Walk/node = SubResource( 23 )
-nodes/Walk/position = Vector2( -220, 200 )
+nodes/Walk/position = Vector2( -420, 220 )
 nodes/output/position = Vector2( 1020, 140 )
-node_connections = [ "output", 0, "IsItDashing", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee" ]
+node_connections = [ "output", 0, "IsItDashing", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee", "TimeScale", 0, "Walk" ]
 
-[sub_resource type="DynamicFont" id=27]
+[sub_resource type="DynamicFont" id=25]
 size = 52
 font_data = ExtResource( 14 )
 
 [sub_resource type="Theme" id=26]
-default_font = SubResource( 27 )
+default_font = SubResource( 25 )
 
 [node name="Pilot" type="KinematicBody"]
 script = ExtResource( 13 )
@@ -3568,92 +3572,92 @@ material/1 = null
 [node name="Sword1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 16 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Sword2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 18 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Sword3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 17 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Pistol1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 21 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="Pistol2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 19 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="Pistol3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 20 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="Pistol4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 15 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="PistolReload1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 23 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="PistolReload2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 24 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="PistolReload3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 25 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="PistolDry" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 22 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Dash1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 26 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Dash2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 28 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Dash3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 27 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 29 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 31 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 30 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 32 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Sword" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 mesh = SubResource( 7 )
@@ -3692,6 +3696,7 @@ active = true
 parameters/IsItDashing/active = false
 parameters/IsItShooting/blend_amount = 0.0
 parameters/IsItSlicing/active = false
+parameters/TimeScale/scale = 2.0
 parameters/Transition/current = 0
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
@@ -3716,7 +3721,7 @@ one_shot = true
 one_shot = true
 
 [node name="FootstepTimer" type="Timer" parent="Timers"]
-wait_time = 0.54
+wait_time = 0.25
 one_shot = true
 
 [node name="ToMechTimer" type="Timer" parent="Timers"]

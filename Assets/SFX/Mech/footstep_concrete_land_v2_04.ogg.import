@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/footstep_concrete_land_v2_04.ogg-513b781b4de1537c6a53987d93fe5f78.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Mech/footstep_concrete_land_v2_04.ogg"
+dest_files=[ "res://.import/footstep_concrete_land_v2_04.ogg-513b781b4de1537c6a53987d93fe5f78.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

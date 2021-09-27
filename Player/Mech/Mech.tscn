@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Assets/Models/Mech/Material.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Pilot/Material_001.material" type="Material" id=2]
@@ -13,6 +13,14 @@
 [ext_resource path="res://Player/Mech/Mech.gd" type="Script" id=11]
 [ext_resource path="res://Core/HUD/HUD.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Assets/SFX/Mech/footstep_concrete_land_09.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Assets/SFX/Mech/footstep_concrete_land_v2_03.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/SFX/Mech/footstep_concrete_land_v2_04.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Assets/SFX/Mech/footstep_concrete_land_v2_05.ogg" type="AudioStream" id=17]
+[ext_resource path="res://Assets/SFX/Mech/gun_machinegun_auto_heavy_shot_01.ogg" type="AudioStream" id=18]
+[ext_resource path="res://Assets/SFX/Mech/gun_machinegun_auto_heavy_shot_04.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Assets/SFX/Mech/gun_machinegun_auto_heavy_shot_02.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Assets/SFX/Mech/gun_machinegun_auto_heavy_shot_03.ogg" type="AudioStream" id=21]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -18844,25 +18852,25 @@ tracks/283/imported = true
 tracks/283/enabled = true
 tracks/283/keys = PoolRealArray( 0, 1, 1.19209e-07, -1.78814e-07, 1.78814e-07, -6.70552e-08, -7.45058e-09, -4.996e-16, 1, 1, 1, 1, 0.0666667, 1, 0.000844002, 0.00100875, 0.00256312, -0.00199989, -0.00201527, 0.00145188, 0.999995, 1, 1, 1, 0.133333, 1, 0.00554943, 0.00897759, 0.020105, -0.0153425, -0.0154603, 0.0111384, 0.999701, 1, 1, 1, 0.2, 1, 0.0102739, 0.0293633, 0.0549079, -0.0404748, -0.0407856, 0.0293845, 0.997915, 1, 1, 1, 0.266667, 1, 0.0074296, 0.0656205, 0.101315, -0.0721568, -0.0727111, 0.0523855, 0.993359, 1, 1, 1, 0.4, 1, -0.0301144, 0.171173, 0.196109, -0.13535, -0.13639, 0.0982634, 0.976434, 1, 1, 1, 0.466667, 1, -0.0550008, 0.218098, 0.226961, -0.15751, -0.15872, 0.114351, 0.967947, 1, 1, 1, 0.533333, 1, -0.0692786, 0.239171, 0.236545, -0.167211, -0.168496, 0.121395, 0.963801, 1, 1, 1, 0.666667, 1, -0.075178, 0.192821, 0.164085, -0.152382, -0.153553, 0.110628, 0.970032, 1, 1, 1, 0.733333, 1, -0.071207, 0.230802, 0.222272, -0.164768, -0.166034, 0.119621, 0.964871, 1, 1, 1, 0.8, 1, -0.0718153, 0.22327, 0.21098, -0.162365, -0.163612, 0.117876, 0.965906, 1, 1, 1, 0.866667, 1, -0.0748739, 0.195241, 0.167862, -0.153187, -0.154364, 0.111213, 0.96971, 1, 1, 1, 0.933333, 1, -0.0693791, 0.235071, 0.233147, -0.165335, -0.166605, 0.120032, 0.964624, 1, 1, 1, 1, 1, -0.0648849, 0.192903, 0.200748, -0.147891, -0.149027, 0.107368, 0.971798, 1, 1, 1, 1.06667, 1, -0.0464889, 0.136307, 0.187899, -0.128379, -0.129365, 0.0932024, 0.978824, 1, 1, 1, 1.2, 1, -0.00740373, 0.0340754, 0.187284, -0.0945687, -0.0952952, 0.0686564, 0.988566, 1, 1, 1, 1.26667, 1, 0.000496864, 0.00826889, 0.185789, -0.0854676, -0.0861241, 0.062049, 0.990671, 1, 1, 1, 1.29167, 1, 0.00162542, 0.00432056, 0.185511, -0.0840508, -0.0846965, 0.0610204, 0.990979, 1, 1, 1 )
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Mech09_firing_RocketLauncher001"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "01_Idle"
 
-[sub_resource type="AnimationNodeOneShot" id=28]
+[sub_resource type="AnimationNodeOneShot" id=18]
 
-[sub_resource type="AnimationNodeBlend2" id=27]
+[sub_resource type="AnimationNodeBlend2" id=19]
 
-[sub_resource type="AnimationNodeBlend2" id=17]
+[sub_resource type="AnimationNodeBlend2" id=20]
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "Mech07_Firing_primary"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "Mech06_Shutdown"
 
-[sub_resource type="AnimationNodeTransition" id=19]
+[sub_resource type="AnimationNodeTransition" id=23]
 input_count = 2
 xfade_time = 0.15
 input_0/name = "Idle"
@@ -18870,50 +18878,50 @@ input_0/auto_advance = false
 input_1/name = "Walk"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "Mech02_Forward"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "Mech03_backward"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "Mech04_Strafe_Left"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "Mech05_Strafe_Right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=24]
-blend_point_0/node = SubResource( 20 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=28]
+blend_point_0/node = SubResource( 24 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 21 )
+blend_point_1/node = SubResource( 25 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 22 )
+blend_point_2/node = SubResource( 26 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 23 )
+blend_point_3/node = SubResource( 27 )
 blend_point_3/pos = Vector2( 1, 0 )
 
-[sub_resource type="AnimationNodeBlendTree" id=25]
-graph_offset = Vector2( -275, 204.25 )
-nodes/FireLauncher/node = SubResource( 26 )
+[sub_resource type="AnimationNodeBlendTree" id=29]
+graph_offset = Vector2( -550, 0 )
+nodes/FireLauncher/node = SubResource( 16 )
 nodes/FireLauncher/position = Vector2( 140, 360 )
-nodes/Idle/node = SubResource( 16 )
+nodes/Idle/node = SubResource( 17 )
 nodes/Idle/position = Vector2( -20, 60 )
-nodes/IsLaunching/node = SubResource( 28 )
+nodes/IsLaunching/node = SubResource( 18 )
 nodes/IsLaunching/position = Vector2( 600, 60 )
-nodes/IsShooting/node = SubResource( 27 )
+nodes/IsShooting/node = SubResource( 19 )
 nodes/IsShooting/position = Vector2( 400, 60 )
-nodes/IsShutdown/node = SubResource( 17 )
+nodes/IsShutdown/node = SubResource( 20 )
 nodes/IsShutdown/position = Vector2( 880, 80 )
-nodes/Shooting/node = SubResource( 29 )
+nodes/Shooting/node = SubResource( 21 )
 nodes/Shooting/position = Vector2( 140, 240 )
-nodes/Shutdown/node = SubResource( 18 )
+nodes/Shutdown/node = SubResource( 22 )
 nodes/Shutdown/position = Vector2( 620, 240 )
-nodes/Transition/node = SubResource( 19 )
+nodes/Transition/node = SubResource( 23 )
 nodes/Transition/position = Vector2( 180, 80 )
-nodes/Walk/node = SubResource( 24 )
+nodes/Walk/node = SubResource( 28 )
 nodes/Walk/position = Vector2( -40, 180 )
 nodes/output/position = Vector2( 1100, 120 )
-node_connections = [ "output", 0, "IsShutdown", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher" ]
+node_connections = [ "output", 0, "IsShutdown", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher" ]
 
 [sub_resource type="DynamicFont" id=30]
 size = 52
@@ -20348,7 +20356,7 @@ bones/281/name = "hand_ik.R.001"
 bones/281/parent = 279
 bones/281/rest = Transform( 1, 5.96046e-08, -6.70552e-08, -5.96046e-08, 1, 7.07805e-08, 6.70552e-08, -7.07805e-08, 1, -0.164309, 0.0391208, -0.129907 )
 bones/281/enabled = true
-bones/281/bound_children = [ NodePath("BoneAttachment") ]
+bones/281/bound_children = [  ]
 bones/282/name = "MCH-upper_arm_ik_target.parent.R"
 bones/282/parent = -1
 bones/282/rest = Transform( -0.627147, -0.631967, 0.455307, 0.455307, 0.176836, 0.872596, -0.631966, 0.754551, 0.176836, 0.05364, 1.31855, -1.51458 )
@@ -20365,14 +20373,59 @@ transform = Transform( -0.77111, 0.183595, -0.609659, -0.600204, -0.529141, 0.59
 bone_name = "hand_ik.R.001"
 
 [node name="MechGun" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment"]
-transform = Transform( -0.758566, -0.602468, 0.248214, 0.233917, 0.103753, 0.966705, -0.608162, 0.791371, 0.0622242, 1.19209e-07, -1.49012e-07, -1.78814e-07 )
+transform = Transform( -0.758566, -0.602468, 0.248214, 0.233917, 0.103753, 0.966705, -0.608162, 0.791371, 0.0622244, 1.19209e-07, 1.19209e-07, -5.96046e-07 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 2 )
+
+[node name="Position3D" type="Position3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment/MechGun"]
+transform = Transform( 1, 1.13621e-07, 1.19209e-07, -8.9407e-08, 1, 1.78814e-07, -1.32248e-07, 0, 1, 0, 5.96046e-08, 0 )
 
 [node name="MechBody" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
 mesh = SubResource( 3 )
 skin = SubResource( 4 )
 material/0 = ExtResource( 2 )
+
+[node name="Sounds" type="Spatial" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody"]
+
+[node name="Footstep1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 14 )
+unit_db = 20.0
+
+[node name="Footstep2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 15 )
+unit_db = 20.0
+
+[node name="Footstep3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 16 )
+unit_db = 20.0
+
+[node name="Footstep4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 17 )
+unit_db = 20.0
+
+[node name="Gun1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 18 )
+unit_db = 20.0
+
+[node name="Gun2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 20 )
+unit_db = 20.0
+
+[node name="Gun3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 21 )
+unit_db = 20.0
+
+[node name="Gun4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
+stream = ExtResource( 19 )
+unit_db = 20.0
 
 [node name="MechLegs001" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
 mesh = SubResource( 5 )
@@ -20404,7 +20457,7 @@ anims/Mech07_Firing_primary = ExtResource( 9 )
 anims/Mech09_firing_RocketLauncher001 = ExtResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 25 )
+tree_root = SubResource( 29 )
 anim_player = NodePath("../Rotation_Helper/MechJam_mech/AnimationPlayer")
 active = true
 parameters/IsLaunching/active = false
@@ -20416,7 +20469,7 @@ parameters/Walk/blend_position = Vector2( 0, 0 )
 [node name="Timers" type="Node" parent="."]
 
 [node name="ToPilotTimer" type="Timer" parent="Timers"]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="Timers"]
@@ -20425,6 +20478,10 @@ one_shot = true
 
 [node name="FireTimer" type="Timer" parent="Timers"]
 wait_time = 0.25
+one_shot = true
+
+[node name="FootstepTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource( 12 )]

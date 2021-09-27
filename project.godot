@@ -15,6 +15,10 @@ run/main_scene="res://Core/StartScreen/StartScreen.tscn"
 boot_splash/image="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
 config/icon="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
 
+[display]
+
+mouse_cursor/custom_image="res://Assets/Images/crosshair (2).png"
+
 [input]
 
 left={

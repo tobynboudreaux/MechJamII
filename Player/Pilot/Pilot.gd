@@ -61,6 +61,7 @@ onready var hud = get_node("HUD")
 func _ready():
 	rotation_helper = $Rotation_Helper
 	$HUD.hide()
+	$CollisionShape.disabled = true
 	
 	# ----------------------------------
 	# Ammunition SET
@@ -78,6 +79,7 @@ func _process(delta):
 			mech.transform = self.transform
 			print("Did you see that??")
 			self.hide()
+			self.get_node("CollisionShape").disabled = true
 			camera.set_current_target("mech")
 			set_mech(true)
 			mech.to_pilot_timer.start()
@@ -93,14 +95,7 @@ func _physics_process(delta):
 		process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL)
 		process_pilot_input()
 		process_animations()
-		process_reload()
 		animation_tree["parameters/Walk/blend_position"] = process_camera_rotation(rotation_helper)
-	
-func process_reload():
-	if Input.is_action_just_pressed("reload") && is_reloading == false && mag_size < DEFAULT_MAG_SIZE:
-		reload(DEFAULT_MAG_SIZE, mag_size, reload_timer)
-		var random_sound = randi() % 3
-		pistol_reload_sounds[random_sound].play()
 	
 func process_pilot_input():
 	# ----------------------------------
@@ -124,13 +119,28 @@ func process_pilot_input():
 		sword_sounds[random_sound].play()
 		sword_timer.start()
 	# ----------------------------------
-
-func process_fire():
+	
+	
+	if Input.is_action_just_pressed("reload") && is_reloading == false && mag_size < DEFAULT_MAG_SIZE:
+		is_reloading = true
+		mag_size = DEFAULT_MAG_SIZE
+		reload_timer.start()
+		var random_sound = randi() % 3
+		pistol_reload_sounds[random_sound].play()
+			
+	if reload_timer.time_left == 0:
+		is_reloading = false
+		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
+	# ----------------------------------
+	
+	# ----------------------------------		
+	# Shoot
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:
 		get_parent().add_child(p)
 		p.transform = $Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol/WeaponMuzzle.global_transform
 		p.velocity = -p.transform.basis.z * p.muzzle_velocity
-		
+	# ----------------------------------
+			
 func process_animations():
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:
 		animation_tree["parameters/IsItShooting/blend_amount"] = 1

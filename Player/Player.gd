@@ -11,7 +11,7 @@ var is_moving_forward = false
 var is_moving_back = false
 var is_moving_right = false
 var is_moving_left = false
-var is_mech
+var is_mech = true
 
 onready var camera = get_parent().get_node("Camera")
 
@@ -82,18 +82,6 @@ func process_camera_rotation(rotation_helper):
 	var blend_y = cos(angle_to_movement)
 	var blend_x = sin(angle_to_movement)
 	return Vector2(blend_x, blend_y)
-
-func reload(DEFAULT_MAG_SIZE, mag_size, reload_timer):
-	# ----------------------------------
-	# Reload
-	is_reloading = true
-	mag_size = DEFAULT_MAG_SIZE
-	$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
-	reload_timer.start()
-		
-	if reload_timer.time_left == 0:
-		is_reloading = false
-	# ----------------------------------
 		
 func process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL):
 	dir.y = 0
