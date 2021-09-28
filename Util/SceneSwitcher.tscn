@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Core/StartScreen/StartScreen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Util/SceneSwitcher.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Images/BarCodeFull.png" type="Texture" id=3]
 [ext_resource path="res://Util/MechEnvironment.tres" type="Environment" id=4]
 
+[sub_resource type="World" id=3]
+environment = ExtResource( 4 )
+
 [sub_resource type="Animation" id=1]
 resource_name = "Transition_In"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("OverlayLayer/Overlay:rect_position")
+tracks/0/path = NodePath("MainViewport/OverlayLayer/Overlay:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -21,7 +24,7 @@ tracks/0/keys = {
 "values": [ Vector2( -1360, 900 ), Vector2( -1360, -136 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("OverlayLayer/BarsSprite:position")
+tracks/1/path = NodePath("MainViewport/OverlayLayer/BarsSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -37,7 +40,7 @@ tracks/1/keys = {
 resource_name = "Transition_Out"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("OverlayLayer/Overlay:rect_position")
+tracks/0/path = NodePath("MainViewport/OverlayLayer/Overlay:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -49,7 +52,7 @@ tracks/0/keys = {
 "values": [ Vector2( -1360, -131 ), Vector2( -1360, -1231 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("OverlayLayer/BarsSprite:flip_h")
+tracks/1/path = NodePath("MainViewport/OverlayLayer/BarsSprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -61,7 +64,7 @@ tracks/1/keys = {
 "values": [ true, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("OverlayLayer/BarsSprite:position")
+tracks/2/path = NodePath("MainViewport/OverlayLayer/BarsSprite:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -76,13 +79,24 @@ tracks/2/keys = {
 [node name="SceneSwitcher" type="Node"]
 script = ExtResource( 2 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 4 )
+[node name="StartScreen" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+margin_left = 0.0
+margin_top = 0.0
 
-[node name="OverlayLayer" type="CanvasLayer" parent="."]
+[node name="MainViewport" type="Viewport" parent="."]
+size = Vector2( 1280, 720 )
+size_override_stretch = true
+world = SubResource( 3 )
+render_direct_to_screen = true
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+
+[node name="OverlayLayer" type="CanvasLayer" parent="MainViewport"]
 layer = 10
 
-[node name="Overlay" type="ColorRect" parent="OverlayLayer"]
+[node name="Overlay" type="ColorRect" parent="MainViewport/OverlayLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -96,17 +110,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BarsSprite" type="Sprite" parent="OverlayLayer"]
+[node name="BarsSprite" type="Sprite" parent="MainViewport/OverlayLayer"]
 position = Vector2( 649.385, -700 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 flip_h = true
 
-[node name="StartScreen" parent="." instance=ExtResource( 1 )]
-anchor_left = 0.0
-anchor_top = 0.0
-margin_left = 0.0
-margin_top = 0.0
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MainViewport"]
+environment = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Transition_In = SubResource( 1 )

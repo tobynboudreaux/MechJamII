@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Core/StartScreen/StartScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,13 @@
 [ext_resource path="res://Assets/Images/MechTitle.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Images/BackArrow.png" type="Texture" id=5]
 [ext_resource path="res://Core/StartScreen/SSRFloorMaterial.tres" type="Material" id=6]
+[ext_resource path="res://Assets/Fonts/MenuOptionsFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Assets/Themes/MenuButtonTheme.tres" type="Theme" id=8]
+[ext_resource path="res://Util/MechEnvironment.tres" type="Environment" id=9]
+[ext_resource path="res://Core/StartScreen/MenuMusicSFXHandler.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Music/MJamIIMenuSketch.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Assets/SFX/UI/clang.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/SFX/UI/click.wav" type="AudioStream" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -51,7 +58,7 @@ emission_on_uv2 = false
 
 [sub_resource type="PlaneMesh" id=6]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 resource_name = "Camera_Pan"
 length = 20.0
 loop = true
@@ -84,7 +91,7 @@ tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 20, 1, 0, 0, 0, 0, -0.707107, 0, 0.707107, 1, 1, 1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 resource_name = "Pilot_Bob"
 length = 8.0
 loop = true
@@ -96,19 +103,19 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 4, 1, 0, -0.1, 0, 0, 0, 0, 1, 1, 1, 1, 8, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=9]
 
-[sub_resource type="GradientTexture" id=12]
-gradient = SubResource( 11 )
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
 width = 2050
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 0.537255, 0.105882, 0.105882, 1 )
-albedo_texture = SubResource( 12 )
+albedo_texture = SubResource( 10 )
 
-[sub_resource type="CubeMesh" id=14]
+[sub_resource type="CubeMesh" id=12]
 
-[sub_resource type="SpatialMaterial" id=15]
+[sub_resource type="SpatialMaterial" id=13]
 albedo_color = Color( 0.117647, 0.0156863, 0.0156863, 1 )
 
 [node name="StartScreen" type="Control"]
@@ -142,18 +149,21 @@ texture = ExtResource( 4 )
 
 [node name="StartButton" type="Button" parent="MainVBoxContainer"]
 margin_right = 183.0
-margin_bottom = 40.0
+margin_bottom = 48.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
 action_mode = 0
 text = "Begin"
 script = SubResource( 3 )
 
 [node name="ContinueButton" type="Button" parent="MainVBoxContainer"]
 visible = false
-margin_top = 44.0
+margin_top = 58.0
 margin_right = 183.0
-margin_bottom = 84.0
+margin_bottom = 112.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
+theme = ExtResource( 8 )
 action_mode = 0
 text = "Continue"
 script = SubResource( 3 )
@@ -164,15 +174,17 @@ margin_top = 44.0
 margin_right = 183.0
 margin_bottom = 84.0
 rect_pivot_offset = Vector2( -1047.95, -88 )
+theme = ExtResource( 8 )
 action_mode = 0
 text = "Replay Levels"
 script = SubResource( 3 )
 
 [node name="OptionsButton" type="Button" parent="MainVBoxContainer"]
-margin_top = 44.0
+margin_top = 52.0
 margin_right = 183.0
-margin_bottom = 84.0
+margin_bottom = 100.0
 rect_pivot_offset = Vector2( -1047.95, -88 )
+theme = ExtResource( 8 )
 action_mode = 0
 text = "Options"
 script = SubResource( 3 )
@@ -181,10 +193,11 @@ __meta__ = {
 }
 
 [node name="QuitButton" type="Button" parent="MainVBoxContainer"]
-margin_top = 88.0
+margin_top = 104.0
 margin_right = 183.0
-margin_bottom = 128.0
+margin_bottom = 152.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
+theme = ExtResource( 8 )
 action_mode = 0
 text = "Abort"
 script = SubResource( 3 )
@@ -203,46 +216,42 @@ __meta__ = {
 
 [node name="Level1Button" type="Button" parent="LevelsVBoxContainer"]
 margin_right = 369.0
-margin_bottom = 40.0
+margin_bottom = 48.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
-focus_neighbour_top = NodePath("../LevelBackButton2")
-focus_neighbour_bottom = NodePath("../Level2Button")
+theme = ExtResource( 8 )
 disabled = true
 action_mode = 0
 text = "Level 1"
 script = SubResource( 3 )
 
 [node name="Level2Button" type="Button" parent="LevelsVBoxContainer"]
-margin_top = 44.0
+margin_top = 52.0
 margin_right = 369.0
-margin_bottom = 84.0
+margin_bottom = 100.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
-focus_neighbour_top = NodePath("../Level1Button")
-focus_neighbour_bottom = NodePath("../Level3Button")
+theme = ExtResource( 8 )
 disabled = true
 action_mode = 0
 text = "Level 2"
 script = SubResource( 3 )
 
 [node name="Level3Button" type="Button" parent="LevelsVBoxContainer"]
-margin_top = 88.0
+margin_top = 104.0
 margin_right = 369.0
-margin_bottom = 128.0
+margin_bottom = 152.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
-focus_neighbour_top = NodePath("../Level2Button")
-focus_neighbour_bottom = NodePath("../LevelBackButton")
+theme = ExtResource( 8 )
 disabled = true
 action_mode = 0
 text = "Level 3"
 script = SubResource( 3 )
 
 [node name="LevelBackButton" type="Button" parent="LevelsVBoxContainer"]
-margin_top = 132.0
+margin_top = 156.0
 margin_right = 369.0
-margin_bottom = 172.0
+margin_bottom = 204.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
-focus_neighbour_top = NodePath("../Level3Button")
-focus_neighbour_bottom = NodePath("../Level1Button")
+theme = ExtResource( 8 )
 action_mode = 0
 text = "Back"
 icon = ExtResource( 5 )
@@ -263,30 +272,78 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GraphicsLabel" type="Label" parent="OptionsVBoxContainer"]
+[node name="ResolutionLabel" type="Label" parent="OptionsVBoxContainer"]
 margin_right = 369.0
-margin_bottom = 34.0
-text = "Graphics"
+margin_bottom = 48.0
+theme = ExtResource( 8 )
+text = "Resolution Scale (100%)"
+align = 1
+
+[node name="ResolutionHSlider" type="HSlider" parent="OptionsVBoxContainer"]
+margin_top = 52.0
+margin_right = 369.0
+margin_bottom = 82.0
+theme = ExtResource( 8 )
+min_value = 50.0
+step = 10.0
+value = 100.0
+
+[node name="GraphicsLabel" type="Label" parent="OptionsVBoxContainer"]
+margin_top = 86.0
+margin_right = 369.0
+margin_bottom = 134.0
+theme = ExtResource( 8 )
+text = "Graphics Quality"
 align = 1
 
 [node name="GraphicsOptionButton" type="OptionButton" parent="OptionsVBoxContainer"]
-margin_top = 38.0
+margin_top = 138.0
 margin_right = 369.0
-margin_bottom = 78.0
+margin_bottom = 186.0
+theme = ExtResource( 8 )
+text = "-- Select an Option --"
+align = 1
+
+[node name="AntiAliasingLabel" type="Label" parent="OptionsVBoxContainer"]
+margin_top = 190.0
+margin_right = 369.0
+margin_bottom = 238.0
+theme = ExtResource( 8 )
+text = "Anti-Aliasing"
+align = 1
+
+[node name="AAOptionButton" type="OptionButton" parent="OptionsVBoxContainer"]
+margin_top = 242.0
+margin_right = 369.0
+margin_bottom = 290.0
+theme = ExtResource( 8 )
 text = "-- Select an Option --"
 align = 1
 
 [node name="FullscreenButton" type="CheckButton" parent="OptionsVBoxContainer"]
-margin_top = 126.0
+margin_top = 294.0
 margin_right = 369.0
-margin_bottom = 168.0
+margin_bottom = 348.0
+theme = ExtResource( 8 )
 text = "Fullscreen"
 
-[node name="OptionsBackButton" type="Button" parent="OptionsVBoxContainer"]
-margin_top = 82.0
+[node name="VsyncButton" type="CheckButton" parent="OptionsVBoxContainer"]
+margin_top = 352.0
 margin_right = 369.0
-margin_bottom = 122.0
+margin_bottom = 406.0
+theme = ExtResource( 8 )
+disabled = true
+text = "Vsync"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsBackButton" type="Button" parent="OptionsVBoxContainer"]
+margin_top = 410.0
+margin_right = 369.0
+margin_bottom = 458.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
+theme = ExtResource( 8 )
 action_mode = 0
 text = "Back"
 icon = ExtResource( 5 )
@@ -295,11 +352,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MenuMusicSFXHandler" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="MenuBGMusicPlayer" type="AudioStreamPlayer" parent="MenuMusicSFXHandler"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+autoplay = true
+
+[node name="FocusSFX" type="AudioStreamPlayer" parent="MenuMusicSFXHandler"]
+stream = ExtResource( 13 )
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="MenuMusicSFXHandler"]
+stream = ExtResource( 12 )
+
 [node name="3DMenuWorld" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
 
 [node name="MenuCamera" type="Camera" parent="3DMenuWorld"]
 transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0.35, 2 )
+environment = ExtResource( 9 )
 
 [node name="EmissivePlaneMesh" type="CSGMesh" parent="3DMenuWorld"]
 transform = Transform( 2, 0, 0, 0, -2, 1.74846e-07, 0, -1.74846e-07, -2, 0, 4, 0 )
@@ -310,15 +382,6 @@ material = SubResource( 5 )
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 mesh = SubResource( 6 )
 material = ExtResource( 6 )
-
-[node name="ReflectionViewport" type="Viewport" parent="3DMenuWorld/ReflectiveFloorMesh"]
-size = Vector2( 350, 350 )
-fxaa = true
-hdr = false
-
-[node name="ReflectionCamera" type="Camera" parent="3DMenuWorld/ReflectiveFloorMesh/ReflectionViewport"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.001, 4.003, -0.001 )
-fov = 163.5
 
 [node name="PilotNode" type="Spatial" parent="3DMenuWorld"]
 
@@ -334,28 +397,58 @@ spot_range = 3.6
 spot_angle = 30.5
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="3DMenuWorld"]
-anims/Camera_Pan = SubResource( 9 )
-anims/Pilot_Bob = SubResource( 10 )
+anims/Camera_Pan = SubResource( 7 )
+anims/Pilot_Bob = SubResource( 8 )
 
 [node name="MenuSphereBackdrop" type="CSGSphere" parent="3DMenuWorld"]
 invert_faces = true
 radius = 4.2
 radial_segments = 8
 rings = 10
-material = SubResource( 13 )
+material = SubResource( 11 )
 
 [node name="ViewportBlock" type="CSGMesh" parent="3DMenuWorld"]
 transform = Transform( 0.109588, 0, 0, 0, 0.4, 0, 0, 0, 0.194911, 0.178322, -2.8951, -4 )
-mesh = SubResource( 14 )
-material = SubResource( 15 )
+mesh = SubResource( 12 )
+material = SubResource( 13 )
 
-[connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="focus_entered" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="MainVBoxContainer/StartButton" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_pressed"]
+[connection signal="focus_entered" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_pressed"]
+[connection signal="focus_entered" from="MainVBoxContainer/PrevLevelsButton" to="MenuMusicSFXHandler" method="_on_PrevLevelsButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/PrevLevelsButton" to="." method="_on_PrevLevelsButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/PrevLevelsButton" to="MenuMusicSFXHandler" method="_on_PrevLevelsButton_pressed"]
+[connection signal="focus_entered" from="MainVBoxContainer/OptionsButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/OptionsButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_pressed"]
+[connection signal="focus_entered" from="MainVBoxContainer/QuitButton" to="MenuMusicSFXHandler" method="_on_QuitButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="focus_entered" from="LevelsVBoxContainer/Level1Button" to="MenuMusicSFXHandler" method="_on_Level1Button_focus_entered"]
+[connection signal="focus_entered" from="LevelsVBoxContainer/Level2Button" to="MenuMusicSFXHandler" method="_on_Level2Button_focus_entered"]
+[connection signal="focus_entered" from="LevelsVBoxContainer/Level3Button" to="MenuMusicSFXHandler" method="_on_Level3Button_focus_entered"]
+[connection signal="focus_entered" from="LevelsVBoxContainer/LevelBackButton" to="MenuMusicSFXHandler" method="_on_LevelBackButton_focus_entered"]
 [connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="." method="_on_LevelBackButton_pressed"]
+[connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="MenuMusicSFXHandler" method="_on_LevelBackButton_pressed"]
+[connection signal="focus_entered" from="OptionsVBoxContainer/ResolutionHSlider" to="MenuMusicSFXHandler" method="_on_ResolutionHSlider_focus_entered"]
+[connection signal="value_changed" from="OptionsVBoxContainer/ResolutionHSlider" to="." method="_on_ResolutionHSlider_value_changed"]
+[connection signal="value_changed" from="OptionsVBoxContainer/ResolutionHSlider" to="MenuMusicSFXHandler" method="_on_ResolutionHSlider_value_changed"]
+[connection signal="focus_entered" from="OptionsVBoxContainer/GraphicsOptionButton" to="MenuMusicSFXHandler" method="_on_GraphicsOptionButton_focus_entered"]
 [connection signal="item_selected" from="OptionsVBoxContainer/GraphicsOptionButton" to="." method="_on_GraphicsOptionButton_item_selected"]
+[connection signal="item_selected" from="OptionsVBoxContainer/GraphicsOptionButton" to="MenuMusicSFXHandler" method="_on_GraphicsOptionButton_item_selected"]
+[connection signal="pressed" from="OptionsVBoxContainer/GraphicsOptionButton" to="." method="_on_GraphicsOptionButton_pressed"]
+[connection signal="focus_entered" from="OptionsVBoxContainer/AAOptionButton" to="MenuMusicSFXHandler" method="_on_AAOptionButton_focus_entered"]
+[connection signal="item_selected" from="OptionsVBoxContainer/AAOptionButton" to="." method="_on_AAOptionButton_item_selected"]
+[connection signal="item_selected" from="OptionsVBoxContainer/AAOptionButton" to="MenuMusicSFXHandler" method="_on_AAOptionButton_item_selected"]
+[connection signal="focus_entered" from="OptionsVBoxContainer/FullscreenButton" to="MenuMusicSFXHandler" method="_on_FullscreenButton_focus_entered"]
+[connection signal="pressed" from="OptionsVBoxContainer/FullscreenButton" to="MenuMusicSFXHandler" method="_on_FullscreenButton_pressed"]
 [connection signal="toggled" from="OptionsVBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]
+[connection signal="focus_entered" from="OptionsVBoxContainer/VsyncButton" to="MenuMusicSFXHandler" method="_on_VsyncButton_focus_entered"]
+[connection signal="pressed" from="OptionsVBoxContainer/VsyncButton" to="MenuMusicSFXHandler" method="_on_VsyncButton_pressed"]
+[connection signal="toggled" from="OptionsVBoxContainer/VsyncButton" to="." method="_on_VsyncButton_toggled"]
+[connection signal="focus_entered" from="OptionsVBoxContainer/OptionsBackButton" to="MenuMusicSFXHandler" method="_on_OptionsBackButton_focus_entered"]
 [connection signal="pressed" from="OptionsVBoxContainer/OptionsBackButton" to="." method="_on_OptionsBackButton_pressed"]
+[connection signal="pressed" from="OptionsVBoxContainer/OptionsBackButton" to="MenuMusicSFXHandler" method="_on_OptionsBackButton_pressed"]

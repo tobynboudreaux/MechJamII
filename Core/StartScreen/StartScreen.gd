@@ -21,12 +21,17 @@ var path = "res://data.json"
 var default_data = {
 	"options" : {
 		"graphics" : "Good",
-		"fullscreen" : "off"
+		"fullscreen" : "off",
+		"resolution" : 100,
+		"aa" : "fxaa",
+		"vsync" : "off"
 	},
 	"levels_completed" : [],
 	"levels_best_time" : []
 }
 var data = {}
+
+var is_fullscreen = false
 
 func _ready():
 	load_data()
@@ -77,7 +82,14 @@ func _on_OptionsButton_pressed():
 	options_container.get_child(1).grab_focus()
 
 func setup_options():
-	var graphics_dropdown = options_container.get_child(1)
+	var resolution_slider = options_container.get_child(1)
+	resolution_slider.value = data["options"]["resolution"]
+	emit_signal("set_options", "resolution", resolution_slider.value)
+	
+	var res_label = options_container.get_child(0)
+	res_label.text = "Resolution Scale (" + str(resolution_slider.value) + "%)"
+	
+	var graphics_dropdown = options_container.get_child(3)
 	graphics_dropdown.add_item("Good")
 	graphics_dropdown.add_item("LOL")
 	if(data["options"]["graphics"] == "Good"):
@@ -87,13 +99,51 @@ func setup_options():
 		graphics_dropdown.select(1)
 		emit_signal("set_options", "graphics", "LOL")
 	
-	var fullscreen_button = options_container.get_child(2)
+	var aa_dropdown = options_container.get_child(5)
+	aa_dropdown.add_item("Off")
+	aa_dropdown.add_item("FXAA")
+	aa_dropdown.add_item("MSAA x4")
+	if(data["options"]["aa"] == "Off"):
+		graphics_dropdown.select(0)
+		emit_signal("set_options", "aa", "Off")
+	if(data["options"]["aa"] == "FXAA"):
+		graphics_dropdown.select(1)
+		emit_signal("set_options", "aa", "FXAA")
+	if(data["options"]["aa"] == "MSAA x4"):
+		graphics_dropdown.select(2)
+		emit_signal("set_options", "aa", "MSAA x4")
+		
+	var fullscreen_button = options_container.get_child(6)
 	if(data["options"]["fullscreen"] == "on"):
 		emit_signal("set_options", "fullscreen", "on")
 		fullscreen_button.pressed = true
+		is_fullscreen = true
 	if(data["options"]["fullscreen"] == "off"):
 		emit_signal("set_options", "fullscreen", "off")
 		fullscreen_button.pressed = false
+		is_fullscreen = false
+	
+	var vsync_button = options_container.get_child(7)
+	if(is_fullscreen):
+		vsync_button.disabled = false
+		if(data["options"]["vsync"] == "on"):
+			emit_signal("set_options", "vsync", "on")
+		if(data["options"]["vsync"] == "off"):
+			emit_signal("set_options", "vsync", "off")
+	else:
+		vsync_button.disabled = true
+	
+func _on_ResolutionHSlider_value_changed(value):
+	var new_val
+	if (value < 50):
+		new_val = 50
+	else:
+		new_val = value
+	save_options_data("resolution", new_val)
+	emit_signal("set_options", "resolution", new_val)
+	
+	var res_label = options_container.get_child(0)
+	res_label.text = "Resolution Scale (" + str(new_val) + "%)"
 	
 func _on_GraphicsOptionButton_item_selected(index):
 	if(index == 0):
@@ -102,14 +152,38 @@ func _on_GraphicsOptionButton_item_selected(index):
 	if(index == 1):
 		save_options_data("graphics", "LOL")
 		emit_signal("set_options", "graphics", "LOL")
+	
+func _on_AAOptionButton_item_selected(index):
+	if(index == 0):
+		save_options_data("aa", "Off")
+		emit_signal("set_options", "aa", "Off")
+	if(index == 1):
+		save_options_data("aa", "FXAA")
+		emit_signal("set_options", "aa", "FXAA")
+	if(index == 2):
+		save_options_data("aa", "MSAA x4")
+		emit_signal("set_options", "aa", "MSAA x4")
 		
 func _on_FullscreenButton_toggled(button_pressed):
+	var vsync_button = options_container.get_child(7)
 	if(button_pressed):
 		save_options_data("fullscreen", "on")
 		emit_signal("set_options", "fullscreen", "on")
+		is_fullscreen = true
+		vsync_button.disabled = false
 	else:
 		save_options_data("fullscreen", "off")
 		emit_signal("set_options", "fullscreen", "off")
+		is_fullscreen = false
+		vsync_button.disabled = true
+		
+func _on_VsyncButton_toggled(button_pressed):
+	if(button_pressed and is_fullscreen):
+		save_options_data("vsync", "on")
+		emit_signal("set_options", "vsync", "on")
+	if(not button_pressed and is_fullscreen):
+		save_options_data("vsync", "off")
+		emit_signal("set_options", "vsync", "off")
 
 func _on_OptionsBackButton_pressed():
 	options_container.visible = false

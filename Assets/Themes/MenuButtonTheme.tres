@@ -1,0 +1,88 @@
+[gd_resource type="Theme" load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Fonts/MenuOptionsFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxCheckNormal.tres" type="StyleBox" id=2]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxPrimaryDisabled.tres" type="StyleBox" id=3]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxPrimaryFocus.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxPrimaryNormal.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxCheckPressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxCheckFocus.tres" type="StyleBox" id=7]
+[ext_resource path="res://Assets/Images/HSliderNormalIconV2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/HSliderFocusIconV2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxCheckDisabled.tres" type="StyleBox" id=10]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxPopupOpen.tres" type="StyleBox" id=11]
+[ext_resource path="res://Assets/Images/OptionsArrowIconV2.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxHSliderGrabberHighlight.tres" type="StyleBox" id=13]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxOptionPressed.tres" type="StyleBox" id=14]
+[ext_resource path="res://Assets/Themes/MenuThemeItems/MenuStyleboxHSliderGrabberArea.tres" type="StyleBox" id=15]
+
+[resource]
+default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 0.980392, 0.980392, 0.980392, 1 )
+Button/colors/font_color_disabled = Color( 0.901961, 0.901961, 0.901961, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = ExtResource( 3 )
+Button/styles/focus = ExtResource( 4 )
+Button/styles/hover = ExtResource( 4 )
+Button/styles/normal = ExtResource( 5 )
+Button/styles/pressed = null
+CheckButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckButton/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = null
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = null
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = ExtResource( 10 )
+CheckButton/styles/focus = ExtResource( 7 )
+CheckButton/styles/hover = ExtResource( 7 )
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = ExtResource( 2 )
+CheckButton/styles/pressed = ExtResource( 6 )
+HSlider/icons/grabber = ExtResource( 8 )
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = ExtResource( 9 )
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = ExtResource( 15 )
+HSlider/styles/grabber_area_highlight = ExtResource( 13 )
+HSlider/styles/slider = null
+OptionButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+OptionButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+OptionButton/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+OptionButton/colors/font_color_pressed = Color( 1, 1, 1, 0.313726 )
+OptionButton/constants/arrow_margin = 15
+OptionButton/constants/hseparation = 10
+OptionButton/fonts/font = null
+OptionButton/icons/arrow = ExtResource( 12 )
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = ExtResource( 14 )
+PopupMenu/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
+PopupMenu/colors/font_color_hover = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_separator = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/constants/hseparation = 4
+PopupMenu/constants/vseparation = 4
+PopupMenu/fonts/font = null
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = null
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = ExtResource( 11 )
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
