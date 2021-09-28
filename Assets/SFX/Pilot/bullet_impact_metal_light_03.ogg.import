@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bullet_impact_metal_light_03.ogg-21310e3a6a2fc11384e64f3a45668f46.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Pilot/bullet_impact_metal_light_03.ogg"
+dest_files=[ "res://.import/bullet_impact_metal_light_03.ogg-21310e3a6a2fc11384e64f3a45668f46.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

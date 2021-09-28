@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Assets/Models/Pilot/Material_001.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Pilot/Material_EMIT.material" type="Material" id=2]
@@ -11,9 +11,9 @@
 [ext_resource path="res://Assets/Models/Pilot/02_Forward.anim" type="Animation" id=9]
 [ext_resource path="res://Assets/Models/Pilot/08_Dash.anim" type="Animation" id=10]
 [ext_resource path="res://Assets/Models/Pilot/05_Strafe_right.anim" type="Animation" id=11]
-[ext_resource path="res://Core/HUD/HUD.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Core/HUD/Pilot/PilotHUD.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Player/Pilot/Pilot.gd" type="Script" id=13]
-[ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://Core/Health/Health.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/SFX/Pilot/gun_pistol_shot_silenced_04.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/Pilot/whoosh_swish_high_big_01.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Assets/SFX/Pilot/whoosh_swish_high_big_03.ogg" type="AudioStream" id=17]
@@ -2363,9 +2363,9 @@ animation = "07_Slicing"
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "06_Shooting"
 
-[sub_resource type="AnimationNodeTimeScale" id=27]
+[sub_resource type="AnimationNodeTimeScale" id=18]
 
-[sub_resource type="AnimationNodeTransition" id=18]
+[sub_resource type="AnimationNodeTransition" id=19]
 input_count = 2
 xfade_time = 0.15
 input_0/name = "Idle"
@@ -2373,30 +2373,30 @@ input_0/auto_advance = false
 input_1/name = "Walk"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "02_Forward"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "03_Backward"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "04_Strafe_left"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "05_Strafe_right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=23]
-blend_point_0/node = SubResource( 19 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=24]
+blend_point_0/node = SubResource( 20 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 20 )
+blend_point_1/node = SubResource( 21 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 21 )
+blend_point_2/node = SubResource( 22 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 22 )
+blend_point_3/node = SubResource( 23 )
 blend_point_3/pos = Vector2( 1, 0 )
 
-[sub_resource type="AnimationNodeBlendTree" id=24]
-graph_offset = Vector2( -266.283, 49.938 )
+[sub_resource type="AnimationNodeBlendTree" id=25]
+graph_offset = Vector2( -275, 65.5 )
 nodes/Dash/node = SubResource( 11 )
 nodes/Dash/position = Vector2( 540, 300 )
 nodes/Idle/node = SubResource( 12 )
@@ -2411,24 +2411,18 @@ nodes/Melee/node = SubResource( 16 )
 nodes/Melee/position = Vector2( 280, 300 )
 nodes/Shoot/node = SubResource( 17 )
 nodes/Shoot/position = Vector2( 0, 240 )
-nodes/TimeScale/node = SubResource( 27 )
+nodes/TimeScale/node = SubResource( 18 )
 nodes/TimeScale/position = Vector2( -180, 220 )
-nodes/Transition/node = SubResource( 18 )
+nodes/Transition/node = SubResource( 19 )
 nodes/Transition/position = Vector2( 20, 80 )
-nodes/Walk/node = SubResource( 23 )
+nodes/Walk/node = SubResource( 24 )
 nodes/Walk/position = Vector2( -420, 220 )
 nodes/output/position = Vector2( 1020, 140 )
-node_connections = [ "output", 0, "IsItDashing", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee", "TimeScale", 0, "Walk" ]
-
-[sub_resource type="DynamicFont" id=25]
-size = 52
-font_data = ExtResource( 14 )
-
-[sub_resource type="Theme" id=26]
-default_font = SubResource( 25 )
+node_connections = [ "output", 0, "IsItDashing", "TimeScale", 0, "Walk", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash" ]
 
 [node name="Pilot" type="KinematicBody"]
 script = ExtResource( 13 )
+MAX_SPEED = 6
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 2, 8.49932e-15, 0, -3.39973e-14, 0.5, 0, 0.233717, 0 )
@@ -3690,7 +3684,7 @@ anims/07_Slicing = ExtResource( 8 )
 anims/08_Dash = ExtResource( 10 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 24 )
+tree_root = SubResource( 25 )
 anim_player = NodePath("../Rotation_Helper/MechJam_Player/AnimationPlayer")
 active = true
 parameters/IsItDashing/active = false
@@ -3699,9 +3693,6 @@ parameters/IsItSlicing/active = false
 parameters/TimeScale/scale = 2.0
 parameters/Transition/current = 0
 parameters/Walk/blend_position = Vector2( 0, 0 )
-
-[node name="HUD" parent="." instance=ExtResource( 12 )]
-theme = SubResource( 26 )
 
 [node name="Timers" type="Node" parent="."]
 
@@ -3725,3 +3716,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="ToMechTimer" type="Timer" parent="Timers"]
+
+[node name="PilotHUD" parent="." instance=ExtResource( 12 )]
+
+[node name="Health" parent="." instance=ExtResource( 14 )]

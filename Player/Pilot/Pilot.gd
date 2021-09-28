@@ -9,7 +9,7 @@ export var MAX_SLOPE_ANGLE = 40
 
 var rotation_helper
 
-var p = preload("res://Player/Projectile/Projectile.tscn").instance()
+var p_s = preload("res://Player/Projectile/Projectile.tscn")
 export var DEFAULT_MAG_SIZE = 7
 var mag_size
 
@@ -56,38 +56,30 @@ onready var footstep_sounds = [
 ]
 
 var input_movement_vector
-onready var hud = get_node("HUD")
+onready var hud = get_node("PilotHUD")
+onready var health_bar = get_node("PilotHUD/HealthBar")
+onready var health = get_node("Health")
 
 func _ready():
 	rotation_helper = $Rotation_Helper
-	$HUD.hide()
+	hud.hide()
+	health.set_health(100)
 	$CollisionShape.disabled = true
 	
 	# ----------------------------------
 	# Ammunition SET
 	mag_size = DEFAULT_MAG_SIZE
-	p.set_vars(65, Vector3.DOWN * 10)
 	
 func _process(delta):
 	if(!is_mech):
-		$HUD.show()
-		$HUD.update_dash_timer(dash_timer.time_left)
-		$HUD.update_reload_timer(reload_timer.time_left)
-			
-		if Input.is_action_just_released("interact"):
-			var mech = get_parent().get_node("Mech")
-			mech.transform = self.transform
-			print("Did you see that??")
-			self.hide()
-			self.get_node("CollisionShape").disabled = true
-			camera.set_current_target("mech")
-			set_mech(true)
-			mech.to_pilot_timer.start()
-			mech.hud.show()
-			mech.is_mech = true
-			mech.animation_tree["parameters/Transition/current"] = 0
-			mech.animation_tree["parameters/IsShutdown/blend_amount"] = 0
-			$HUD.hide()
+		hud.show()
+		hud.update_dash_timer(dash_timer.time_left)
+		hud.update_reload_timer(reload_timer.time_left)
+		health_bar._on_health_updated(health.current_health)
+		health_bar._on_max_health_updated(health.max_hp)
+		
+		if health.current_health == 0:
+			return get_tree().change_scene("res://World/World1/World1.tscn")
 
 func _physics_process(delta):
 	if(!is_mech):
@@ -112,7 +104,7 @@ func process_pilot_input():
 	
 	# ----------------------------------
 	# Melee
-	if Input.is_action_just_pressed("melee") && sword_timer.time_left == 0:
+	if Input.is_action_just_pressed("secondary") && sword_timer.time_left == 0:
 		print("SWING")
 		animation_tree["parameters/IsItSlicing/active"] = true
 		var random_sound = randi() % 3
@@ -130,24 +122,32 @@ func process_pilot_input():
 			
 	if reload_timer.time_left == 0:
 		is_reloading = false
-		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
+		hud.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 	# ----------------------------------
 	
 	# ----------------------------------		
 	# Shoot
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:
+		var p = p_s.instance()
+		p.set_vars(65, Vector3.DOWN * 10, 5, false, "Pilot")
 		get_parent().add_child(p)
 		p.transform = $Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol/WeaponMuzzle.global_transform
 		p.velocity = -p.transform.basis.z * p.muzzle_velocity
 	# ----------------------------------
-			
+	
+	# ----------------------------------		
+	# Swap to Mech
+	if Input.is_action_just_released("interact"):
+		swap_to_mech()
+	# ----------------------------------		
+	
 func process_animations():
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:
 		animation_tree["parameters/IsItShooting/blend_amount"] = 1
 		var random_sound = randi() % 4
 		pistol_sounds[random_sound].play()
 		mag_size -= 1
-		$HUD.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
+		hud.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 		fire_timer.start()
 	elif Input.is_action_pressed("fire") && mag_size == 0 && fire_timer.time_left == 0 && is_reloading != true:
 		animation_tree["parameters/IsItShooting/blend_amount"] = 1
@@ -155,7 +155,7 @@ func process_animations():
 		fire_timer.start()
 	elif Input.is_action_just_released("fire") || is_reloading == true:
 		animation_tree["parameters/IsItShooting/blend_amount"] = 0
-	elif vel != Vector3(0,0,0):
+	elif vel != Vector3.ZERO:
 		animation_tree["parameters/Transition/current"] = 1
 	else:
 		animation_tree["parameters/Transition/current"] = 0
@@ -164,3 +164,19 @@ func process_animations():
 		var random_sound = randi() % 4
 		footstep_sounds[random_sound].play()
 		footstep_timer.start()
+
+func swap_to_mech():
+		var mech = get_parent().get_node("Mech")
+		mech.transform = self.transform
+		print("Did you see that??")
+		self.hide()
+		self.get_node("CollisionShape").disabled = true
+		camera.set_current_target("mech")
+		set_mech(true)
+		mech.to_pilot_timer.start()
+		mech.hud.show()
+		mech.is_mech = true
+		mech.animation_tree["parameters/Transition/current"] = 0
+		mech.animation_tree["parameters/IsShutdown/blend_amount"] = 0
+		mech.health.set_health(mech.max_health)
+		hud.hide()
