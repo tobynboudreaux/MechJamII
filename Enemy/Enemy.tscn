@@ -16,3 +16,7 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
 material/0 = ExtResource( 2 )
+
+[node name="PatrolPath" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="PatrolPath"]

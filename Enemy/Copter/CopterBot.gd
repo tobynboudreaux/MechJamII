@@ -11,6 +11,7 @@ onready var health = get_node("Health")
 
 func _ready():
 	health.set_health(50)
+	
 #	$AnimationTree["parameters/IsAlive/current"] = 0
 #	$AnimationTree["parameters/IsMove/blend_amount"] = 0
 	
@@ -61,3 +62,4 @@ func _on_DetectRadius_body_entered(body):
 
 func _on_DetectRadius_body_exited(body):
 	state = states.PATROL
+	player = null

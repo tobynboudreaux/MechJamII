@@ -41,18 +41,18 @@ func choose_action(delta):
 		# Move along assigned path.
 
 		states.PATROL:
-			if !patrol_path:
+			if !patrol_points:
 				return
-			target = patrol_points[patrol_index]
+			target = patrol_points[patrol_index].transform.origin
 			if transform.origin.distance_to(target) < 1:
 				patrol_index = wrapi(patrol_index + 1, 0, patrol_points.size())
-				target = patrol_points[patrol_index]
+				target = patrol_points[patrol_index].transform.origin
 			vel = (target - global_transform.origin).normalized() * speed * delta
 
 		# Move towards player.
 
 		states.CHASE:
-			target = pilot.get_global_transform().origin
+			target = player.get_global_transform().origin
 			vel = (target - global_transform.origin).normalized() * speed * delta
 
 		# Make an attack.

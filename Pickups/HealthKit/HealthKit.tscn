@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Models/Pickups/Material.material" type="Material" id=1]
+[ext_resource path="res://Pickups/HealthKit/HealthKit.gd" type="Script" id=2]
 
 [sub_resource type="ArrayMesh" id=12]
 resource_name = "Health_pack"
@@ -17962,12 +17963,12 @@ tracks/0/keys = PoolRealArray( 0, 1, -1.34518, 0, 0.505643, 0, 0, 0, 1, 1, 1, 1,
 [sub_resource type="SphereShape" id=16]
 
 [node name="HealthKit" type="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00385407, 0, 0 )
 collision_layer = 16
 collision_mask = 0
+script = ExtResource( 2 )
 
 [node name="HealthKit" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35446, 0, -0.484654 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35957, 0, -0.537991 )
 
 [node name="Armature" type="Spatial" parent="HealthKit"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.3968, 0, -3.84374 )
@@ -18966,5 +18967,4 @@ anims/09_firing_RocketLauncher002 = SubResource( 10 )
 anims/Health_packAction = SubResource( 11 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182854, 0, -0.0366439 )
 shape = SubResource( 16 )
