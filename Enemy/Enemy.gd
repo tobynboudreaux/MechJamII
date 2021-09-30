@@ -52,7 +52,7 @@ func choose_action(delta):
 		# Move towards player.
 
 		states.CHASE:
-			target = player.get_global_transform().origin
+			target = pilot.get_global_transform().origin
 			vel = (target - global_transform.origin).normalized() * speed * delta
 
 		# Make an attack.

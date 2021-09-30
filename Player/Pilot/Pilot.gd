@@ -1,4 +1,5 @@
 extends "res://Player/Player.gd"
+class_name Pilot
 
 export var MAX_SPEED = 15
 export var ACCEL = 3
@@ -60,9 +61,13 @@ onready var hud = get_node("PilotHUD")
 onready var health_bar = get_node("PilotHUD/HealthBar")
 onready var health = get_node("Health")
 
+var has_energy = false
+var can_interact_mech = true
+
 func _ready():
 	rotation_helper = $Rotation_Helper
 	hud.hide()
+	self.hide()
 	health.set_health(100)
 	$CollisionShape.disabled = true
 	
@@ -80,6 +85,10 @@ func _process(delta):
 		
 		if health.current_health == 0:
 			return get_tree().change_scene("res://World/World1/World1.tscn")
+			
+	if(is_mech):
+		var mech = get_parent().get_node("Mech")
+		self.global_transform.origin = mech.get_global_transform().origin
 
 func _physics_process(delta):
 	if(!is_mech):
@@ -129,17 +138,11 @@ func process_pilot_input():
 	# Shoot
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:
 		var p = p_s.instance()
-		p.set_vars(65, Vector3.DOWN * 10, 5, false, "Pilot")
+		p.set_vars(65, Vector3.DOWN * 10, 10, false, "Pilot")
 		get_parent().add_child(p)
 		p.transform = $Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol/WeaponMuzzle.global_transform
 		p.velocity = -p.transform.basis.z * p.muzzle_velocity
 	# ----------------------------------
-	
-	# ----------------------------------		
-	# Swap to Mech
-	if Input.is_action_just_released("interact"):
-		swap_to_mech()
-	# ----------------------------------		
 	
 func process_animations():
 	if Input.is_action_pressed("fire") && mag_size > 0 && fire_timer.time_left == 0 && is_reloading != true:

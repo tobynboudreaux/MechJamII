@@ -1,7 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Models/Enemies/SpiderBotEnemy/Material.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Enemies/SpiderBotEnemy/04_Fire.anim" type="Animation" id=2]
+[ext_resource path="res://Enemy/Spider/SpiderBot.gd" type="Script" id=3]
+[ext_resource path="res://Core/Health/Health.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape" id=21]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Barrel"
@@ -5472,15 +5476,24 @@ nodes/OneShot/position = Vector2( 300, 60 )
 nodes/Transition/node = SubResource( 19 )
 nodes/Transition/position = Vector2( 574, 109 )
 nodes/output/position = Vector2( 840, 100 )
-node_connections = [ "output", 0, "Transition", "Transition", 0, "OneShot", "Transition", 1, "Animation 5", "Blend3", 0, "Animation 2", "Blend3", 1, "Animation", "Blend3", 2, "Animation 3", "OneShot", 0, "Blend3", "OneShot", 1, "Animation 4" ]
+node_connections = [ "output", 0, "Transition", "Blend3", 0, "Animation 2", "Blend3", 1, "Animation", "Blend3", 2, "Animation 3", "OneShot", 0, "Blend3", "OneShot", 1, "Animation 4", "Transition", 0, "OneShot", "Transition", 1, "Animation 5" ]
 
-[node name="SpiderBot" type="Spatial"]
+[sub_resource type="SphereShape" id=22]
 
-[node name="MechJam_SpiderBot" type="Spatial" parent="."]
+[node name="SpiderBot" type="KinematicBody"]
+script = ExtResource( 3 )
 
-[node name="rig" type="Spatial" parent="MechJam_SpiderBot"]
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 21 )
 
-[node name="Skeleton" type="Skeleton" parent="MechJam_SpiderBot/rig"]
+[node name="SpiderBot" type="Spatial" parent="."]
+
+[node name="MechJam_SpiderBot" type="Spatial" parent="SpiderBot"]
+
+[node name="rig" type="Spatial" parent="SpiderBot/MechJam_SpiderBot"]
+
+[node name="Skeleton" type="Skeleton" parent="SpiderBot/MechJam_SpiderBot/rig"]
 bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
@@ -6182,48 +6195,48 @@ bones/139/rest = Transform( 1, 1.5134e-07, 1.71363e-07, -1.5134e-07, 1, -1.92551
 bones/139/enabled = true
 bones/139/bound_children = [  ]
 
-[node name="BoneAttachment" type="BoneAttachment" parent="MechJam_SpiderBot/rig/Skeleton"]
+[node name="BoneAttachment" type="BoneAttachment" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton"]
 transform = Transform( 1, 1.33227e-14, 2.38419e-07, 9.10659e-09, 0.99927, -0.0381958, -2.38245e-07, 0.0381958, 0.99927, 0, 0.207564, 0 )
 bone_name = "Bone.002"
 
-[node name="Barrel" type="MeshInstance" parent="MechJam_SpiderBot/rig/Skeleton/BoneAttachment"]
+[node name="Barrel" type="MeshInstance" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton/BoneAttachment"]
 transform = Transform( 1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, 0, -0.549512, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="BoneAttachment2" type="BoneAttachment" parent="MechJam_SpiderBot/rig/Skeleton"]
+[node name="BoneAttachment2" type="BoneAttachment" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton"]
 transform = Transform( 1, 1.33227e-14, 2.38419e-07, 9.10659e-09, 0.99927, -0.0381958, -2.38245e-07, 0.0381958, 0.99927, 0, 0.207564, 0 )
 bone_name = "Bone.002"
 
-[node name="Barrel_shield" type="MeshInstance" parent="MechJam_SpiderBot/rig/Skeleton/BoneAttachment2"]
+[node name="Barrel_shield" type="MeshInstance" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton/BoneAttachment2"]
 transform = Transform( 1, -6.03986e-09, -2.38342e-07, 0, 0.999679, -0.025333, 2.38419e-07, 0.025333, 0.999679, 8.10938e-09, -0.54877, -0.0340132 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="BoneAttachment3" type="BoneAttachment" parent="MechJam_SpiderBot/rig/Skeleton"]
+[node name="BoneAttachment3" type="BoneAttachment" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton"]
 transform = Transform( 1, 1.33227e-14, 2.38419e-07, 9.10659e-09, 0.99927, -0.0381958, -2.38245e-07, 0.0381958, 0.99927, 0, 0.207564, 0 )
 bone_name = "Bone.002"
 
-[node name="Body001" type="MeshInstance" parent="MechJam_SpiderBot/rig/Skeleton/BoneAttachment3"]
+[node name="Body001" type="MeshInstance" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton/BoneAttachment3"]
 transform = Transform( 1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, 0, -0.549512, 0 )
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="BoneAttachment4" type="BoneAttachment" parent="MechJam_SpiderBot/rig/Skeleton"]
+[node name="BoneAttachment4" type="BoneAttachment" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton"]
 transform = Transform( 1, 1.33227e-14, 2.38419e-07, 9.10659e-09, 0.99927, -0.0381958, -2.38245e-07, 0.0381958, 0.99927, 0, 0.207564, 0 )
 bone_name = "Bone.002"
 
-[node name="CUpol" type="MeshInstance" parent="MechJam_SpiderBot/rig/Skeleton/BoneAttachment4"]
+[node name="CUpol" type="MeshInstance" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton/BoneAttachment4"]
 transform = Transform( 1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, 0, -0.549512, 0 )
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Body" type="MeshInstance" parent="MechJam_SpiderBot/rig/Skeleton"]
+[node name="Body" type="MeshInstance" parent="SpiderBot/MechJam_SpiderBot/rig/Skeleton"]
 mesh = SubResource( 5 )
 skin = SubResource( 6 )
 material/0 = null
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MechJam_SpiderBot"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpiderBot/MechJam_SpiderBot"]
 anims/00_T_pose = SubResource( 7 )
 anims/01_Idle = SubResource( 8 )
 anims/02_Forward = SubResource( 9 )
@@ -6231,10 +6244,32 @@ anims/03_Backward = SubResource( 10 )
 anims/04_Fire = ExtResource( 2 )
 anims/05-Dead = SubResource( 11 )
 
-[node name="AnimationTree" type="AnimationTree" parent="MechJam_SpiderBot"]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 20 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
+anim_player = NodePath("../SpiderBot/MechJam_SpiderBot/AnimationPlayer")
 parameters/Blend3/blend_amount = 1.0
 parameters/OneShot/active = false
 parameters/Transition/current = 1
+
+[node name="DetectRadius" type="Area" parent="."]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape" type="CollisionShape" parent="DetectRadius"]
+transform = Transform( 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0 )
+shape = SubResource( 22 )
+
+[node name="AttackRadius" type="Area" parent="."]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape" type="CollisionShape" parent="AttackRadius"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 22 )
+
+[node name="Health" parent="." instance=ExtResource( 4 )]
+
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
+[connection signal="body_entered" from="AttackRadius" to="." method="_on_AttackRadius_body_entered"]
+[connection signal="body_exited" from="AttackRadius" to="." method="_on_AttackRadius_body_exited"]

@@ -1,7 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Models/Enemies/CopterEnemy/Material_EMIT.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Enemies/CopterEnemy/Material.material" type="Material" id=2]
+[ext_resource path="res://Enemy/Copter/CopterBot.gd" type="Script" id=3]
+[ext_resource path="res://Core/Health/Health.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape" id=22]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Icosphere001"
@@ -360,15 +364,24 @@ nodes/OneShot/position = Vector2( -60, 150 )
 nodes/TimeScale/node = SubResource( 19 )
 nodes/TimeScale/position = Vector2( -480, 260 )
 nodes/output/position = Vector2( 130, 110 )
-node_connections = [ "output", 0, "OneShot", "Blend2 2", 0, "Blend3", "Blend2 2", 1, "TimeScale", "TimeScale", 0, "Animation", "Blend3", 0, "Animation 3", "Blend3", 1, "Animation 4", "Blend3", 2, "Animation 2", "OneShot", 0, "Blend2 2", "OneShot", 1, "Animation 5" ]
+node_connections = [ "output", 0, "OneShot", "TimeScale", 0, "Animation", "Blend3", 0, "Animation 3", "Blend3", 1, "Animation 4", "Blend3", 2, "Animation 2", "OneShot", 0, "Blend2 2", "OneShot", 1, "Animation 5", "Blend2 2", 0, "Blend3", "Blend2 2", 1, "TimeScale" ]
 
-[node name="CopterBot" type="Spatial"]
+[sub_resource type="SphereShape" id=21]
 
-[node name="MechJam_copterEnemy" type="Spatial" parent="."]
+[node name="CopterBot" type="KinematicBody"]
+script = ExtResource( 3 )
 
-[node name="CopterEnemy RIG" type="Spatial" parent="MechJam_copterEnemy"]
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 22 )
 
-[node name="Skeleton" type="Skeleton" parent="MechJam_copterEnemy/CopterEnemy RIG"]
+[node name="CopterBot" type="Spatial" parent="."]
+
+[node name="MechJam_copterEnemy" type="Spatial" parent="CopterBot"]
+
+[node name="CopterEnemy RIG" type="Spatial" parent="CopterBot/MechJam_copterEnemy"]
+
+[node name="Skeleton" type="Skeleton" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG"]
 bones/0/name = "Body.C"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, -2.29266e-17, -1.18679e-18, 2.29266e-17, 0.994655, 0.103252, -1.18679e-18, -0.103252, 0.994655, 0, 1.10955, 0 )
@@ -395,31 +408,31 @@ bones/4/rest = Transform( 1, -5.32907e-15, 2.38419e-07, 1.47456e-15, 1.20467, 1.
 bones/4/enabled = true
 bones/4/bound_children = [  ]
 
-[node name="BoneAttachment" type="BoneAttachment" parent="MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
-transform = Transform( 0.999991, -5.29752e-05, 0.00428938, -5.29723e-05, 0.999695, 0.0246961, -0.00428938, -0.0246961, 0.999686, 0, 1.10955, 0 )
+[node name="BoneAttachment" type="BoneAttachment" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
+transform = Transform( 1, -1.03009e-05, 0.000777313, -1.03014e-05, 0.999649, 0.0264999, -0.000777313, -0.0264999, 0.999648, 0, 1.10955, 0 )
 bone_name = "Body.C"
 
-[node name="Icosphere001" type="MeshInstance" parent="MechJam_copterEnemy/CopterEnemy RIG/Skeleton/BoneAttachment"]
+[node name="Icosphere001" type="MeshInstance" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton/BoneAttachment"]
 transform = Transform( 1, 7.70372e-34, 0, -7.70372e-34, 1, 0, 0, 0, 1, 0.00252393, -0.0167564, 0.216722 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="BoneAttachment2" type="BoneAttachment" parent="MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
-transform = Transform( 0.999991, -5.29752e-05, 0.00428938, -5.29723e-05, 0.999695, 0.0246961, -0.00428938, -0.0246961, 0.999686, 0, 1.10955, 0 )
+[node name="BoneAttachment2" type="BoneAttachment" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
+transform = Transform( 1, -1.03009e-05, 0.000777313, -1.03014e-05, 0.999649, 0.0264999, -0.000777313, -0.0264999, 0.999648, 0, 1.10955, 0 )
 bone_name = "Body.C"
 
-[node name="Icosphere002" type="MeshInstance" parent="MechJam_copterEnemy/CopterEnemy RIG/Skeleton/BoneAttachment2"]
+[node name="Icosphere002" type="MeshInstance" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton/BoneAttachment2"]
 transform = Transform( 1, 7.70372e-34, 0, -7.70372e-34, 1, 0, 0, 0, 1, 0.00252393, -0.0167564, 0.216722 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Icosphere" type="MeshInstance" parent="MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
+[node name="Icosphere" type="MeshInstance" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
 mesh = SubResource( 3 )
 skin = SubResource( 4 )
 material/0 = null
 material/1 = null
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MechJam_copterEnemy"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CopterBot/MechJam_copterEnemy"]
 anims/00_T_Pose = SubResource( 5 )
 anims/01_Idle = SubResource( 6 )
 anims/02_Forward = SubResource( 7 )
@@ -427,11 +440,33 @@ anims/03_Backward = SubResource( 8 )
 anims/05_Firing = SubResource( 9 )
 anims/09_Jets_running = SubResource( 10 )
 
-[node name="AnimationTree" type="AnimationTree" parent="MechJam_copterEnemy"]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 20 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
+anim_player = NodePath("../CopterBot/MechJam_copterEnemy/AnimationPlayer")
 "parameters/Blend2 2/blend_amount" = 1.0
 parameters/Blend3/blend_amount = -0.38
 parameters/OneShot/active = false
 parameters/TimeScale/scale = 1.4
+
+[node name="DetectRadius" type="Area" parent="."]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape" type="CollisionShape" parent="DetectRadius"]
+transform = Transform( 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0 )
+shape = SubResource( 21 )
+
+[node name="AttackRadius" type="Area" parent="."]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape" type="CollisionShape" parent="AttackRadius"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 21 )
+
+[node name="Health" parent="." instance=ExtResource( 4 )]
+
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
+[connection signal="body_entered" from="AttackRadius" to="." method="_on_AttackRadius_body_entered"]
+[connection signal="body_exited" from="AttackRadius" to="." method="_on_AttackRadius_body_exited"]

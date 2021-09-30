@@ -85,7 +85,7 @@ func process_mech_input():
 	# Shoot
 	if Input.is_action_pressed("fire") && fire_timer.time_left == 0:
 		var bullet = bullet_p.instance()
-		bullet.set_vars(65, Vector3.DOWN * 10, 15, false, "Rocket")
+		bullet.set_vars(65, Vector3.DOWN * 10, 15, false, "Mech")
 		get_parent().add_child(bullet)
 		bullet.transform = $Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment/MechGun/BulletSpawn.global_transform
 		bullet.velocity = bullet.transform.basis.z * bullet.muzzle_velocity
@@ -102,7 +102,7 @@ func process_mech_input():
 			var random_sound = randi() % 4
 			ex_sounds[random_sound].play()
 			var rocket = rocket_p.instance()
-			rocket.set_vars(30, Vector3.DOWN * 10, 30, false, "Rocket")
+			rocket.set_vars(30, Vector3.DOWN * 10, 30, true, "Rocket")
 			get_parent().add_child(rocket)
 			rocket.transform = $Rotation_Helper/MechJam_mech/rig/Skeleton/MechTurret/RocketSpawn.global_transform
 			rocket.velocity = rocket.transform.basis.z * rocket.muzzle_velocity
@@ -131,7 +131,17 @@ func process_animations():
 		var random_sound = randi() % 4
 		footstep_sounds[random_sound].play()
 		footstep_timer.start()
-	
+		
+func interaction_can_interact(interactionComponentParent : Node) -> bool:
+	return interactionComponentParent is Pilot
+		
+func interaction_interact(interactionComponentParent : Node) -> void:
+	print("Swap")
+	var pilot_i = interactionComponentParent.get_node(interactionComponentParent.interact_parent)
+	if pilot_i.has_energy:
+		pilot_i.swap_to_mech()
+		pilot_i.has_energy = false
+		
 func swap_to_pilot():
 		var pilot = get_parent().get_node("Pilot")
 		pilot.show()

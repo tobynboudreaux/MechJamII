@@ -32,8 +32,6 @@ func _physics_process(delta):
 		yield(get_tree().create_timer(1), "timeout")
 		self.queue_free()
 	
-	print(health.current_health)
-	
 #	if is_in_range():
 #		$AnimationTree["parameters/IsAttack/current"] = 1
 #	if follow_player(delta) == "Pilot":

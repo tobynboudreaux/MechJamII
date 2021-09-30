@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name Player
 
 # Movement vars
 const GRAVITY = -24.8

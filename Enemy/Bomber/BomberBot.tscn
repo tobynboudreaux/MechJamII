@@ -431,7 +431,7 @@ nodes/TimeScale/position = Vector2( -360, 180 )
 "nodes/TimeScale 3/node" = SubResource( 21 )
 "nodes/TimeScale 3/position" = Vector2( 1.84375, 256.875 )
 nodes/output/position = Vector2( 890, 270 )
-node_connections = [ "output", 0, "IsAlive", "IsAlive", 0, "IsExplode", "IsAlive", 1, "Dead", "IsScan", 0, "IsMove", "IsScan", 1, "TimeScale 3", "TimeScale 2", 0, "Idle", "TimeScale 3", 0, "Scan", "IsMove", 0, "TimeScale 2", "IsMove", 1, "TimeScale", "TimeScale", 0, "Forward", "IsExplode", 0, "IsScan", "IsExplode", 1, "Attack" ]
+node_connections = [ "output", 0, "IsAlive", "TimeScale", 0, "Forward", "IsExplode", 0, "IsScan", "IsExplode", 1, "Attack", "TimeScale 3", 0, "Scan", "IsScan", 0, "IsMove", "IsScan", 1, "TimeScale 3", "TimeScale 2", 0, "Idle", "IsAlive", 0, "IsExplode", "IsAlive", 1, "Dead", "IsMove", 0, "TimeScale 2", "IsMove", 1, "TimeScale" ]
 
 [sub_resource type="SphereShape" id=24]
 

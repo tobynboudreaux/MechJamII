@@ -18924,14 +18924,16 @@ nodes/Transition/position = Vector2( 180, 80 )
 nodes/Walk/node = SubResource( 28 )
 nodes/Walk/position = Vector2( -40, 180 )
 nodes/output/position = Vector2( 1100, 120 )
-node_connections = [ "output", 0, "IsShutdown", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown" ]
+node_connections = [ "output", 0, "IsShutdown", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher" ]
 
 [node name="Mech" type="KinematicBody"]
+collision_layer = 17
 script = ExtResource( 11 )
 MAX_SPEED = 3
+max_health = 200
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 2, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]

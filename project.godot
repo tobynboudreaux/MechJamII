@@ -8,10 +8,38 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "InteractableItem",
+"language": "GDScript",
+"path": "res://Pickups/InteractableItem.gd"
+}, {
+"base": "Control",
+"class": "InteractableUI",
+"language": "GDScript",
+"path": "res://Core/Interactable/InteractableUI.gd"
+}, {
+"base": "KinematicBody",
+"class": "Pilot",
+"language": "GDScript",
+"path": "res://Player/Pilot/Pilot.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
+} ]
+_global_script_class_icons={
+"InteractableItem": "",
+"InteractableUI": "",
+"Pilot": "",
+"Player": ""
+}
+
 [application]
 
 config/name="MechJam II"
-run/main_scene="res://Core/StartScreen/StartScreen.tscn"
+run/main_scene="res://Empty.tscn"
 boot_splash/image="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
 config/icon="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
 

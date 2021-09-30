@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Assets/Models/Pilot/Material_001.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Pilot/Material_EMIT.material" type="Material" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Assets/SFX/Pilot/footstep_concrete_run_16.ogg" type="AudioStream" id=30]
 [ext_resource path="res://Assets/SFX/Pilot/footstep_concrete_run_15.ogg" type="AudioStream" id=31]
 [ext_resource path="res://Assets/SFX/Pilot/footstep_concrete_run_17.ogg" type="AudioStream" id=32]
+[ext_resource path="res://Core/Interactable/Interactable.tscn" type="PackedScene" id=33]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -2418,7 +2419,7 @@ nodes/Transition/position = Vector2( 20, 80 )
 nodes/Walk/node = SubResource( 24 )
 nodes/Walk/position = Vector2( -420, 220 )
 nodes/output/position = Vector2( 1020, 140 )
-node_connections = [ "output", 0, "IsItDashing", "TimeScale", 0, "Walk", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash" ]
+node_connections = [ "output", 0, "IsItDashing", "TimeScale", 0, "Walk", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee" ]
 
 [node name="Pilot" type="KinematicBody"]
 script = ExtResource( 13 )
@@ -3720,3 +3721,7 @@ one_shot = true
 [node name="PilotHUD" parent="." instance=ExtResource( 12 )]
 
 [node name="Health" parent="." instance=ExtResource( 14 )]
+
+[node name="Interactable" parent="." instance=ExtResource( 33 )]
+collision_layer = 16
+interact_parent = NodePath("..")
