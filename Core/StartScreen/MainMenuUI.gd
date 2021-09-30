@@ -13,17 +13,14 @@ onready var start_button = menu_container.get_child(1)
 onready var continue_button = menu_container.get_child(2)
 onready var prev_levels_button = menu_container.get_child(3)
 
-onready var anim_player = get_node("3DMenuWorld/MenuAnimationPlayer")
-onready var pilot_anim_player = get_node("3DMenuWorld/PilotNode/MechJam_Player/AnimationPlayer")
-
 # Variables for loading data on startup
 var path = "res://data.json"
 var default_data = {
 	"options" : {
 		"graphics" : "Good",
 		"fullscreen" : "off",
-		"resolution" : 100,
-		"aa" : "fxaa",
+		"resolution" : 100.0,
+		"aa" : "Off",
 		"vsync" : "off"
 	},
 	"levels_completed" : [],
@@ -45,9 +42,6 @@ func _ready():
 		prev_levels_button.visible = true
 		continue_button.grab_focus()
 	
-	levels_container.visible = false
-	anim_player.play("Camera_Pan")
-	pilot_anim_player.play("01_Idle")
 
 # Main menu code
 func _on_StartButton_pressed():
@@ -84,7 +78,6 @@ func _on_OptionsButton_pressed():
 func setup_options():
 	var resolution_slider = options_container.get_child(1)
 	resolution_slider.value = data["options"]["resolution"]
-	emit_signal("set_options", "resolution", resolution_slider.value)
 	
 	var res_label = options_container.get_child(0)
 	res_label.text = "Resolution Scale (" + str(resolution_slider.value) + "%)"
@@ -94,10 +87,8 @@ func setup_options():
 	graphics_dropdown.add_item("LOL")
 	if(data["options"]["graphics"] == "Good"):
 		graphics_dropdown.select(0)
-		emit_signal("set_options", "graphics", "Good")
 	if(data["options"]["graphics"] == "LOL"):
 		graphics_dropdown.select(1)
-		emit_signal("set_options", "graphics", "LOL")
 	
 	var aa_dropdown = options_container.get_child(5)
 	aa_dropdown.add_item("Off")
@@ -105,38 +96,29 @@ func setup_options():
 	aa_dropdown.add_item("MSAA x4")
 	if(data["options"]["aa"] == "Off"):
 		graphics_dropdown.select(0)
-		emit_signal("set_options", "aa", "Off")
 	if(data["options"]["aa"] == "FXAA"):
 		graphics_dropdown.select(1)
-		emit_signal("set_options", "aa", "FXAA")
 	if(data["options"]["aa"] == "MSAA x4"):
 		graphics_dropdown.select(2)
-		emit_signal("set_options", "aa", "MSAA x4")
 		
 	var fullscreen_button = options_container.get_child(6)
 	if(data["options"]["fullscreen"] == "on"):
-		emit_signal("set_options", "fullscreen", "on")
 		fullscreen_button.pressed = true
 		is_fullscreen = true
 	if(data["options"]["fullscreen"] == "off"):
-		emit_signal("set_options", "fullscreen", "off")
 		fullscreen_button.pressed = false
 		is_fullscreen = false
 	
 	var vsync_button = options_container.get_child(7)
 	if(is_fullscreen):
 		vsync_button.disabled = false
-		if(data["options"]["vsync"] == "on"):
-			emit_signal("set_options", "vsync", "on")
-		if(data["options"]["vsync"] == "off"):
-			emit_signal("set_options", "vsync", "off")
 	else:
 		vsync_button.disabled = true
 	
 func _on_ResolutionHSlider_value_changed(value):
 	var new_val
-	if (value < 50):
-		new_val = 50
+	if (value < 10):
+		new_val = 10
 	else:
 		new_val = value
 	save_options_data("resolution", new_val)
@@ -192,7 +174,7 @@ func _on_OptionsBackButton_pressed():
 		start_button.grab_focus()
 	else:
 		continue_button.grab_focus()
-	
+		
 # File related functions
 func load_data():
 	var file = File.new()
@@ -222,6 +204,22 @@ func save_options_data(key, new_value):
 	file.open(path, File.WRITE)
 	
 	data["options"][key] = new_value
+	
+	file.store_line(to_json(data))
+	
+	file.close()
+	
+func save_level_data(level_number, level_time):
+	var file = File.new()
+	
+	file.open(path, File.WRITE)
+	
+	if(not data["levels_completed"].has(level_number)):
+		data["levels_completed"].push_back(level_number)
+	
+	var current_level_index = data["levels_completed"].find(level_number)
+	if(data["levels_best_time"][current_level_index] < level_time):
+		data["levels_best_time"][current_level_index] = level_time
 	
 	file.store_line(to_json(data))
 	

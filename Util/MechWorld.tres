@@ -1,0 +1,7 @@
+[gd_resource type="World" load_steps=2 format=2]
+
+[ext_resource path="res://Util/MechEnvironment.tres" type="Environment" id=2]
+
+[resource]
+resource_local_to_scene = true
+environment = ExtResource( 2 )

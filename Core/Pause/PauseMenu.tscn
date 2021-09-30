@@ -11,13 +11,9 @@ __meta__ = {
 }
 level_name = "level1"
 
-[node name="PauseMenuPopup" type="Popup" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="PauseMenuPopup"]
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenuPopup/PauseMenuCanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="PauseMenuCanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.196078 )
@@ -25,7 +21,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuCanvasLayer/ColorRect"]
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -36,7 +32,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseLabel" type="Label" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
+[node name="PauseLabel" type="Label" parent="PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
 margin_top = 329.0
 margin_right = 260.0
 margin_bottom = 343.0
@@ -44,7 +40,7 @@ text = "P A U S E D"
 align = 1
 valign = 1
 
-[node name="ResumeButton" type="Button" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
 margin_top = 347.0
 margin_right = 260.0
 margin_bottom = 367.0
@@ -56,7 +52,7 @@ action_mode = 0
 text = "Resume"
 flat = true
 
-[node name="BackToMenuButton" type="Button" parent="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
+[node name="BackToMenuButton" type="Button" parent="PauseMenuCanvasLayer/ColorRect/VBoxContainer"]
 margin_top = 371.0
 margin_right = 260.0
 margin_bottom = 391.0
@@ -68,5 +64,5 @@ action_mode = 0
 text = "Back to Menu"
 flat = true
 
-[connection signal="pressed" from="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="PauseMenuPopup/PauseMenuCanvasLayer/ColorRect/VBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
+[connection signal="pressed" from="PauseMenuCanvasLayer/ColorRect/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="PauseMenuCanvasLayer/ColorRect/VBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]

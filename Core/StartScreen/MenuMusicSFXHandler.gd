@@ -71,13 +71,13 @@ func _on_OptionsButton_pressed():
 func _on_LevelBackButton_pressed():
 	ui_pressed_sfx.play()
 
-func _on_ResolutionHSlider_value_changed(value):
+func _on_ResolutionHSlider_value_changed(_value):
 	ui_pressed_sfx.play()
 
-func _on_GraphicsOptionButton_item_selected(index):
+func _on_GraphicsOptionButton_item_selected(_index):
 	ui_pressed_sfx.play()
 
-func _on_AAOptionButton_item_selected(index):
+func _on_AAOptionButton_item_selected(_index):
 	ui_pressed_sfx.play()
 
 func _on_FullscreenButton_pressed():

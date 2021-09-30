@@ -172,9 +172,11 @@ func process_input():
 	# Activate/Deactivate pause menu
 	if Input.is_action_just_pressed("pause"):
 		if (!is_paused):
-			pause_menu.get_child(0).hide()
+			pause_menu.get_child(0).get_child(0).hide()
+			get_tree().paused = false
 		else:
-			pause_menu.get_child(0).show()
+			pause_menu.get_child(0).get_child(0).show()
+			get_tree().paused = true
 		
 func process_movement(delta):
 	dir.y = 0

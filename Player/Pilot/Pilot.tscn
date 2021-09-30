@@ -2414,7 +2414,7 @@ nodes/Transition/position = Vector2( 20, 80 )
 nodes/Walk/node = SubResource( 23 )
 nodes/Walk/position = Vector2( -220, 200 )
 nodes/output/position = Vector2( 1020, 140 )
-node_connections = [ "output", 0, "IsItDashing", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee" ]
+node_connections = [ "output", 0, "IsItDashing", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash" ]
 
 [sub_resource type="DynamicFont" id=25]
 size = 52
