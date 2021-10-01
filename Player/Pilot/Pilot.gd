@@ -89,6 +89,9 @@ func _process(delta):
 	if(is_mech):
 		var mech = get_parent().get_node("Mech")
 		self.global_transform.origin = mech.get_global_transform().origin
+		
+		if health.current_health < health.max_hp:
+			health.current_health = health.max_hp
 
 func _physics_process(delta):
 	if(!is_mech):

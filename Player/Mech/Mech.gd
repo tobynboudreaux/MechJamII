@@ -145,7 +145,7 @@ func interaction_interact(interactionComponentParent : Node) -> void:
 func swap_to_pilot():
 		var pilot = get_parent().get_node("Pilot")
 		pilot.show()
-		pilot.transform = self.transform
+		pilot.transform.origin = self.transform.origin + Vector3(2,0,0)
 		animation_tree["parameters/IsShutdown/blend_amount"] = 1
 #		print("Did you see that??")
 		camera.set_current_target("pilot")

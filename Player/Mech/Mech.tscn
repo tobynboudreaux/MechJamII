@@ -18904,7 +18904,7 @@ blend_point_3/node = SubResource( 27 )
 blend_point_3/pos = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeBlendTree" id=29]
-graph_offset = Vector2( -275, 65.5 )
+graph_offset = Vector2( -275, -71.75 )
 nodes/FireLauncher/node = SubResource( 16 )
 nodes/FireLauncher/position = Vector2( 140, 360 )
 nodes/Idle/node = SubResource( 17 )
@@ -18924,7 +18924,7 @@ nodes/Transition/position = Vector2( 180, 80 )
 nodes/Walk/node = SubResource( 28 )
 nodes/Walk/position = Vector2( -40, 180 )
 nodes/output/position = Vector2( 1100, 120 )
-node_connections = [ "output", 0, "IsShutdown", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher" ]
+node_connections = [ "output", 0, "IsShutdown", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "Transition", 0, "Idle", "Transition", 1, "Walk" ]
 
 [node name="Mech" type="KinematicBody"]
 collision_layer = 17
@@ -18933,7 +18933,7 @@ MAX_SPEED = 3
 max_health = 200
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 2, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 2, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 1.29934, 0 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
@@ -20368,7 +20368,7 @@ bones/283/enabled = true
 bones/283/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
-transform = Transform( -0.77111, 0.183595, -0.609659, -0.600204, -0.529141, 0.599805, -0.212474, 0.828434, 0.51822, -1.18836, 1.33634, -0.441144 )
+transform = Transform( -0.813478, 0.194228, -0.548206, -0.484187, 0.296029, 0.823365, 0.322206, 0.935223, -0.14677, -1.18608, 1.84264, 0.543276 )
 bone_name = "hand_ik.R.001"
 
 [node name="MechGun" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment"]
@@ -20481,7 +20481,7 @@ active = true
 parameters/IsLaunching/active = false
 parameters/IsShooting/blend_amount = 0.0
 parameters/IsShutdown/blend_amount = 0.0
-parameters/Transition/current = 0
+parameters/Transition/current = 1
 parameters/Walk/blend_position = Vector2( 1, 0 )
 
 [node name="Timers" type="Node" parent="."]

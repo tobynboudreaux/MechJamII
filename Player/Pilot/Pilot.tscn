@@ -2352,17 +2352,14 @@ animation = "01_Idle"
 
 [sub_resource type="AnimationNodeBlend2" id=14]
 filter_enabled = true
-filters = [ "rig/Skeleton/Pistol_flash:visible", "rig/Skeleton:DEF-breast.L", "rig/Skeleton:DEF-breast.R", "rig/Skeleton:DEF-forearm.R", "rig/Skeleton:DEF-forearm.R.001", "rig/Skeleton:DEF-hand.R", "rig/Skeleton:DEF-shoulder.R", "rig/Skeleton:DEF-upper_arm.R", "rig/Skeleton:DEF-upper_arm.R.001", "rig/Skeleton:MCH-forearm_ik.R", "rig/Skeleton:MCH-forearm_tweak.R", "rig/Skeleton:MCH-forearm_tweak.R.001", "rig/Skeleton:MCH-hand_fk.R", "rig/Skeleton:MCH-hand_tweak.R", "rig/Skeleton:MCH-spine.002", "rig/Skeleton:MCH-spine.003", "rig/Skeleton:MCH-torso.parent", "rig/Skeleton:MCH-upper_arm_ik_stretch.R", "rig/Skeleton:MCH-upper_arm_parent.R", "rig/Skeleton:MCH-upper_arm_parent_socket.R", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:MCH-upper_arm_tweak.R", "rig/Skeleton:MCH-upper_arm_tweak.R.001", "rig/Skeleton:ORG-breast.L", "rig/Skeleton:ORG-breast.R", "rig/Skeleton:ORG-forearm.R", "rig/Skeleton:ORG-hand.R", "rig/Skeleton:ORG-shoulder.R", "rig/Skeleton:ORG-spine.003", "rig/Skeleton:ORG-upper_arm.R", "rig/Skeleton:breast.L", "rig/Skeleton:breast.R", "rig/Skeleton:forearm_fk.R", "rig/Skeleton:forearm_tweak.R", "rig/Skeleton:forearm_tweak.R.001", "rig/Skeleton:hand_fk.R", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:hand_tweak.R", "rig/Skeleton:shoulder.L", "rig/Skeleton:shoulder.R", "rig/Skeleton:spine_fk.002", "rig/Skeleton:spine_fk.003", "rig/Skeleton:torso", "rig/Skeleton:tweak_spine.003", "rig/Skeleton:upper_arm_fk.R", "rig/Skeleton:upper_arm_ik.R", "rig/Skeleton:upper_arm_parent.R", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001", "rig/Skeleton:upper_arm_tweak.R", "rig/Skeleton:upper_arm_tweak.R.001" ]
 
 [sub_resource type="AnimationNodeOneShot" id=15]
-filter_enabled = true
-filters = [ "rig/Skeleton/Sword_trail:visible", "rig/Skeleton:DEF-forearm.L", "rig/Skeleton:DEF-forearm.L.001", "rig/Skeleton:DEF-hand.L", "rig/Skeleton:DEF-shoulder.L", "rig/Skeleton:DEF-upper_arm.L", "rig/Skeleton:DEF-upper_arm.L.001", "rig/Skeleton:MCH-forearm_ik.L", "rig/Skeleton:MCH-forearm_tweak.L", "rig/Skeleton:MCH-forearm_tweak.L.001", "rig/Skeleton:MCH-hand_fk.L", "rig/Skeleton:MCH-hand_tweak.L", "rig/Skeleton:MCH-upper_arm_ik_stretch.L", "rig/Skeleton:MCH-upper_arm_parent.L", "rig/Skeleton:MCH-upper_arm_parent_socket.L", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:ORG-forearm.L", "rig/Skeleton:ORG-hand.L", "rig/Skeleton:ORG-shoulder.L", "rig/Skeleton:ORG-upper_arm.L", "rig/Skeleton:forearm_fk.L", "rig/Skeleton:forearm_tweak.L", "rig/Skeleton:forearm_tweak.L.001", "rig/Skeleton:hand_fk.L", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:upper_arm_fk.L", "rig/Skeleton:upper_arm_ik.L", "rig/Skeleton:upper_arm_parent.L", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001" ]
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "07_Slicing"
+animation = "06_Shooting"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "06_Shooting"
+animation = "07_Slicing"
 
 [sub_resource type="AnimationNodeTimeScale" id=18]
 
@@ -2397,36 +2394,36 @@ blend_point_3/node = SubResource( 23 )
 blend_point_3/pos = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeBlendTree" id=25]
-graph_offset = Vector2( -275, 65.5 )
+graph_offset = Vector2( -882.147, 50.75 )
 nodes/Dash/node = SubResource( 11 )
-nodes/Dash/position = Vector2( 540, 300 )
+nodes/Dash/position = Vector2( -20, 320 )
 nodes/Idle/node = SubResource( 12 )
-nodes/Idle/position = Vector2( -220, 80 )
+nodes/Idle/position = Vector2( -560, 80 )
 nodes/IsItDashing/node = SubResource( 13 )
-nodes/IsItDashing/position = Vector2( 800, 100 )
+nodes/IsItDashing/position = Vector2( 160, 140 )
 nodes/IsItShooting/node = SubResource( 14 )
-nodes/IsItShooting/position = Vector2( 280, 80 )
+nodes/IsItShooting/position = Vector2( -200, 140 )
 nodes/IsItSlicing/node = SubResource( 15 )
-nodes/IsItSlicing/position = Vector2( 540, 100 )
-nodes/Melee/node = SubResource( 16 )
-nodes/Melee/position = Vector2( 280, 300 )
-nodes/Shoot/node = SubResource( 17 )
-nodes/Shoot/position = Vector2( 0, 240 )
+nodes/IsItSlicing/position = Vector2( -20, 140 )
+nodes/Shoot/node = SubResource( 16 )
+nodes/Shoot/position = Vector2( -400, 300 )
+nodes/Slice/node = SubResource( 17 )
+nodes/Slice/position = Vector2( -200, 320 )
 nodes/TimeScale/node = SubResource( 18 )
-nodes/TimeScale/position = Vector2( -180, 220 )
+nodes/TimeScale/position = Vector2( -600, 240 )
 nodes/Transition/node = SubResource( 19 )
-nodes/Transition/position = Vector2( 20, 80 )
+nodes/Transition/position = Vector2( -380, 140 )
 nodes/Walk/node = SubResource( 24 )
-nodes/Walk/position = Vector2( -420, 220 )
-nodes/output/position = Vector2( 1020, 140 )
-node_connections = [ "output", 0, "IsItDashing", "TimeScale", 0, "Walk", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee" ]
+nodes/Walk/position = Vector2( -800, 240 )
+nodes/output/position = Vector2( 360, 140 )
+node_connections = [ "output", 0, "IsItDashing", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Slice", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "TimeScale", 0, "Walk" ]
 
 [node name="Pilot" type="KinematicBody"]
 script = ExtResource( 13 )
 MAX_SPEED = 6
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 2, 8.49932e-15, 0, -3.39973e-14, 0.5, 0, 0.233717, 0 )
+transform = Transform( 2, 0, 0, 0, 5, 3.39973e-14, 0, -8.49933e-14, 2, 0, 0.804786, 0.0164717 )
 visible = false
 shape = SubResource( 1 )
 
@@ -3692,8 +3689,8 @@ parameters/IsItDashing/active = false
 parameters/IsItShooting/blend_amount = 0.0
 parameters/IsItSlicing/active = false
 parameters/TimeScale/scale = 2.0
-parameters/Transition/current = 0
-parameters/Walk/blend_position = Vector2( 0, 0 )
+parameters/Transition/current = 1
+parameters/Walk/blend_position = Vector2( 1, 0 )
 
 [node name="Timers" type="Node" parent="."]
 
