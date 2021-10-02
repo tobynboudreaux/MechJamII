@@ -1,0 +1,26 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "06_Shooting_Fixed"
+length = 0.208333
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("rig/Skeleton:DEF-hand.R")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, -5.96046e-08, 5.96046e-08, -1.17347e-07, 0.00758732, 0.329412, -0.149483, 0.932247, 0.992556, 1.01709, 0.990668, 0.0666667, 1, -5.96046e-08, 2.98023e-08, -1.11759e-08, 0.0268643, 0.326178, -0.146519, 0.933498, 0.992249, 1.01746, 0.990607, 0.133333, 1, -1.30385e-08, 7.45058e-08, -5.7742e-08, 0.0653569, 0.319381, -0.140493, 0.934872, 0.99167, 1.01801, 0.990637, 0.208333, 1, -5.96046e-08, 5.96046e-08, -1.17347e-07, 0.00758732, 0.329412, -0.149483, 0.932247, 0.992556, 1.01709, 0.990668 )
+tracks/1/type = "value"
+tracks/1/path = NodePath("rig/Skeleton/Pistol_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.04, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}

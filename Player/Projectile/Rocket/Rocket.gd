@@ -10,7 +10,7 @@ onready var ex_sounds = [
 func _on_Rocket_body_entered(body):
 	print(body)
 	
-	if "BomberBot" in body.name:
+	if "Bomber" in body.name || "Copter" in body.name || "Spider" in body.name || "Boss" in body.name:
 		print("yeeet")
 		self.queue_free()
 		var random_sound = randi() % 3
