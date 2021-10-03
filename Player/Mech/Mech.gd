@@ -160,3 +160,6 @@ func swap_to_pilot():
 		pilot.get_node("CollisionShape").disabled = false
 		pilot.animation_tree["parameters/Transition/current"] = 0
 		hud.hide()
+
+func process_ui_input():
+	pass
