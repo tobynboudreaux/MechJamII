@@ -20355,7 +20355,7 @@ bones/281/name = "hand_ik.R.001"
 bones/281/parent = 279
 bones/281/rest = Transform( 1, 5.96046e-08, -6.70552e-08, -5.96046e-08, 1, 7.07805e-08, 6.70552e-08, -7.07805e-08, 1, -0.164309, 0.0391208, -0.129907 )
 bones/281/enabled = true
-bones/281/bound_children = [ NodePath("BoneAttachment") ]
+bones/281/bound_children = [  ]
 bones/282/name = "MCH-upper_arm_ik_target.parent.R"
 bones/282/parent = -1
 bones/282/rest = Transform( -0.627147, -0.631967, 0.455307, 0.455307, 0.176836, 0.872596, -0.631966, 0.754551, 0.176836, 0.05364, 1.31855, -1.51458 )
@@ -20368,7 +20368,7 @@ bones/283/enabled = true
 bones/283/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
-transform = Transform( -0.887192, 0.13814, -0.440238, -0.348696, 0.424107, 0.83579, 0.302164, 0.895014, -0.328095, -1.42748, 1.94117, 0.565641 )
+transform = Transform( -0.80462, 0.201269, -0.55864, -0.49849, 0.282226, 0.819669, 0.322637, 0.937998, -0.126754, -1.16023, 1.83223, 0.541029 )
 bone_name = "hand_ik.R.001"
 
 [node name="MechGun" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment"]

@@ -135,6 +135,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			if(next_level_3d_path == "res://Core/StartScreen/MenuWorld3D.tscn"):
 				set_environment_for_menu()
 				
+			get_tree().paused = false
 			current_level_ui.queue_free()
 			current_level_3d.queue_free()
 			current_level_ui = next_level_ui
