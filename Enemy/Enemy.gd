@@ -21,44 +21,14 @@ onready var mech = get_parent().get_node("Mech")
 var vel
 var stop_move
 
-func _physics_process(delta):
-	choose_action(delta)
+#func _physics_process(delta):
+#	choose_action(delta)
 #	follow_player(delta)
 	
-
-	if vel != Vector3.ZERO:
-		move_and_collide(vel)
-		look_at(transform.origin - vel.normalized(), Vector3.UP)
-	
-func choose_action(delta):
-	vel = Vector3.ZERO
-	
-	var target
-	match state:
-		states.DEAD:
-			set_physics_process(false)
-
-		# Move along assigned path.
-
-		states.PATROL:
-			if !patrol_points:
-				return
-			target = patrol_points[patrol_index].transform.origin
-			if transform.origin.distance_to(target) < 1:
-				patrol_index = wrapi(patrol_index + 1, 0, patrol_points.size())
-				target = patrol_points[patrol_index].transform.origin
-			vel = (target - global_transform.origin).normalized() * speed * delta
-
-		# Move towards player.
-
-		states.CHASE:
-			target = player.get_global_transform().origin
-			vel = (target - global_transform.origin).normalized() * speed * delta
-
-		# Make an attack.
-
-		states.ATTACK:
-			target = player.get_global_transform().origin
+#
+#	if vel != Vector3.ZERO:
+#		move_and_collide(vel)
+#		look_at(transform.origin - vel.normalized(), Vector3.UP)
 	
 #func follow_player(delta):
 #	if pilot.is_mech == false:

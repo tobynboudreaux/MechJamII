@@ -43,6 +43,12 @@ func _physics_process(delta):
 		impact_sounds = pilotISounds
 	if current_player == "rocket":
 		impact_sounds = rocketISounds
+	else:
+		impact_sounds = mechISounds
+	$Timers/DeathTimer.start()
+	yield($Timers/DeathTimer, "timeout")
+	set_physics_process(false)
+	self.queue_free()
 	
 func has_gravity():
 	has_gravity = true
@@ -59,16 +65,17 @@ func set_vars(vel, g_val, dmg, h_g, name):
 		current_player = "pilot"
 	if name == "Rocket":
 		current_player = "rocket"
+	else:
+		current_player = name
 
 func _on_Area_body_entered(body):
-	print(body)
-	
-	if "Bomber" in body.name || "Copter" in body.name || "Spider" in body.name || "Boss" in body.name:
-		print("yeeet")
+	if current_player in body.name:
+		return
+	if "Bomber" in body.name || "Copter" in body.name || "Spider" in body.name || "Boss" in body.name || "Mech" in body.name || "Pilot" in body.name:
 		self.queue_free()
 		var random_sound = randi() % 4
 		impact_sounds[random_sound].play()
 
-		body.health.take_damage(projectile_damage)
+		body.take_damage(projectile_damage)
 	
 

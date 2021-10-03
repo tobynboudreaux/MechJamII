@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Assets/Models/Pilot/Material_001.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Pilot/Material_EMIT.material" type="Material" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Assets/Models/Pilot/02_Forward.anim" type="Animation" id=9]
 [ext_resource path="res://Assets/Models/Pilot/08_Dash.anim" type="Animation" id=10]
 [ext_resource path="res://Assets/Models/Pilot/05_Strafe_right.anim" type="Animation" id=11]
-[ext_resource path="res://Core/HUD/Pilot/PilotHUD.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Player/Pilot/Pilot.gd" type="Script" id=13]
 [ext_resource path="res://Core/Health/Health.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/SFX/Pilot/gun_pistol_shot_silenced_04.ogg" type="AudioStream" id=15]
@@ -799,7 +798,7 @@ surfaces/0 = {
 "vertex_count": 6
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 length = 0.208333
 loop = true
 tracks/0/type = "transform"
@@ -2341,7 +2340,7 @@ tracks/218/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 resource_local_to_scene = true
 resource_name = "06_Shooting (copy) (copy)"
 length = 0.208333
@@ -3885,29 +3884,29 @@ tracks/218/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "08_Dash"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "01_Idle"
 
-[sub_resource type="AnimationNodeOneShot" id=15]
+[sub_resource type="AnimationNodeOneShot" id=14]
 
-[sub_resource type="AnimationNodeBlend2" id=16]
+[sub_resource type="AnimationNodeBlend2" id=15]
 filter_enabled = true
 filters = [ "rig/Skeleton/Pistol_flash:visible", "rig/Skeleton:DEF-forearm.R", "rig/Skeleton:DEF-forearm.R.001", "rig/Skeleton:DEF-hand.R", "rig/Skeleton:DEF-shoulder.L", "rig/Skeleton:DEF-shoulder.R", "rig/Skeleton:DEF-spine", "rig/Skeleton:DEF-spine.001", "rig/Skeleton:DEF-spine.002", "rig/Skeleton:DEF-spine.003", "rig/Skeleton:DEF-spine.004", "rig/Skeleton:DEF-spine.005", "rig/Skeleton:DEF-spine.006", "rig/Skeleton:DEF-upper_arm.R", "rig/Skeleton:DEF-upper_arm.R.001", "rig/Skeleton:MCH-ROT-head", "rig/Skeleton:MCH-ROT-neck", "rig/Skeleton:MCH-STR-neck", "rig/Skeleton:MCH-WGT-chest", "rig/Skeleton:MCH-WGT-hips", "rig/Skeleton:MCH-foot_ik.parent.L", "rig/Skeleton:MCH-foot_ik.parent.R", "rig/Skeleton:MCH-foot_roll.L", "rig/Skeleton:MCH-foot_roll.R", "rig/Skeleton:MCH-foot_tweak.L", "rig/Skeleton:MCH-foot_tweak.R", "rig/Skeleton:MCH-forearm_ik.L", "rig/Skeleton:MCH-forearm_ik.R", "rig/Skeleton:MCH-forearm_tweak.L", "rig/Skeleton:MCH-forearm_tweak.L.001", "rig/Skeleton:MCH-forearm_tweak.R", "rig/Skeleton:MCH-forearm_tweak.R.001", "rig/Skeleton:MCH-hand_fk.L", "rig/Skeleton:MCH-hand_fk.R", "rig/Skeleton:MCH-hand_ik.parent.L", "rig/Skeleton:MCH-hand_ik.parent.R", "rig/Skeleton:MCH-hand_tweak.L", "rig/Skeleton:MCH-hand_tweak.R", "rig/Skeleton:MCH-heel.02_rock1.L", "rig/Skeleton:MCH-heel.02_rock1.R", "rig/Skeleton:MCH-heel.02_rock2.L", "rig/Skeleton:MCH-heel.02_rock2.R", "rig/Skeleton:MCH-heel.02_roll1.L", "rig/Skeleton:MCH-heel.02_roll1.R", "rig/Skeleton:MCH-heel.02_roll2.L", "rig/Skeleton:MCH-heel.02_roll2.R", "rig/Skeleton:MCH-pivot", "rig/Skeleton:MCH-shin_tweak.L", "rig/Skeleton:MCH-shin_tweak.L.001", "rig/Skeleton:MCH-shin_tweak.R", "rig/Skeleton:MCH-shin_tweak.R.001", "rig/Skeleton:MCH-spine.002", "rig/Skeleton:MCH-spine.003", "rig/Skeleton:MCH-spine.005", "rig/Skeleton:MCH-thigh_ik_stretch.R", "rig/Skeleton:MCH-thigh_ik_target.L", "rig/Skeleton:MCH-thigh_ik_target.R", "rig/Skeleton:MCH-thigh_ik_target.parent.L", "rig/Skeleton:MCH-thigh_ik_target.parent.R", "rig/Skeleton:MCH-thigh_parent_socket.R", "rig/Skeleton:MCH-thigh_tweak.L", "rig/Skeleton:MCH-thigh_tweak.L.001", "rig/Skeleton:MCH-thigh_tweak.R", "rig/Skeleton:MCH-thigh_tweak.R.001", "rig/Skeleton:MCH-toe.L", "rig/Skeleton:MCH-toe.R", "rig/Skeleton:MCH-torso.parent", "rig/Skeleton:MCH-upper_arm_ik_stretch.L", "rig/Skeleton:MCH-upper_arm_ik_stretch.R", "rig/Skeleton:MCH-upper_arm_ik_target.L", "rig/Skeleton:MCH-upper_arm_ik_target.R", "rig/Skeleton:MCH-upper_arm_ik_target.parent.L", "rig/Skeleton:MCH-upper_arm_ik_target.parent.R", "rig/Skeleton:MCH-upper_arm_parent.L", "rig/Skeleton:MCH-upper_arm_parent.R", "rig/Skeleton:MCH-upper_arm_parent_socket.L", "rig/Skeleton:MCH-upper_arm_parent_socket.R", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:MCH-upper_arm_tweak.R", "rig/Skeleton:MCH-upper_arm_tweak.R.001", "rig/Skeleton:ORG-foot.L", "rig/Skeleton:ORG-foot.R", "rig/Skeleton:ORG-forearm.L", "rig/Skeleton:ORG-forearm.R", "rig/Skeleton:ORG-hand.L", "rig/Skeleton:ORG-hand.R", "rig/Skeleton:ORG-heel.02.L", "rig/Skeleton:ORG-heel.02.R", "rig/Skeleton:ORG-shin.L", "rig/Skeleton:ORG-shin.R", "rig/Skeleton:ORG-shoulder.R", "rig/Skeleton:ORG-spine.001", "rig/Skeleton:ORG-spine.002", "rig/Skeleton:ORG-spine.004", "rig/Skeleton:ORG-spine.005", "rig/Skeleton:ORG-spine.006", "rig/Skeleton:ORG-thigh.L", "rig/Skeleton:ORG-thigh.R", "rig/Skeleton:ORG-toe.L", "rig/Skeleton:ORG-toe.R", "rig/Skeleton:ORG-upper_arm.L", "rig/Skeleton:ORG-upper_arm.R", "rig/Skeleton:VIS_thigh_ik_pole.L", "rig/Skeleton:VIS_thigh_ik_pole.R", "rig/Skeleton:VIS_upper_arm_ik_pole.L", "rig/Skeleton:VIS_upper_arm_ik_pole.R", "rig/Skeleton:breast.L", "rig/Skeleton:breast.R", "rig/Skeleton:chest", "rig/Skeleton:foot_heel_ik.L", "rig/Skeleton:foot_heel_ik.R", "rig/Skeleton:foot_ik.L", "rig/Skeleton:foot_ik.R", "rig/Skeleton:foot_spin_ik.L", "rig/Skeleton:foot_spin_ik.R", "rig/Skeleton:foot_tweak.L", "rig/Skeleton:foot_tweak.R", "rig/Skeleton:forearm_fk.L", "rig/Skeleton:forearm_fk.R", "rig/Skeleton:forearm_tweak.L", "rig/Skeleton:forearm_tweak.L.001", "rig/Skeleton:forearm_tweak.R", "rig/Skeleton:forearm_tweak.R.001", "rig/Skeleton:hand_fk.L", "rig/Skeleton:hand_fk.R", "rig/Skeleton:hand_ik.L", "rig/Skeleton:hand_ik.R", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:hand_tweak.R", "rig/Skeleton:head", "rig/Skeleton:hips", "rig/Skeleton:neck", "rig/Skeleton:shin_tweak.L", "rig/Skeleton:shin_tweak.L.001", "rig/Skeleton:shin_tweak.R", "rig/Skeleton:shin_tweak.R.001", "rig/Skeleton:shoulder.L", "rig/Skeleton:shoulder.R", "rig/Skeleton:spine_fk.002", "rig/Skeleton:thigh_ik_target.L", "rig/Skeleton:thigh_ik_target.R", "rig/Skeleton:thigh_parent.R", "rig/Skeleton:thigh_tweak.L", "rig/Skeleton:thigh_tweak.L.001", "rig/Skeleton:thigh_tweak.R", "rig/Skeleton:thigh_tweak.R.001", "rig/Skeleton:toe.L", "rig/Skeleton:toe.R", "rig/Skeleton:torso", "rig/Skeleton:tweak_spine.001", "rig/Skeleton:tweak_spine.002", "rig/Skeleton:tweak_spine.004", "rig/Skeleton:tweak_spine.005", "rig/Skeleton:upper_arm_fk.L", "rig/Skeleton:upper_arm_fk.R", "rig/Skeleton:upper_arm_ik.L", "rig/Skeleton:upper_arm_ik.R", "rig/Skeleton:upper_arm_ik_target.L", "rig/Skeleton:upper_arm_ik_target.R", "rig/Skeleton:upper_arm_parent.L", "rig/Skeleton:upper_arm_parent.R", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001", "rig/Skeleton:upper_arm_tweak.R", "rig/Skeleton:upper_arm_tweak.R.001" ]
 
-[sub_resource type="AnimationNodeOneShot" id=17]
+[sub_resource type="AnimationNodeOneShot" id=16]
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "06_Shooting (copy)"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "07_Slicing"
 
-[sub_resource type="AnimationNodeTimeScale" id=20]
+[sub_resource type="AnimationNodeTimeScale" id=19]
 
-[sub_resource type="AnimationNodeTransition" id=21]
+[sub_resource type="AnimationNodeTransition" id=20]
 input_count = 2
 xfade_time = 0.15
 input_0/name = "Idle"
@@ -3915,54 +3914,55 @@ input_0/auto_advance = false
 input_1/name = "Walk"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "02_Forward"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "03_Backward"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "04_Strafe_left"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "05_Strafe_right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=26]
-blend_point_0/node = SubResource( 22 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=25]
+blend_point_0/node = SubResource( 21 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 23 )
+blend_point_1/node = SubResource( 22 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 24 )
+blend_point_2/node = SubResource( 23 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 25 )
+blend_point_3/node = SubResource( 24 )
 blend_point_3/pos = Vector2( 1, 0 )
 
-[sub_resource type="AnimationNodeBlendTree" id=27]
+[sub_resource type="AnimationNodeBlendTree" id=26]
 graph_offset = Vector2( -825, 88.75 )
-nodes/Dash/node = SubResource( 13 )
+nodes/Dash/node = SubResource( 12 )
 nodes/Dash/position = Vector2( -20, 320 )
-nodes/Idle/node = SubResource( 14 )
+nodes/Idle/node = SubResource( 13 )
 nodes/Idle/position = Vector2( -560, 80 )
-nodes/IsItDashing/node = SubResource( 15 )
+nodes/IsItDashing/node = SubResource( 14 )
 nodes/IsItDashing/position = Vector2( 160, 140 )
-nodes/IsItShooting/node = SubResource( 16 )
+nodes/IsItShooting/node = SubResource( 15 )
 nodes/IsItShooting/position = Vector2( -200, 140 )
-nodes/IsItSlicing/node = SubResource( 17 )
+nodes/IsItSlicing/node = SubResource( 16 )
 nodes/IsItSlicing/position = Vector2( -20, 140 )
-nodes/Shoot/node = SubResource( 18 )
+nodes/Shoot/node = SubResource( 17 )
 nodes/Shoot/position = Vector2( -400, 300 )
-nodes/Slice/node = SubResource( 19 )
+nodes/Slice/node = SubResource( 18 )
 nodes/Slice/position = Vector2( -200, 320 )
-nodes/TimeScale/node = SubResource( 20 )
+nodes/TimeScale/node = SubResource( 19 )
 nodes/TimeScale/position = Vector2( -600, 240 )
-nodes/Transition/node = SubResource( 21 )
+nodes/Transition/node = SubResource( 20 )
 nodes/Transition/position = Vector2( -380, 140 )
-nodes/Walk/node = SubResource( 26 )
+nodes/Walk/node = SubResource( 25 )
 nodes/Walk/position = Vector2( -800, 240 )
 nodes/output/position = Vector2( 360, 140 )
-node_connections = [ "output", 0, "IsItDashing", "TimeScale", 0, "Walk", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Slice", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot" ]
+node_connections = [ "output", 0, "IsItDashing", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Slice", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "TimeScale", 0, "Walk" ]
 
 [node name="Pilot" type="KinematicBody"]
+collision_layer = 35
 script = ExtResource( 13 )
 MAX_SPEED = 6
 
@@ -5221,13 +5221,13 @@ anims/03_Backward = ExtResource( 3 )
 anims/04_Strafe_left = ExtResource( 5 )
 anims/05_Strafe_right = ExtResource( 11 )
 anims/06_Shooting = ExtResource( 4 )
-"anims/06_Shooting (copy)" = SubResource( 11 )
-"anims/06_Shooting (copy) (copy)" = SubResource( 12 )
+"anims/06_Shooting (copy)" = SubResource( 10 )
+"anims/06_Shooting (copy) (copy)" = SubResource( 11 )
 anims/07_Slicing = ExtResource( 8 )
 anims/08_Dash = ExtResource( 10 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 27 )
+tree_root = SubResource( 26 )
 anim_player = NodePath("../Rotation_Helper/MechJam_Player/AnimationPlayer")
 active = true
 parameters/IsItDashing/active = false
@@ -5259,8 +5259,6 @@ wait_time = 0.25
 one_shot = true
 
 [node name="ToMechTimer" type="Timer" parent="Timers"]
-
-[node name="PilotHUD" parent="." instance=ExtResource( 12 )]
 
 [node name="Health" parent="." instance=ExtResource( 14 )]
 

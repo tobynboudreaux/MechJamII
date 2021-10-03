@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MJamIIMenuSketch.ogg-2741af002575bfaccf1d3ded9eb2275e.oggstr"
+
+[deps]
+
+source_file="res://Assets/Music/MJamIIMenuSketch.ogg"
+dest_files=[ "res://.import/MJamIIMenuSketch.ogg-2741af002575bfaccf1d3ded9eb2275e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

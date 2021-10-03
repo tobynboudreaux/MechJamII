@@ -8,6 +8,7 @@
 [sub_resource type="CubeMesh" id=2]
 
 [node name="Enemy" type="KinematicBody"]
+collision_layer = 3
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

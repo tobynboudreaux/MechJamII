@@ -431,12 +431,13 @@ nodes/TimeScale/position = Vector2( -360, 180 )
 "nodes/TimeScale 3/node" = SubResource( 21 )
 "nodes/TimeScale 3/position" = Vector2( 1.84375, 256.875 )
 nodes/output/position = Vector2( 890, 270 )
-node_connections = [ "output", 0, "IsAlive", "TimeScale", 0, "Forward", "IsExplode", 0, "IsScan", "IsExplode", 1, "Attack", "TimeScale 3", 0, "Scan", "IsScan", 0, "IsMove", "IsScan", 1, "TimeScale 3", "TimeScale 2", 0, "Idle", "IsAlive", 0, "IsExplode", "IsAlive", 1, "Dead", "IsMove", 0, "TimeScale 2", "IsMove", 1, "TimeScale" ]
+node_connections = [ "output", 0, "IsAlive", "TimeScale 2", 0, "Idle", "IsExplode", 0, "IsScan", "IsExplode", 1, "Attack", "TimeScale", 0, "Forward", "IsMove", 0, "TimeScale 2", "IsMove", 1, "TimeScale", "IsScan", 0, "IsMove", "IsScan", 1, "TimeScale 3", "IsAlive", 0, "IsExplode", "IsAlive", 1, "Dead", "TimeScale 3", 0, "Scan" ]
 
 [sub_resource type="SphereShape" id=24]
 
 [node name="BomberBot" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118676, 0 )
+collision_layer = 3
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -552,6 +553,11 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 24 )
 
 [node name="Health" parent="." instance=ExtResource( 6 )]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="Timers"]
+one_shot = true
 
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]

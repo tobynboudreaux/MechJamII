@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/clang.wav-8a5e69e7a43ce7e40f41b42a75418f49.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/UI/clang.wav"
+dest_files=[ "res://.import/clang.wav-8a5e69e7a43ce7e40f41b42a75418f49.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
