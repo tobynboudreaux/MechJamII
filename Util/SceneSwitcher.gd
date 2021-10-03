@@ -5,6 +5,8 @@ var next_level_3d
 var next_level_ui
 var next_level_3d_path
 var next_level_ui_path
+var player_ui #needs to be preloaded in order for player to connect to it
+var player_ui_current_instance
 
 # Ready variables
 onready var current_level_ui = $MainMenuUI
@@ -35,10 +37,15 @@ var data = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Gather resource packs
+	ProjectSettings.load_resource_pack("res://graphics.pck")
+	ProjectSettings.load_resource_pack("res://audio.pck")
+	player_ui = preload("res://Core/HUD/PlayerUI.tscn")
+	
 	current_level_ui.connect("level_changed", self, "handle_level_changed")
 	current_level_ui.connect("set_options", self, "handle_options")
 
-	#looks like I need to set the initial render settings inside this _ready(), not startscreen ui
+	# Load from data.json to set the graphics options
 	load_data()
 	
 	if(data["options"]["graphics"] == "Good"):
@@ -68,6 +75,11 @@ func _ready():
 	set_screen_max_resolution()
 	handle_options("resolution", data["options"]["resolution"])
 	
+func connect_player(player_instance):
+	print("player connected to player UI")
+	player_instance.connect("set_pause", player_ui_current_instance, "handle_pause")
+	player_instance.connect("set_mech_hud", player_ui_current_instance, "handle_mech_hud")
+	
 func set_screen_max_resolution():
 	if(is_fullscreen):
 		get_viewport().size = fullscreen_max_res
@@ -76,15 +88,20 @@ func set_screen_max_resolution():
 		get_viewport().size = window_max_res
 		current_max_res = window_max_res
 		
-func setup_options():
-	pass #ads
+func set_environment_for_level():
+	world_env.environment.dof_blur_far_distance = 19
+	world_env.environment.dof_blur_far_transition = 8.67
+	
+func set_environment_for_menu():
+	world_env.environment.dof_blur_far_distance = 1.4
+	world_env.environment.dof_blur_far_transition = 5
 	
 func handle_level_changed(current_level_name: String):
 	
 	match current_level_name:
 		"menu":
 			# Load main game level
-			next_level_3d_path = "res://World/World.tscn"
+			next_level_3d_path = "res://World/World1/World1.tscn"
 			next_level_ui_path = "res://Core/Pause/PauseMenu.tscn"
 			
 		"level1":
@@ -100,11 +117,24 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"Transition_In":
 			next_level_3d = load(next_level_3d_path).instance()
-			next_level_ui = load(next_level_ui_path).instance()
+			if(next_level_ui_path != "res://Core/Pause/PauseMenu.tscn"):
+				next_level_ui = load(next_level_ui_path).instance()
+				player_ui_current_instance = null
+				next_level_ui.connect("set_options", self, "handle_options")
+			else:
+				player_ui_current_instance = player_ui.instance()
+				next_level_ui = player_ui_current_instance
+				
 			next_level_ui.connect("level_changed", self, "handle_level_changed")
-			next_level_ui.connect("set_options", self, "handle_options")
+			
 			viewport_3d.add_child(next_level_3d)
 			self.add_child(next_level_ui)
+			
+			if(next_level_3d_path == "res://World/World1/World1.tscn"):
+				set_environment_for_level()
+			if(next_level_3d_path == "res://Core/StartScreen/MenuWorld3D.tscn"):
+				set_environment_for_menu()
+				
 			current_level_ui.queue_free()
 			current_level_3d.queue_free()
 			current_level_ui = next_level_ui

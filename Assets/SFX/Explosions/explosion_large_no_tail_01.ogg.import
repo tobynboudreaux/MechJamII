@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/explosion_large_no_tail_01.ogg-98cbe6078220b91f0f3244dabff30fa4.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Explosions/explosion_large_no_tail_01.ogg"
+dest_files=[ "res://.import/explosion_large_no_tail_01.ogg-98cbe6078220b91f0f3244dabff30fa4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

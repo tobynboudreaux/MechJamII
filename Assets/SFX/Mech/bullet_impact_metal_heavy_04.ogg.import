@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bullet_impact_metal_heavy_04.ogg-4a0b1a193ad50d00467023b6b259c92e.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Mech/bullet_impact_metal_heavy_04.ogg"
+dest_files=[ "res://.import/bullet_impact_metal_heavy_04.ogg-4a0b1a193ad50d00467023b6b259c92e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

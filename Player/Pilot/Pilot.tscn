@@ -11,9 +11,9 @@
 [ext_resource path="res://Assets/Models/Pilot/02_Forward.anim" type="Animation" id=9]
 [ext_resource path="res://Assets/Models/Pilot/08_Dash.anim" type="Animation" id=10]
 [ext_resource path="res://Assets/Models/Pilot/05_Strafe_right.anim" type="Animation" id=11]
-[ext_resource path="res://Core/HUD/HUD.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Player/Player.gd" type="Script" id=13]
-[ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://Core/HUD/Pilot/PilotHUD.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Player/Pilot/Pilot.gd" type="Script" id=13]
+[ext_resource path="res://Core/Health/Health.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/SFX/Pilot/gun_pistol_shot_silenced_04.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/Pilot/whoosh_swish_high_big_01.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Assets/SFX/Pilot/whoosh_swish_high_big_03.ogg" type="AudioStream" id=17]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Assets/SFX/Pilot/footstep_concrete_run_16.ogg" type="AudioStream" id=30]
 [ext_resource path="res://Assets/SFX/Pilot/footstep_concrete_run_15.ogg" type="AudioStream" id=31]
 [ext_resource path="res://Assets/SFX/Pilot/footstep_concrete_run_17.ogg" type="AudioStream" id=32]
+[ext_resource path="res://Core/Interactable/Interactable.tscn" type="PackedScene" id=33]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -2351,19 +2352,18 @@ animation = "01_Idle"
 
 [sub_resource type="AnimationNodeBlend2" id=14]
 filter_enabled = true
-filters = [ "rig/Skeleton/Pistol_flash:visible", "rig/Skeleton:DEF-breast.L", "rig/Skeleton:DEF-breast.R", "rig/Skeleton:DEF-forearm.R", "rig/Skeleton:DEF-forearm.R.001", "rig/Skeleton:DEF-hand.R", "rig/Skeleton:DEF-shoulder.R", "rig/Skeleton:DEF-upper_arm.R", "rig/Skeleton:DEF-upper_arm.R.001", "rig/Skeleton:MCH-forearm_ik.R", "rig/Skeleton:MCH-forearm_tweak.R", "rig/Skeleton:MCH-forearm_tweak.R.001", "rig/Skeleton:MCH-hand_fk.R", "rig/Skeleton:MCH-hand_tweak.R", "rig/Skeleton:MCH-spine.002", "rig/Skeleton:MCH-spine.003", "rig/Skeleton:MCH-torso.parent", "rig/Skeleton:MCH-upper_arm_ik_stretch.R", "rig/Skeleton:MCH-upper_arm_parent.R", "rig/Skeleton:MCH-upper_arm_parent_socket.R", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:MCH-upper_arm_tweak.R", "rig/Skeleton:MCH-upper_arm_tweak.R.001", "rig/Skeleton:ORG-breast.L", "rig/Skeleton:ORG-breast.R", "rig/Skeleton:ORG-forearm.R", "rig/Skeleton:ORG-hand.R", "rig/Skeleton:ORG-shoulder.R", "rig/Skeleton:ORG-spine.003", "rig/Skeleton:ORG-upper_arm.R", "rig/Skeleton:breast.L", "rig/Skeleton:breast.R", "rig/Skeleton:forearm_fk.R", "rig/Skeleton:forearm_tweak.R", "rig/Skeleton:forearm_tweak.R.001", "rig/Skeleton:hand_fk.R", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:hand_tweak.R", "rig/Skeleton:shoulder.L", "rig/Skeleton:shoulder.R", "rig/Skeleton:spine_fk.002", "rig/Skeleton:spine_fk.003", "rig/Skeleton:torso", "rig/Skeleton:tweak_spine.003", "rig/Skeleton:upper_arm_fk.R", "rig/Skeleton:upper_arm_ik.R", "rig/Skeleton:upper_arm_parent.R", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001", "rig/Skeleton:upper_arm_tweak.R", "rig/Skeleton:upper_arm_tweak.R.001" ]
 
 [sub_resource type="AnimationNodeOneShot" id=15]
-filter_enabled = true
-filters = [ "rig/Skeleton/Sword_trail:visible", "rig/Skeleton:DEF-forearm.L", "rig/Skeleton:DEF-forearm.L.001", "rig/Skeleton:DEF-hand.L", "rig/Skeleton:DEF-shoulder.L", "rig/Skeleton:DEF-upper_arm.L", "rig/Skeleton:DEF-upper_arm.L.001", "rig/Skeleton:MCH-forearm_ik.L", "rig/Skeleton:MCH-forearm_tweak.L", "rig/Skeleton:MCH-forearm_tweak.L.001", "rig/Skeleton:MCH-hand_fk.L", "rig/Skeleton:MCH-hand_tweak.L", "rig/Skeleton:MCH-upper_arm_ik_stretch.L", "rig/Skeleton:MCH-upper_arm_parent.L", "rig/Skeleton:MCH-upper_arm_parent_socket.L", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:ORG-forearm.L", "rig/Skeleton:ORG-hand.L", "rig/Skeleton:ORG-shoulder.L", "rig/Skeleton:ORG-upper_arm.L", "rig/Skeleton:forearm_fk.L", "rig/Skeleton:forearm_tweak.L", "rig/Skeleton:forearm_tweak.L.001", "rig/Skeleton:hand_fk.L", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:upper_arm_fk.L", "rig/Skeleton:upper_arm_ik.L", "rig/Skeleton:upper_arm_parent.L", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001" ]
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "07_Slicing"
-
-[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "06_Shooting"
 
-[sub_resource type="AnimationNodeTransition" id=18]
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "07_Slicing"
+
+[sub_resource type="AnimationNodeTimeScale" id=18]
+
+[sub_resource type="AnimationNodeTransition" id=19]
 input_count = 2
 xfade_time = 0.15
 input_0/name = "Idle"
@@ -2371,63 +2371,59 @@ input_0/auto_advance = false
 input_1/name = "Walk"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "02_Forward"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "03_Backward"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "04_Strafe_left"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "05_Strafe_right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=23]
-blend_point_0/node = SubResource( 19 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=24]
+blend_point_0/node = SubResource( 20 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 20 )
+blend_point_1/node = SubResource( 21 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 21 )
+blend_point_2/node = SubResource( 22 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 22 )
+blend_point_3/node = SubResource( 23 )
 blend_point_3/pos = Vector2( 1, 0 )
 
-[sub_resource type="AnimationNodeBlendTree" id=24]
-graph_offset = Vector2( -541.283, 63.188 )
+[sub_resource type="AnimationNodeBlendTree" id=25]
+graph_offset = Vector2( -882.147, 50.75 )
 nodes/Dash/node = SubResource( 11 )
-nodes/Dash/position = Vector2( 540, 300 )
+nodes/Dash/position = Vector2( -20, 320 )
 nodes/Idle/node = SubResource( 12 )
-nodes/Idle/position = Vector2( -220, 80 )
+nodes/Idle/position = Vector2( -560, 80 )
 nodes/IsItDashing/node = SubResource( 13 )
-nodes/IsItDashing/position = Vector2( 800, 100 )
+nodes/IsItDashing/position = Vector2( 160, 140 )
 nodes/IsItShooting/node = SubResource( 14 )
-nodes/IsItShooting/position = Vector2( 280, 80 )
+nodes/IsItShooting/position = Vector2( -200, 140 )
 nodes/IsItSlicing/node = SubResource( 15 )
-nodes/IsItSlicing/position = Vector2( 540, 100 )
-nodes/Melee/node = SubResource( 16 )
-nodes/Melee/position = Vector2( 280, 300 )
-nodes/Shoot/node = SubResource( 17 )
-nodes/Shoot/position = Vector2( 0, 240 )
-nodes/Transition/node = SubResource( 18 )
-nodes/Transition/position = Vector2( 20, 80 )
-nodes/Walk/node = SubResource( 23 )
-nodes/Walk/position = Vector2( -220, 200 )
-nodes/output/position = Vector2( 1020, 140 )
-node_connections = [ "output", 0, "IsItDashing", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Melee", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash" ]
-
-[sub_resource type="DynamicFont" id=25]
-size = 52
-font_data = ExtResource( 14 )
-
-[sub_resource type="Theme" id=26]
-default_font = SubResource( 25 )
+nodes/IsItSlicing/position = Vector2( -20, 140 )
+nodes/Shoot/node = SubResource( 16 )
+nodes/Shoot/position = Vector2( -400, 300 )
+nodes/Slice/node = SubResource( 17 )
+nodes/Slice/position = Vector2( -200, 320 )
+nodes/TimeScale/node = SubResource( 18 )
+nodes/TimeScale/position = Vector2( -600, 240 )
+nodes/Transition/node = SubResource( 19 )
+nodes/Transition/position = Vector2( -380, 140 )
+nodes/Walk/node = SubResource( 24 )
+nodes/Walk/position = Vector2( -800, 240 )
+nodes/output/position = Vector2( 360, 140 )
+node_connections = [ "output", 0, "IsItDashing", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "TimeScale", 0, "Walk", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Slice" ]
 
 [node name="Pilot" type="KinematicBody"]
 script = ExtResource( 13 )
+MAX_SPEED = 6
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 2, 8.49932e-15, 0, -3.39973e-14, 0.5, 0, 0.233717, 0 )
+transform = Transform( 2, 0, 0, 0, 5, 3.39973e-14, 0, -8.49933e-14, 2, 0, 0.804786, 0.0164717 )
 visible = false
 shape = SubResource( 1 )
 
@@ -3568,92 +3564,92 @@ material/1 = null
 [node name="Sword1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 16 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Sword2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 18 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Sword3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 17 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Pistol1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 21 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="Pistol2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 19 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="Pistol3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 20 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="Pistol4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 15 )
-unit_db = 5.0
+unit_db = 15.0
 
 [node name="PistolReload1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 23 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="PistolReload2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 24 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="PistolReload3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 25 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="PistolDry" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 22 )
-unit_db = 5.0
+unit_db = 20.0
 
 [node name="Dash1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 26 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Dash2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 28 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Dash3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 27 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep1" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 29 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep2" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 31 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep3" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 30 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Footstep4" type="AudioStreamPlayer3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01545, 0 )
 stream = ExtResource( 32 )
-unit_db = 5.0
+unit_db = 10.0
 
 [node name="Sword" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 mesh = SubResource( 7 )
@@ -3686,17 +3682,15 @@ anims/07_Slicing = ExtResource( 8 )
 anims/08_Dash = ExtResource( 10 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 24 )
+tree_root = SubResource( 25 )
 anim_player = NodePath("../Rotation_Helper/MechJam_Player/AnimationPlayer")
 active = true
 parameters/IsItDashing/active = false
 parameters/IsItShooting/blend_amount = 0.0
 parameters/IsItSlicing/active = false
-parameters/Transition/current = 0
-parameters/Walk/blend_position = Vector2( 0, 0 )
-
-[node name="HUD" parent="." instance=ExtResource( 12 )]
-theme = SubResource( 26 )
+parameters/TimeScale/scale = 2.0
+parameters/Transition/current = 1
+parameters/Walk/blend_position = Vector2( 1, 0 )
 
 [node name="Timers" type="Node" parent="."]
 
@@ -3716,7 +3710,15 @@ one_shot = true
 one_shot = true
 
 [node name="FootstepTimer" type="Timer" parent="Timers"]
-wait_time = 0.54
+wait_time = 0.25
 one_shot = true
 
 [node name="ToMechTimer" type="Timer" parent="Timers"]
+
+[node name="PilotHUD" parent="." instance=ExtResource( 12 )]
+
+[node name="Health" parent="." instance=ExtResource( 14 )]
+
+[node name="Interactable" parent="." instance=ExtResource( 33 )]
+collision_layer = 16
+interact_parent = NodePath("..")

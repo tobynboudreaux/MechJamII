@@ -297,9 +297,9 @@ stream = ExtResource( 13 )
 stream = ExtResource( 12 )
 
 [connection signal="focus_entered" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_focus_entered"]
+[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MainVBoxContainer/StartButton" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MainVBoxContainer/StartButton" method="_on_StartButton_pressed"]
 [connection signal="focus_entered" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]

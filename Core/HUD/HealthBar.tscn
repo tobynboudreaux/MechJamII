@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+onready var health_over = $HealthOver
+onready var health_under = $HealthUnder
+onready var update_tween = $UpdateTween
+
+func _on_health_updated(health):
+	health_over.value = health
+	update_tween.interpolate_property(health_under, \"value\", health_under.value, health, 0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
+	update_tween.start()
+	
+func _on_max_health_updated(max_health):
+	health_over.max_value = max_health
+	health_under.max_value = max_health
+"
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/sgxcfnI.png-725ba90b94e9cb960d3ba5e5a857f77b.stex"
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/TkZm5eA.png-1574444c21ca7e857d8f05d04972aa9c.stex"
+
+[node name="HealthBar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthUnder" type="TextureProgress" parent="."]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 468.0
+margin_bottom = 60.0
+value = 60.0
+texture_under = SubResource( 2 )
+texture_progress = SubResource( 3 )
+tint_progress = Color( 0.647059, 0.0705882, 0.0705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthOver" type="TextureProgress" parent="."]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 40.0
+margin_bottom = 40.0
+value = 50.0
+texture_progress = SubResource( 3 )
+tint_progress = Color( 0.168627, 0.988235, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpdateTween" type="Tween" parent="."]

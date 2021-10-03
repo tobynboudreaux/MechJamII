@@ -3,6 +3,7 @@
 [ext_resource path="res://Core/Pause/PauseMenu.gd" type="Script" id=1]
 
 [node name="PauseMenuControl" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -12,6 +13,7 @@ __meta__ = {
 level_name = "level1"
 
 [node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenuCanvasLayer"]
 anchor_right = 1.0
@@ -64,5 +66,6 @@ action_mode = 0
 text = "Back to Menu"
 flat = true
 
+[connection signal="tree_entered" from="." to="." method="_on_PauseMenuControl_tree_entered"]
 [connection signal="pressed" from="PauseMenuCanvasLayer/ColorRect/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenuCanvasLayer/ColorRect/VBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]

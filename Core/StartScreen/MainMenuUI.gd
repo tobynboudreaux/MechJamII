@@ -41,11 +41,11 @@ func _ready():
 		continue_button.visible = true
 		prev_levels_button.visible = true
 		continue_button.grab_focus()
-	
 
 # Main menu code
 func _on_StartButton_pressed():
 	emit_signal("level_changed", level_name)
+	start_button.disabled = true
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
@@ -54,6 +54,7 @@ func _on_ContinueButton_pressed():
 	var levels_completed = data["levels_completed"].size()
 	if(levels_completed == 1):
 		emit_signal("level_changed", level_name)
+		continue_button.disabled = true
 	
 # Previous level menu code
 func _on_PrevLevelsButton_pressed():

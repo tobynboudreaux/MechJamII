@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gun_machinegun_auto_heavy_shot_02.ogg-879efb06ca7b726cd5445bc53a419e15.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Mech/gun_machinegun_auto_heavy_shot_02.ogg"
+dest_files=[ "res://.import/gun_machinegun_auto_heavy_shot_02.ogg-879efb06ca7b726cd5445bc53a419e15.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

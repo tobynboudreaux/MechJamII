@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Core/HUD/Mech/MechHUD.tscn" type="PackedScene" id=2]
+
+[sub_resource type="DynamicFont" id=7]
+size = 52
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 7 )
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Control
+
+func update_ammo_val(ammo_left):
+	$Ammo.text = ammo_left
+	
+func update_dash_timer(timer_val):
+	$DashBar.value = -timer_val
+
+func update_reload_timer(reload_val):
+	$ReloadBar.value = reload_val
+"
+
+[sub_resource type="StreamTexture" id=9]
+flags = 4
+load_path = "res://.import/sgxcfnI.png-725ba90b94e9cb960d3ba5e5a857f77b.stex"
+
+[sub_resource type="StreamTexture" id=10]
+flags = 4
+load_path = "res://.import/TkZm5eA.png-1574444c21ca7e857d8f05d04972aa9c.stex"
+
+[node name="PilotHUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 8 )
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ammo" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -102.189
+margin_top = -95.136
+margin_right = -1.18921
+margin_bottom = -41.136
+text = "7/7"
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DashBar" type="TextureProgress" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -60.0
+rect_scale = Vector2( 0.319999, 0.400001 )
+min_value = -3.0
+max_value = 0.0
+step = 0.05
+value = -3.0
+texture_under = SubResource( 9 )
+texture_progress = SubResource( 10 )
+tint_under = Color( 0, 0.462745, 1, 1 )
+tint_over = Color( 1, 0, 0, 1 )
+tint_progress = Color( 0.266667, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReloadBar" type="TextureProgress" parent="."]
+margin_left = 520.0
+margin_top = 232.0
+margin_right = 988.0
+margin_bottom = 292.0
+rect_rotation = -90.4706
+rect_scale = Vector2( 0.0416754, 0.0826587 )
+max_value = 1.0
+step = 0.05
+texture_under = SubResource( 9 )
+texture_progress = SubResource( 10 )
+tint_under = Color( 0, 0.462745, 1, 1 )
+tint_over = Color( 1, 0, 0, 1 )
+tint_progress = Color( 0.266667, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" parent="." instance=ExtResource( 2 )]
