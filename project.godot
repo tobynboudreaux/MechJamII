@@ -46,14 +46,15 @@ _global_script_class_icons={
 
 config/name="MechJam II"
 run/main_scene="res://Util/SceneSwitcher.tscn"
-boot_splash/image="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
-config/icon="res://Assets/Images/Movies & TV 9_24_2021 1_41_28 PM (2).png"
+boot_splash/image="res://Assets/Images/Splash.png"
+config/icon="res://Assets/Images/MechTitle.png"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
 window/size/resizable=false
+window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 mouse_cursor/custom_image="res://Assets/Images/crosshair (2).png"
 window/stretch/aspect="keep_height"

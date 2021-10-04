@@ -26,6 +26,7 @@ flags = 4
 load_path = "res://.import/TkZm5eA.png-1574444c21ca7e857d8f05d04972aa9c.stex"
 
 [node name="HealthBar" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )

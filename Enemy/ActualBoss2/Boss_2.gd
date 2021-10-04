@@ -132,12 +132,13 @@ func _on_health(amount):
 	if amount < phase_3_health:
 		emit_signal("phase_3")
 		
-	if amount <= 0:
+	if amount == 0:
 		emit_signal("dead")
 		
 func take_damage(amount):
 	current_health -= amount
-	print(current_health)
+	if current_health < 0:
+		current_health = 0
 	
 func _on_Boss_2_dead():
 	phase = phases.DEAD

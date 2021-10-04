@@ -1,6 +1,4 @@
-extends "res://Enemy/Enemy.gd"
-
-onready var health = get_node("Health")
+extends KinematicBody
 
 onready var ex_sounds = [
 	get_node("BomberBot/MechJam_BomberBot/Armature/Skeleton/BomberBot/Sounds/Ex1"),
@@ -9,33 +7,85 @@ onready var ex_sounds = [
 	get_node("BomberBot/MechJam_BomberBot/Armature/Skeleton/BomberBot/Sounds/Ex4")
 ]
 
+enum states {PATROL, CHASE, ATTACK, DEAD}
+var state = states.PATROL
+
+# For path following.
+
+export (NodePath) var patrol_path
+var patrol_points
+var patrol_index = 0
+
+# Target for chase mode.
+
+var player = null
+
+var speed = 4
+onready var pilot = get_parent().get_node("Pilot")
+onready var mech = get_parent().get_node("Mech")
+var vel
+var stop_move
+var p_s = preload("res://Player/Projectile/Projectile.tscn")
+
+export var max_health = 50
+var current_health = max_health
+
 func _ready():
-	health.set_health(50)
 	$AnimationTree["parameters/IsAlive/current"] = 0
 	$AnimationTree["parameters/IsMove/blend_amount"] = 0
 	
 func _process(delta):
-	if health.current_health == 0:
+	if current_health <= 0:
 		state = states.DEAD
 	
 func _physics_process(delta):
-	if state == states.CHASE:
-		$AnimationTree["parameters/IsMove/blend_amount"] = 1
-		
-	if state == states.ATTACK:
-		$AnimationTree["parameters/IsExplode/current"] = 1
-		yield(get_tree().create_timer(1), "timeout")
-		self.queue_free()
-		
-	if state == states.DEAD:
-		$AnimationTree["parameters/IsAlive/current"] = 1
-		yield(get_tree().create_timer(1), "timeout")
-		self.queue_free()
+	choose_action(delta)
 	
-#	if is_in_range():
-#		$AnimationTree["parameters/IsAttack/current"] = 1
-#	if follow_player(delta) == "Pilot":
-#		$AnimationTree["parameters/IsAlive/current"] = 1
+	if vel != Vector3.ZERO:
+		move_and_collide(vel)
+		look_at(transform.origin - vel.normalized(), Vector3.UP)
+
+func choose_action(delta):
+	vel = Vector3.ZERO
+	
+	var target
+	match state:
+		states.DEAD:
+			$AnimationTree["parameters/IsAlive/current"] = 1
+			$Timers/DeathTimer.start()
+			yield($Timers/DeathTimer, "timeout")
+			set_physics_process(false)
+			self.queue_free()
+
+		# Move along assigned path.
+
+		states.PATROL:
+			if !patrol_points:
+				return
+			target = patrol_points[patrol_index].transform.origin
+			if transform.origin.distance_to(target) < 1:
+				patrol_index = wrapi(patrol_index + 1, 0, patrol_points.size())
+				target = patrol_points[patrol_index].transform.origin
+			vel = (target - global_transform.origin).normalized() * speed * delta
+
+		# Move towards player.
+
+		states.CHASE:
+			target = player.get_global_transform().origin - Vector3(rand_range(5,10), 0, 0)
+			vel = (target - global_transform.origin).normalized() * speed * delta
+		
+			if vel != Vector3.ZERO:
+				look_at(transform.origin - vel.normalized(), Vector3.UP)
+			
+			$AnimationTree["parameters/IsMove/blend_amount"] = 1
+
+		# Make an attack.
+
+		states.ATTACK:
+			$AnimationTree["parameters/IsExplode/current"] = 1
+			yield($Timers/DeathTimer, "timeout")
+			set_physics_process(false)
+			self.queue_free()
 
 func _on_AttackRadius_body_entered(body):
 	if state != states.DEAD:
@@ -44,7 +94,7 @@ func _on_AttackRadius_body_entered(body):
 			player = body
 			var random_sound = randi() % 4
 			ex_sounds[random_sound].play()
-			player.health.take_damage(30)
+			player.take_damage(30)
 			
 func _on_AttackRadius_body_exited(body):
 	if state!= states.DEAD:
@@ -60,3 +110,6 @@ func _on_DetectRadius_body_entered(body):
 
 func _on_DetectRadius_body_exited(body):
 	state = states.PATROL
+	
+func take_damage(amount):
+	current_health -= amount

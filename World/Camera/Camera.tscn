@@ -5,3 +5,10 @@
 [node name="Camera" type="Camera"]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 20, 9 )
 script = ExtResource( 1 )
+
+[connection signal="boss_1" from="." to="." method="_on_Camera_boss_1"]
+[connection signal="boss_1_battle" from="." to="." method="_on_Camera_boss_1_battle"]
+[connection signal="boss_2" from="." to="." method="_on_Camera_boss_2"]
+[connection signal="boss_2_battle" from="." to="." method="_on_Camera_boss_2_battle"]
+[connection signal="mech" from="." to="." method="_on_Camera_mech"]
+[connection signal="pilot" from="." to="." method="_on_Camera_pilot"]

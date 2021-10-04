@@ -355,11 +355,12 @@ nodes/OneShot/position = Vector2( -60, 150 )
 nodes/TimeScale/node = SubResource( 20 )
 nodes/TimeScale/position = Vector2( -480, 260 )
 nodes/output/position = Vector2( 130, 110 )
-node_connections = [ "output", 0, "OneShot", "Blend3", 0, "Animation 3", "Blend3", 1, "Animation 4", "Blend3", 2, "Animation 2", "OneShot", 0, "Blend2 2", "OneShot", 1, "Animation 5", "Blend2 2", 0, "Blend3", "Blend2 2", 1, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "output", 0, "OneShot", "TimeScale", 0, "Animation", "OneShot", 0, "Blend2 2", "OneShot", 1, "Animation 5", "Blend3", 0, "Animation 3", "Blend3", 1, "Animation 4", "Blend3", 2, "Animation 2", "Blend2 2", 0, "Blend3", "Blend2 2", 1, "TimeScale" ]
 
 [sub_resource type="SphereShape" id=22]
 
 [node name="CopterBot" type="KinematicBody"]
+collision_layer = 3
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -377,7 +378,7 @@ bones/0/name = "Body.C"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, -2.29266e-17, -1.18679e-18, 2.29266e-17, 0.994655, 0.103252, -1.18679e-18, -0.103252, 0.994655, 0, 1.10955, 0 )
 bones/0/enabled = true
-bones/0/bound_children = [ NodePath("BoneAttachment"), NodePath("BoneAttachment2") ]
+bones/0/bound_children = [  ]
 bones/1/name = "Fan.L"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 1.24345e-14, 2.38419e-07, -4.32902e-08, 0.983378, 0.181572, -2.34455e-07, -0.181572, 0.983378, 0.64931, 0.0173295, -0.015306 )
@@ -400,7 +401,7 @@ bones/4/enabled = true
 bones/4/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
-transform = Transform( 1, 8.9847e-06, 0.000913199, 8.98525e-06, 0.999806, -0.0196761, -0.000913199, 0.0196761, 0.999806, 0, 1.10955, 0 )
+transform = Transform( 0.999931, -8.06471e-05, -0.0117836, -8.0652e-05, 0.999906, -0.0136873, 0.0117836, 0.0136873, 0.999837, 0, 1.10955, 0 )
 bone_name = "Body.C"
 
 [node name="Icosphere001" type="MeshInstance" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton/BoneAttachment"]
@@ -409,10 +410,10 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Muzzle" type="Position3D" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton/BoneAttachment/Icosphere001"]
-transform = Transform( 0.999271, 0.00015012, -0.0381839, 0.000199745, 0.999959, 0.00915863, 0.0381837, -0.00915957, 0.999229, 0.0366047, -0.0626396, 0.871425 )
+transform = Transform( -0.999478, 8.38336e-05, 0.0323278, -0.000879782, 0.999557, -0.0297923, -0.032316, -0.0298051, -0.999034, 0.042981, -0.077886, 0.869957 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton"]
-transform = Transform( 1, 8.9847e-06, 0.000913199, 8.98525e-06, 0.999806, -0.0196761, -0.000913199, 0.0196761, 0.999806, 0, 1.10955, 0 )
+transform = Transform( 0.999931, -8.06471e-05, -0.0117836, -8.0652e-05, 0.999906, -0.0136873, 0.0117836, 0.0136873, 0.999837, 0, 1.10955, 0 )
 bone_name = "Body.C"
 
 [node name="Icosphere002" type="MeshInstance" parent="CopterBot/MechJam_copterEnemy/CopterEnemy RIG/Skeleton/BoneAttachment2"]
@@ -463,6 +464,11 @@ shape = SubResource( 22 )
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="Timers"]
 one_shot = true
 
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]

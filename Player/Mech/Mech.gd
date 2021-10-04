@@ -1,7 +1,5 @@
 extends "res://Player/Player.gd"
 
-signal set_mech_hud()
-
 onready var animation_tree = $AnimationTree
 
 export var MAX_SPEED = 15
@@ -26,10 +24,10 @@ onready var rocket_timer = get_node("Timers/RocketTimer")
 onready var footstep_timer = get_node("Timers/FootstepTimer")
 onready var to_pilot_timer = get_node("Timers/ToPilotTimer")
 
-onready var health_bar = get_node("MechHUD/HealthBar")
-onready var health = get_node("Health")
-onready var hud = get_node("MechHUD")
+#onready var health_bar = get_node("MechHUD/HealthBar")
 export var max_health = 500
+var current_health = max_health
+#onready var hud = get_node("MechHUD")
 
 # Sounds
 onready var footstep_sounds = [
@@ -53,31 +51,32 @@ onready var ex_sounds = [
 	get_node("Rotation_Helper/MechJam_mech/rig/Skeleton/MechBody/Sounds/Ex4")
 ]
 
+var is_last = false
+
 func _ready():
-	#emit_signal("set_mech_hud")
-	hud.hide()
-	health.set_health(max_health)
+#	hud.hide()
+	animation_tree["parameters/IsShooting/blend_amount"] = 0
+	animation_tree["parameters/Transition/current"] = 0
 	
 func _process(delta):
 	if(is_mech):
-		hud.show()
-		#emit_signal("set_mech_hud")
-		health_bar._on_health_updated(health.current_health)
-		health_bar._on_max_health_updated(health.max_hp)
+#		hud.show()
+#		health_bar._on_health_updated(health.current_health)
+#		health_bar._on_max_health_updated(health.max_hp)
 		
-		yield(get_tree().create_timer(1), "timeout")
-		health.take_damage(.2)
+		if $Timers/DamageTimer.time_left == 0:
+			take_damage(17)
+			$Timers/DamageTimer.start()
+
+		print(current_health)
 		
 		# ----------------------------------
 		# Switch to Pilot
-		if health.current_health == 0:
+		if current_health <= 0:
 			swap_to_pilot()
 		# ----------------------------------
 
-#		print(to_pilot_timer.time_left)	
-
 func _physics_process(delta):
-	process_ui_input()
 	if(is_mech):
 		input_movement_vector = process_input()
 		process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL)
@@ -89,19 +88,24 @@ func process_mech_input():
 	# ----------------------------------		
 	# Shoot
 	if Input.is_action_pressed("fire") && fire_timer.time_left == 0:
+		if is_last:
+			get_parent().get_node("Boss_2").take_damage(10)
+			return
 		var bullet = bullet_p.instance()
 		bullet.set_vars(65, Vector3.DOWN * 10, 15, false, "Mech")
 		get_parent().add_child(bullet)
 		bullet.transform = $Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment/MechGun/BulletSpawn.global_transform
 		bullet.velocity = bullet.transform.basis.z * bullet.muzzle_velocity
+		to_pilot_timer.start()
 	# ----------------------------------
 	
 	# ----------------------------------
 	# Rocket
 	if Input.is_action_just_pressed("secondary") && rocket_timer.time_left == 0:
-		print("SWING")
 		rocket_timer.start()
 		animation_tree["parameters/IsLaunching/active"] = true
+		if is_last:
+			return
 		for i in NUMBER_OF_ROCKETS:
 			yield(get_tree().create_timer(0.3), "timeout")
 			var random_sound = randi() % 4
@@ -111,6 +115,7 @@ func process_mech_input():
 			get_parent().add_child(rocket)
 			rocket.transform = $Rotation_Helper/MechJam_mech/rig/Skeleton/MechTurret/RocketSpawn.global_transform
 			rocket.velocity = rocket.transform.basis.z * rocket.muzzle_velocity
+			to_pilot_timer.start()
 #		var random_sound = randi() % 3
 #		sword_sounds[random_sound].play()
 #		sword_timer.start()
@@ -127,7 +132,10 @@ func process_animations():
 		fire_timer.start()
 	elif Input.is_action_just_released("fire"):
 		animation_tree["parameters/IsShooting/blend_amount"] = 0
-	elif vel != Vector3.ZERO:
+	else:
+		animation_tree["parameters/Transition/current"] = 0
+		
+	if vel != Vector3.ZERO:
 		animation_tree["parameters/Transition/current"] = 1
 	else:
 		animation_tree["parameters/Transition/current"] = 0
@@ -141,7 +149,6 @@ func interaction_can_interact(interactionComponentParent : Node) -> bool:
 	return interactionComponentParent is Pilot
 		
 func interaction_interact(interactionComponentParent : Node) -> void:
-	print("Swap")
 	var pilot_i = interactionComponentParent.get_node(interactionComponentParent.interact_parent)
 	if pilot_i.has_energy:
 		pilot_i.swap_to_mech()
@@ -152,14 +159,21 @@ func swap_to_pilot():
 		pilot.show()
 		pilot.transform.origin = self.transform.origin + Vector3(2,0,0)
 		animation_tree["parameters/IsShutdown/blend_amount"] = 1
-#		print("Did you see that??")
 		camera.set_current_target("pilot")
 		set_mech(false)
-		pilot.hud.show()
+#		pilot.hud.show()
 		pilot.is_mech = false
 		pilot.get_node("CollisionShape").disabled = false
 		pilot.animation_tree["parameters/Transition/current"] = 0
-		hud.hide()
+#		hud.hide()
 
-func process_ui_input():
-	pass
+func take_damage(amount):
+	current_health -= amount
+	if current_health < 0:
+		current_health = 0
+
+func set_health(amount):
+	current_health = amount
+	
+func is_last_boss():
+	is_last = true
