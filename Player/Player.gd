@@ -19,10 +19,7 @@ var is_mech = true
 
 onready var camera = get_parent().get_node("Camera")
 
-var Joystick_Deadzone = 0.2
-enum rotation_input {JOYSTICK, MOVE_DIR}
-var speed : Vector3
-var InnerGimbal
+var joystick_dir = Vector3()
 
 func _ready():
 	if is_mech:
@@ -31,9 +28,9 @@ func _ready():
 		camera.current_target = "pilot"
 		
 	# Connects the Player object with the UI (so you can pause the game)
-	scene_switcher = get_node("/root/SceneSwitcher")
-	print("attempt to connect player to pause ui")
-	scene_switcher.connect_player(self)
+#	scene_switcher = get_node("/root/SceneSwitcher")
+#	print("attempt to connect player to pause ui")
+#	scene_switcher.connect_player(self)
 		
 func set_mech(value):
 	is_mech = value
@@ -76,39 +73,30 @@ func process_input():
 	# ----------------------------------
 	return input_movement_vector
 	
+func process_joystick_input(rotation_helper):
+	joystick_dir = Vector3()
+	var cam_xform = camera.get_global_transform()
+	var input_rotation_vector = Vector2()
+	if Input.get_action_strength("look_left"):
+		input_rotation_vector.x -= 1
+	if Input.get_action_strength("look_right"):
+		input_rotation_vector.x += 1
+	if Input.get_action_strength("look_up"):
+		input_rotation_vector.y += 1
+	if Input.get_action_strength("look_down"):
+		input_rotation_vector.y -= 1
+		
+	input_rotation_vector = input_rotation_vector.normalized()
+	
+	# Basic vectors are already normalized
+	joystick_dir += -cam_xform.basis.z * input_rotation_vector.y
+	joystick_dir += cam_xform.basis.x * input_rotation_vector.x
+	rotation_helper.look_at(rotation_helper.global_transform.origin + joystick_dir, Vector3.UP)
+	
 func process_ui_input():
 	if Input.is_action_just_pressed("pause"):
 		print("PAUSED PRESSED!")
 		emit_signal("set_pause")
-		
-func _unhandled_input(event):
-	#Rotation Mesh with Joystick
-	if event is InputEventJoypadMotion :
-		var horizontal = Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
-		var vertical = Input.get_action_strength("look_up") - Input.get_action_strength("look_back")
-		if abs(horizontal) > Joystick_Deadzone or abs(vertical) > Joystick_Deadzone:
-			rotateMesh(Vector2(horizontal,vertical), rotation_input.JOYSTICK)
-		else:
-			#Rotate Mesh from last Moved Direction (Left joystick)
-			rotateMesh(speed, rotation_input.MOVE_DIR)
-			
-func rotateMesh(event_data, input_method):
-	match input_method:
-		rotation_input.JOYSTICK:
-				#event_data is right joystick axis strength
-				var rot = atan2(event_data.y,event_data.x)*180/PI
-				rot += InnerGimbal.get_rotation_degrees().y 
-				rot += 90
-				MeshInstance.set_rotation_degrees(Vector3(90,rot,0))
-		rotation_input.MOVE_DIR:
-			#event_data is directional vector to rotate player
-			#Check if Player is moving and new movement is different than last direction
-			if magnitude(event_data) > 0 and LastDirection.dot(event_data.normalized()) != 0:
-				#Rotate in Direction of Movement
-				var angle = atan2(event_data.x, event_data.z)
-				var char_rot = MeshInstance.get_rotation()
-				var rot_y = angle - char_rot.y  
-				MeshInstance.rotate_y(rot_y)
 	
 func process_camera_rotation(rotation_helper):
 	# sceen_pos is the player global pos

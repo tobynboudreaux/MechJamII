@@ -52,10 +52,11 @@ func choose_action(delta):
 	var target
 	match state:
 		states.DEAD:
-			$Timers/DeathTimer.start()
-			yield($Timers/DeathTimer, "timeout")
-			set_physics_process(false)
+			yield(get_tree().create_timer(1), "timeout")
+#			$Timers/DeathTimer.start()
+#			yield($Timers/DeathTimer, "timeout")
 			self.queue_free()
+			set_physics_process(false)
 
 		# Move along assigned path.
 

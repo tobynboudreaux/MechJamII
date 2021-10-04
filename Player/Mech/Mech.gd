@@ -82,6 +82,7 @@ func _physics_process(delta):
 		process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL)
 		process_mech_input()
 		process_animations()
+		process_joystick_input(rotation_helper)
 		animation_tree["parameters/Walk/blend_position"] = process_camera_rotation(rotation_helper)	
 	
 func process_mech_input():
