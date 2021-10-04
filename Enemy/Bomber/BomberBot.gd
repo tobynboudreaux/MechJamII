@@ -52,11 +52,7 @@ func choose_action(delta):
 	match state:
 		states.DEAD:
 			$AnimationTree["parameters/IsAlive/current"] = 1
-			yield(get_tree().create_timer(1), "timeout")
-#			$Timers/DeathTimer.start()
-#			yield($Timers/DeathTimer, "timeout")
 			self.queue_free()
-			set_physics_process(false)
 
 		# Move along assigned path.
 
@@ -84,11 +80,7 @@ func choose_action(delta):
 
 		states.ATTACK:
 			$AnimationTree["parameters/IsExplode/current"] = 1
-			yield(get_tree().create_timer(1), "timeout")
-#			$Timers/DeathTimer.start()
-#			yield($Timers/DeathTimer, "timeout")
 			self.queue_free()
-			set_physics_process(false)
 
 func _on_AttackRadius_body_entered(body):
 	if state != states.DEAD:
@@ -112,7 +104,7 @@ func _on_DetectRadius_body_entered(body):
 		player = body
 
 func _on_DetectRadius_body_exited(body):
-	state = states.PATROL
+	state = states.DEAD
 	
 func take_damage(amount):
 	current_health -= amount

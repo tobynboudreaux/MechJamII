@@ -24,6 +24,9 @@ func _physics_process(delta):
 	look_at(transform.origin + velocity.normalized(), Vector3.UP)
 	transform.origin += velocity * delta
 	
+	if global_transform.origin.y < -4:
+		queue_free()
+	
 func has_gravity():
 	has_gravity = true
 	
@@ -40,7 +43,6 @@ func _on_Area_body_entered(body):
 	if current_player in body.name:
 		return
 	if "Bomber" in body.name || "Copter" in body.name || "Spider" in body.name || "Boss" in body.name || "Mech" in body.name || "Pilot" in body.name:
-		print("yeeet")
 		self.queue_free()
 		var random_sound = randi() % 4
 		mechISounds[random_sound].play()

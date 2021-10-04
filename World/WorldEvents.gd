@@ -78,36 +78,37 @@ func play_cutscene(anim_play):
 
 
 func _on_CutsceneTrigger_body_entered(body):
-	enemies_spawn = false
-	get_node("Camera").set_current_target("boss_1")
-	play_cutscene(animation_player)
-	yield(get_tree().create_timer(5), "timeout")
-	var boss = get_node("Level 1/Boss")
-	var pos = get_node("Level 1/Boss/Cone001").get_global_transform().origin
-	var boss_actual = actual_boss.instance()
-	boss_actual.global_transform.origin = pos
-	boss.set_physics_process(false)
-	boss.queue_free()
-	add_child(boss_actual)
-	get_node("Camera").set_current_target("boss_battle_1")
+	if "Mech" in body.name:
+		enemies_spawn = false
+		get_node("Camera").set_current_target("boss_1")
+		play_cutscene(animation_player)
+		yield(get_tree().create_timer(5), "timeout")
+		var boss = get_node("Level 1/Boss")
+		var pos = get_node("Level 1/Boss/Cone001").get_global_transform().origin
+		var boss_actual = actual_boss.instance()
+		boss_actual.global_transform.origin = pos
+		boss.set_physics_process(false)
+		boss.queue_free()
+		add_child(boss_actual)
+		get_node("Camera").set_current_target("boss_1_battle")
 
 func _on_CutsceneTrigger_body_exited(body):
 	get_node("CutsceneTrigger").queue_free()
 
-
 func _on_Cutscene2Trigger_body_entered(body):
-	enemies_spawn = false
-	get_node("Camera").set_current_target("boss_2")
-	$MechJam_Boss2/AnimationPlayer.play("Cutscene")
-	yield(get_tree().create_timer(5), "timeout")
-	var boss = get_node("MechJam_Boss2")
-	var pos = get_node("MechJam_Boss2/Armature/Skeleton/Boss2").get_global_transform().origin
-	var boss_actual = actual_2_boss.instance()
-	boss_actual.global_transform.origin = pos
-	boss.set_physics_process(false)
-	boss.queue_free()
-	add_child(boss_actual)
-	get_node("Camera").set_current_target("boss_battle_2")
+	if "Mech" in body.name:
+		enemies_spawn = false
+		get_node("Camera").set_current_target("boss_2")
+		$MechJam_Boss2/AnimationPlayer.play("Cutscene")
+		yield(get_tree().create_timer(5), "timeout")
+		var boss = get_node("MechJam_Boss2")
+		var pos = get_node("MechJam_Boss2/Armature/Skeleton/Boss2").get_global_transform().origin
+		var boss_actual = actual_2_boss.instance()
+		boss_actual.global_transform.origin = pos
+		boss.set_physics_process(false)
+		boss.queue_free()
+		add_child(boss_actual)
+		get_node("Camera").set_current_target("boss_2_battle")
 
 func _on_Cutscene2Trigger_body_exited(body):
 	get_node("Cutscene2Trigger").queue_free()

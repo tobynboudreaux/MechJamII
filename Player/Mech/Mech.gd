@@ -160,7 +160,10 @@ func swap_to_pilot():
 		pilot.show()
 		pilot.transform.origin = self.transform.origin + Vector3(2,0,0)
 		animation_tree["parameters/IsShutdown/blend_amount"] = 1
-		camera.set_current_target("pilot")
+		if is_last:
+			camera.set_current_target("boss_battle_2")
+		else:
+			camera.set_current_target("pilot")
 		set_mech(false)
 #		pilot.hud.show()
 		pilot.is_mech = false

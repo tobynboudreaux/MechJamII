@@ -4,9 +4,9 @@
 [ext_resource path="res://Assets/Models/Bosses/SecondBoss/Material_EMIT.material" type="Material" id=2]
 [ext_resource path="res://Enemy/ActualBoss2/Boss_2.gd" type="Script" id=3]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=11]
 
-[sub_resource type="ArrayMesh" id=2]
+[sub_resource type="ArrayMesh" id=83]
 resource_name = "Boss2"
 surfaces/0 = {
 "aabb": AABB( -5.12437, -1.31796, -7.44763, 10.2487, 3.87263, 9.34472 ),
@@ -33,7 +33,7 @@ surfaces/1 = {
 "vertex_count": 392
 }
 
-[sub_resource type="Skin" id=3]
+[sub_resource type="Skin" id=84]
 resource_name = "Skin"
 bind_count = 15
 bind/0/name = "Root"
@@ -82,7 +82,7 @@ bind/14/name = "Muzzle.S.R"
 bind/14/bone = -1
 bind/14/pose = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78565, 0, 0.932196 )
 
-[sub_resource type="ArrayMesh" id=4]
+[sub_resource type="ArrayMesh" id=85]
 resource_name = "Rockets"
 surfaces/0 = {
 "aabb": AABB( -0.849376, -1.87953, -1.96199, 1.69875, 0.481535, 1.67058 ),
@@ -97,7 +97,7 @@ surfaces/0 = {
 "vertex_count": 316
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=86]
 resource_name = "00_Idle"
 length = 1.70833
 loop = true
@@ -207,7 +207,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, 0.00543502, -0.0036159, 0, 0, 0, 0, 1, 1, 1, 1, 0.133333, 1, 0.0400171, -0.026006, 0, 0, 0, 0, 1, 1, 1, 1, 0.333333, 1, 0.21674, -0.119872, -1.4167e-08, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, 0.249692, -0.132078, -1.4167e-08, 0, 0, 0, 1, 1, 1, 1, 0.466667, 1, 0.268983, -0.138315, -1.4167e-08, 0, 0, 0, 1, 1, 1, 1, 0.533333, 1, 0.277194, -0.140305, -1.4167e-08, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, 0.276121, -0.140306, -1.84171e-08, 0, 0, 0, 1, 1, 1, 1, 0.666667, 1, 0.25323, -0.138395, -1.84171e-08, 0, 0, 0, 1, 1, 1, 1, 0.733333, 1, 0.201249, -0.134315, -1.84171e-08, 0, 0, 0, 1, 1, 1, 1, 1, 1, -0.120968, -0.116557, -1.84171e-08, 0, 0, 0, 1, 1, 1, 1, 1.13333, 1, -0.253675, -0.127897, -1.55837e-08, 0, 0, 0, 1, 1, 1, 1, 1.2, 1, -0.298454, -0.145295, -1.55837e-08, 0, 0, 0, 1, 1, 1, 1, 1.26667, 1, -0.328546, -0.163286, -1.55837e-08, 0, 0, 0, 1, 1, 1, 1, 1.33333, 1, -0.345193, -0.176532, -1.55837e-08, 0, 0, 0, 1, 1, 1, 1, 1.4, 1, -0.338986, -0.174629, -2.40839e-08, 0, 0, 0, 1, 1, 1, 1, 1.46667, 1, -0.282443, -0.145501, -2.40839e-08, 0, 0, 0, 1, 1, 1, 1, 1.6, 1, -0.0878047, -0.0452327, -2.40839e-08, 0, 0, 0, 1, 1, 1, 1, 1.66667, 1, -0.0149512, -0.00770219, -2.40839e-08, 0, 0, 0, 1, 1, 1, 1, 1.70833, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=87]
 resource_name = "01_Firing Primary"
 length = 0.166667
 tracks/0/type = "transform"
@@ -316,7 +316,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.166667, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=88]
 resource_name = "02_Opening secondary"
 length = 0.375
 tracks/0/type = "transform"
@@ -425,7 +425,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.375, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=89]
 resource_name = "03_Firing Secondary"
 length = 0.208333
 tracks/0/type = "transform"
@@ -534,7 +534,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.208333, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=90]
 resource_name = "04_Firing Rockets"
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:JetFX.F.L")
@@ -642,7 +642,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, -1.34359e-07, 5.87301e-15, 7.89091e-22, 1, 1, 1, 1, 0.0666667, 1, 0, 0, 0, -1.34326e-07, -2.97223e-09, 0.0221216, 0.999755, 1, 1, 1, 0.133333, 1, 0, 0, 0, -1.32367e-07, -2.30469e-08, 0.171533, 0.985178, 1, 1, 1, 0.2, 1, 0, 0, 0, -1.20131e-07, -6.01732e-08, 0.447855, 0.894106, 1, 1, 1, 0.266667, 1, 0, 0, 0, -8.85166e-08, -1.0108e-07, 0.752312, 0.658807, 1, 1, 1, 0.333333, 1, 0, 0, 0, -3.73702e-08, -1.29057e-07, 0.960541, 0.278137, 1, 1, 1, 0.4, 1, 0, 0, 0, 2.21207e-08, -1.32525e-07, 0.986354, -0.164639, 1, 1, 1, 0.466667, 1, 0, 0, 0, -7.471e-08, 1.11672e-07, -0.83115, 0.556048, 1, 1, 1, 0.533333, 1, 0, 0, 0, -1.10962e-07, 7.57607e-08, -0.563868, 0.825865, 1, 1, 1, 0.6, 1, 0, 0, 0, -1.29226e-07, 3.67834e-08, -0.27377, 0.961795, 1, 1, 1, 0.666667, 1, 0, 0, 0, -1.34313e-07, 3.50244e-09, -0.0260678, 0.99966, 1, 1, 1, 0.733333, 1, 0, 0, 0, -1.33334e-07, -1.65594e-08, 0.123248, 0.992376, 1, 1, 1, 0.8, 1, 0, 0, 0, -1.32852e-07, -2.00645e-08, 0.149335, 0.988787, 1, 1, 1, 0.866667, 1, 0, 0, 0, -1.34356e-07, -8.35243e-10, 0.00621656, 0.999981, 1, 1, 1, 0.933333, 1, 0, 0, 0, -1.34346e-07, 1.83353e-09, -0.0136465, 0.999907, 1, 1, 1, 1, 1, 0, 0, 0, -1.34359e-07, -5.87301e-15, 8.74228e-08, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=91]
 resource_name = "05_Left"
 length = 0.0416667
 tracks/0/type = "transform"
@@ -751,7 +751,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, -1.33961e-07, 2.06544e-08, -0.0768626, 0.997042, 1, 1, 1, 0.0416667, 1, 0, 0, 0, -1.33961e-07, 2.06544e-08, -0.0768626, 0.997042, 1, 1, 1 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=92]
 resource_name = "06_Right"
 length = 0.0416667
 tracks/0/type = "transform"
@@ -866,7 +866,7 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 4.9852, 0, 0, 0, 2.64708, 0, 0, 0, 4.6, 0, 0, -2.92894 )
-shape = SubResource( 1 )
+shape = SubResource( 11 )
 
 [node name="Boss_2" type="Spatial" parent="."]
 
@@ -950,8 +950,8 @@ bones/14/enabled = true
 bones/14/bound_children = [  ]
 
 [node name="Boss2" type="MeshInstance" parent="Boss_2/Armature/Skeleton"]
-mesh = SubResource( 2 )
-skin = SubResource( 3 )
+mesh = SubResource( 83 )
+skin = SubResource( 84 )
 material/0 = null
 material/1 = null
 
@@ -959,18 +959,18 @@ material/1 = null
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 2.22808 )
 
 [node name="Rockets" type="MeshInstance" parent="Boss_2/Armature/Skeleton"]
-mesh = SubResource( 4 )
-skin = SubResource( 3 )
+mesh = SubResource( 85 )
+skin = SubResource( 84 )
 material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss_2"]
-anims/00_Idle = SubResource( 5 )
-"anims/01_Firing Primary" = SubResource( 6 )
-"anims/02_Opening secondary" = SubResource( 7 )
-"anims/03_Firing Secondary" = SubResource( 8 )
-"anims/04_Firing Rockets" = SubResource( 9 )
-anims/05_Left = SubResource( 10 )
-anims/06_Right = SubResource( 11 )
+anims/00_Idle = SubResource( 86 )
+"anims/01_Firing Primary" = SubResource( 87 )
+"anims/02_Opening secondary" = SubResource( 88 )
+"anims/03_Firing Secondary" = SubResource( 89 )
+"anims/04_Firing Rockets" = SubResource( 90 )
+anims/05_Left = SubResource( 91 )
+anims/06_Right = SubResource( 92 )
 
 [node name="Timers" type="Node" parent="."]
 

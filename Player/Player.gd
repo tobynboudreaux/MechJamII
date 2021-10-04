@@ -91,7 +91,7 @@ func process_joystick_input(rotation_helper):
 	# Basic vectors are already normalized
 	joystick_dir += -cam_xform.basis.z * input_rotation_vector.y
 	joystick_dir += cam_xform.basis.x * input_rotation_vector.x
-	rotation_helper.look_at(rotation_helper.global_transform.origin + joystick_dir, Vector3.UP)
+#	rotation_helper.look_at(rotation_helper.global_transform.origin + joystick_dir, Vector3.UP)
 	
 func process_ui_input():
 	if Input.is_action_just_pressed("pause"):

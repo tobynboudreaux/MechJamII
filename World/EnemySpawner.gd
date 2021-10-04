@@ -45,3 +45,11 @@ func _on_ResourceSpawnTime_timeout():
 		
 	r.global_transform.origin = pos
 	add_child(r)
+
+
+func _on_CutsceneTrigger_body_entered(body):
+	pass # Replace with function body.
+
+
+func _on_Cutscene2Trigger_body_entered(body):
+	pass # Replace with function body.

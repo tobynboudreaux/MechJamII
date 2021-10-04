@@ -24,6 +24,8 @@ onready var sword_timer = get_node("Timers/SwordTimer")
 onready var footstep_timer = get_node("Timers/FootstepTimer")
 onready var to_mech_timer = get_node("Timers/ToMechTimer")
 
+var is_last = false
+
 # Sounds
 onready var sword_sounds = [
 	get_node("Rotation_Helper/MechJam_Player/rig/Skeleton/Player/Sounds/Sword1"),
@@ -178,7 +180,10 @@ func swap_to_mech():
 		mech.transform = self.transform
 		self.hide()
 		self.get_node("CollisionShape").disabled = true
-		camera.set_current_target("mech")
+		if is_last:
+			camera.set_current_target("boss_battle_2")
+		else:
+			camera.set_current_target("mech")
 		set_mech(true)
 		mech.to_pilot_timer.start()
 #		mech.hud.show()

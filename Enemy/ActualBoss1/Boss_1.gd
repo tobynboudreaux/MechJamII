@@ -77,13 +77,12 @@ func _on_health(amount):
 	if amount < phase_3_health:
 		emit_signal("phase_3")
 		
-	if amount == 0:
+	if amount <= 0:
 		emit_signal("dead")
 		
 func take_damage(amount):
 	current_health -= amount
-	if current_health < 0:
-		current_health = 0
+	print(current_health)
 	
 func _fire_middle_guns():
 	var p0 = p_s.instance()

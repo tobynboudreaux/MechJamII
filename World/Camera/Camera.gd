@@ -3,7 +3,7 @@ extends Camera
 onready var pilot = get_parent().get_node("Pilot")
 onready var mech = get_parent().get_node("Mech")
 onready var boss1 = get_parent().get_node("Level 1/Boss/Cone001")
-onready var boss2 = get_parent().get_node("MechJam_Boss2")
+onready var boss2 = get_parent().get_node("MechJam_Boss2/Armature/Skeleton/Boss2")
 var speed : float = 10
 var current_target = "mech"
 
@@ -47,19 +47,7 @@ func position_camera(delta, target, y, z):
 	rotation = Vector3(-45, 0, 0)
 
 func set_current_target(target):
-	match target:
-		'boss_1':
-			emit_signal("boss_1")
-		'boss_battle_1':
-			emit_signal("boss_1_battle")
-		'boss_2':
-			emit_signal("boss_2")
-		'boss_battle_2':
-			emit_signal("boss_2_battle")
-		'mech':
-			emit_signal("mech")
-		'pilot':
-			emit_signal("pilot")
+	emit_signal(target)
 			
 func _on_Camera_boss_1():
 	current_target = "boss_1"

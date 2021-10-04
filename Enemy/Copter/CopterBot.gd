@@ -52,11 +52,7 @@ func choose_action(delta):
 	var target
 	match state:
 		states.DEAD:
-			yield(get_tree().create_timer(1), "timeout")
-#			$Timers/DeathTimer.start()
-#			yield($Timers/DeathTimer, "timeout")
 			self.queue_free()
-			set_physics_process(false)
 
 		# Move along assigned path.
 
@@ -110,7 +106,7 @@ func _on_DetectRadius_body_entered(body):
 		player = body
 
 func _on_DetectRadius_body_exited(body):
-	state = states.PATROL
+	state = states.DEAD
 	player = null
 	
 func attack_player():
