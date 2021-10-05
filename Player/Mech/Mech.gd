@@ -78,12 +78,23 @@ func _process(delta):
 
 func _physics_process(delta):
 	if(is_mech):
+		process_ui_input()
 		input_movement_vector = process_input()
 		process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL)
 		process_mech_input()
 		process_animations()
-		process_joystick_input(rotation_helper)
+		
 		animation_tree["parameters/Walk/blend_position"] = process_camera_rotation(rotation_helper)	
+	
+func _unhandled_input(event):
+	pass #ass
+	#print("unhandled input change")
+	#if(event == InputEventJoypadMotion):
+		#var joy_axis = Vector2(Input.get_joy_axis(0,JOY_AXIS_0),Input.get_joy_axis(0,JOY_AXIS_1))
+		#rotation_helper.set_rotation(Vector3(0,joy_axis.angle(),0))
+	#if(event == InputEventMouseMotion):
+		#print("should be using da mouse boiii")
+		
 	
 func process_mech_input():
 	# ----------------------------------		

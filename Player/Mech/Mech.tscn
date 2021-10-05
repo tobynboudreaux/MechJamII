@@ -18925,7 +18925,7 @@ nodes/Transition/position = Vector2( 180, 80 )
 nodes/Walk/node = SubResource( 28 )
 nodes/Walk/position = Vector2( -40, 180 )
 nodes/output/position = Vector2( 1100, 120 )
-node_connections = [ "output", 0, "IsShutdown", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "Transition", 0, "Idle", "Transition", 1, "Walk" ]
+node_connections = [ "output", 0, "IsShutdown", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown" ]
 
 [node name="Mech" type="KinematicBody"]
 collision_layer = 51
@@ -20369,7 +20369,7 @@ bones/283/enabled = true
 bones/283/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
-transform = Transform( -0.87602, 0.146291, -0.459553, -0.371529, 0.402851, 0.836468, 0.307499, 0.903499, -0.298554, -1.38688, 1.9244, 0.561745 )
+transform = Transform( -0.805804, 0.200326, -0.557272, -0.496599, 0.284054, 0.820185, 0.322599, 0.937648, -0.12941, -1.16366, 1.8336, 0.541324 )
 bone_name = "hand_ik.R.001"
 
 [node name="MechGun" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment"]

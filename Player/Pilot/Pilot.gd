@@ -1,6 +1,8 @@
 extends "res://Player/Player.gd"
 class_name Pilot
 
+signal set_lose()
+
 export var MAX_SPEED = 15
 export var ACCEL = 3
 export var DASH_SPEED = 50
@@ -97,6 +99,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if(!is_mech):
+		process_ui_input()
 		input_movement_vector = process_input()
 		process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL)
 		process_pilot_input()
@@ -195,5 +198,9 @@ func swap_to_mech():
 
 func take_damage(amount):
 	current_health -= amount
-	if current_health < 0:
+	if(current_health <= 0):
 		current_health = 0
+		emit_signal("set_lose")
+		print("you fuckin died")
+		
+		

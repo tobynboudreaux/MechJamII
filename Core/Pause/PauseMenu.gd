@@ -1,7 +1,5 @@
 extends Control
 
-export (String) var level_name
-
 var is_paused = false
 
 onready var resume_button = self.get_child(0).get_child(0).get_child(0).get_child(1);
@@ -13,7 +11,7 @@ func _ready():
 	ui_view.hide()
 
 func _on_BackToMenuButton_pressed():
-	get_parent().change_level(level_name)
+	get_parent().change_level("menu")
 
 func _on_ResumeButton_pressed():
 	ui_view.hide()
@@ -27,6 +25,7 @@ func handle_pause():
 	else:
 		get_parent().get_tree().paused = true
 		ui_view.visible = true
+		ui_view.get_child(0).get_child(1).grab_focus()
 
 
 func _on_PauseMenuControl_tree_entered():

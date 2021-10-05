@@ -28,9 +28,9 @@ func _ready():
 		camera.current_target = "pilot"
 		
 	# Connects the Player object with the UI (so you can pause the game)
-#	scene_switcher = get_node("/root/SceneSwitcher")
-#	print("attempt to connect player to pause ui")
-#	scene_switcher.connect_player(self)
+	scene_switcher = get_node("/root/SceneSwitcher")
+	print("attempt to connect player to pause ui")
+	scene_switcher.connect_player(self)
 		
 func set_mech(value):
 	is_mech = value
@@ -89,9 +89,10 @@ func process_joystick_input(rotation_helper):
 	input_rotation_vector = input_rotation_vector.normalized()
 	
 	# Basic vectors are already normalized
-	joystick_dir += -cam_xform.basis.z * input_rotation_vector.y
-	joystick_dir += cam_xform.basis.x * input_rotation_vector.x
+	#joystick_dir += -cam_xform.basis.z * input_rotation_vector.y
+	#joystick_dir += cam_xform.basis.x * input_rotation_vector.x
 #	rotation_helper.look_at(rotation_helper.global_transform.origin + joystick_dir, Vector3.UP)
+	return input_rotation_vector
 	
 func process_ui_input():
 	if Input.is_action_just_pressed("pause"):

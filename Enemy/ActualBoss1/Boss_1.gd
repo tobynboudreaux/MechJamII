@@ -7,7 +7,10 @@ signal phase_2
 signal phase_3
 signal dead
 
+signal set_win()
+
 var player = null
+var player_ui
 
 onready var pilot = get_parent().get_node("Pilot")
 onready var mech = get_parent().get_node("Mech")
@@ -33,6 +36,11 @@ var middle_guns = [
 
 func _ready():
 	animation_player.play("Idle")
+	
+	# Connects to the scene switcher so the level can be won
+	player_ui = get_node("/root/SceneSwitcher/PlayerUI")
+	print("attempt to connect boss to player ui")
+	player_ui.connect_boss(self)
 	
 func _process(delta):
 	_on_health(current_health)
@@ -122,11 +130,10 @@ func _on_AttackRadius_body_exited(body):
 
 func _on_Boss_1_dead():
 	phase = phases.DEAD
-	get_tree().change_scene("res://World/World2/World2.tscn")
+	emit_signal("set_win")
 
 func _on_Boss_1_phase_2():
 	phase = phases.PHASE2
-
 
 func _on_Boss_1_phase_3():
 	phase = phases.PHASE3

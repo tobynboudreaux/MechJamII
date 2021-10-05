@@ -3,8 +3,6 @@ extends Control
 signal level_changed(level_name)
 signal set_options(key, value)
 
-export (String) var level_name = "menu"
-
 # Needed for animations and focus
 onready var menu_container = self.get_child(0)
 onready var levels_container = self.get_child(1)
@@ -44,7 +42,7 @@ func _ready():
 
 # Main menu code
 func _on_StartButton_pressed():
-	emit_signal("level_changed", level_name)
+	emit_signal("level_changed", "level1")
 	start_button.disabled = true
 
 func _on_QuitButton_pressed():
@@ -53,7 +51,7 @@ func _on_QuitButton_pressed():
 func _on_ContinueButton_pressed():
 	var levels_completed = data["levels_completed"].size()
 	if(levels_completed == 1):
-		emit_signal("level_changed", level_name)
+		emit_signal("level_changed", "level2")
 		continue_button.disabled = true
 	
 # Previous level menu code
