@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody
+
+func _physics_process(delta):	
+	if Input.is_action_just_released(\"interact\"):
+			var player_parent = self.get_parent()
+			var mech_scene = load(\"res://Player/Mech/Mech.tscn\")
+			var mech = mech_scene.instance()
+			player_parent.add_child(mech)
+			mech.transform = self.transform
+			self.queue_free()
+			print(\"Did you see that??\")
+"
+
+[node name="Player" type="KinematicBody"]
+script = SubResource( 1 )

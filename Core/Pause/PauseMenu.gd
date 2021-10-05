@@ -27,6 +27,7 @@ func handle_pause():
 	else:
 		get_parent().get_tree().paused = true
 		ui_view.visible = true
+		ui_view.get_child(0).get_child(1).grab_focus()
 
 
 func _on_PauseMenuControl_tree_entered():

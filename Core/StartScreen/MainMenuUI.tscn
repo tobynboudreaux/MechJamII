@@ -213,7 +213,7 @@ margin_top = 183.0
 margin_right = 440.0
 margin_bottom = 213.0
 theme = ExtResource( 8 )
-min_value = 10.0
+min_value = 50.0
 max_value = 110.0
 step = 10.0
 value = 100.0
@@ -297,9 +297,9 @@ stream = ExtResource( 13 )
 stream = ExtResource( 12 )
 
 [connection signal="focus_entered" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_focus_entered"]
-[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MainVBoxContainer/StartButton" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MainVBoxContainer/StartButton" method="_on_StartButton_pressed"]
 [connection signal="focus_entered" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]

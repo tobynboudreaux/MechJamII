@@ -78,6 +78,7 @@ func _ready():
 func connect_player(player_instance):
 	print("player connected to player UI")
 	player_instance.connect("set_pause", player_ui_current_instance, "handle_pause")
+	player_instance.connect("set_lose", player_ui_current_instance, "handle_player_lose")
 	player_instance.connect("set_mech_hud", player_ui_current_instance, "handle_mech_hud")
 	
 func set_screen_max_resolution():
