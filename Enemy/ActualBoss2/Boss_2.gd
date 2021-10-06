@@ -10,6 +10,8 @@ signal enter
 
 var player = null
 
+signal set_win()
+
 onready var pilot = get_parent().get_node("Pilot")
 onready var mech = get_parent().get_node("Mech")
 
@@ -35,6 +37,8 @@ var fly_points_p2
 var fly_points_p3
 var fly_ind = 0
 
+var scene_switcher
+
 var vel
 
 var phase_1_speed = 10
@@ -44,6 +48,11 @@ var phase_3_speed = 20
 func _ready():
 	animation_player.play("00_Idle")
 	emit_signal("enter")
+	
+	# Connects the Player object with the UI (so you can pause the game)
+	scene_switcher = get_node("/root/SceneSwitcher")
+	print("attempt to connect player to pause ui")
+	scene_switcher.connect_player(self)
 	
 func _process(delta):
 	_on_health(current_health)
@@ -62,9 +71,6 @@ func choose_action(delta):
 	var target
 	match phase:
 		phases.DEAD:
-			$Timers/DeathTimer.start()
-			yield($Timers/DeathTimer, "timeout")
-			set_physics_process(false)
 			self.queue_free()	
 		
 		phases.PHASE1:
@@ -141,7 +147,7 @@ func take_damage(amount):
 	
 func _on_Boss_2_dead():
 	phase = phases.DEAD
-	get_tree().change_scene("res://Core/U WIN LOL/U WIN LOL.tscn")
+	emit_signal("set_win")
 
 func _on_Boss_2_phase_2():
 	phase = phases.PHASE2

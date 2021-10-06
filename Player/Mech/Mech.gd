@@ -57,6 +57,7 @@ func _ready():
 #	hud.hide()
 	animation_tree["parameters/IsShooting/blend_amount"] = 0
 	animation_tree["parameters/Transition/current"] = 0
+	camera.set_current_target("mech")
 	
 func _process(delta):
 	if(is_mech):
@@ -67,8 +68,6 @@ func _process(delta):
 		if $Timers/DamageTimer.time_left == 0:
 			take_damage(17)
 			$Timers/DamageTimer.start()
-
-		print(current_health)
 		
 		# ----------------------------------
 		# Switch to Pilot
@@ -78,11 +77,11 @@ func _process(delta):
 
 func _physics_process(delta):
 	if(is_mech):
+		process_ui_input()
 		input_movement_vector = process_input()
 		process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL)
 		process_mech_input()
 		process_animations()
-		process_joystick_input(rotation_helper)
 		animation_tree["parameters/Walk/blend_position"] = process_camera_rotation(rotation_helper)	
 	
 func process_mech_input():

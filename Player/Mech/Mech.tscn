@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Core/Health/Health.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Models/Pilot/Material_001.material" type="Material" id=2]
@@ -18854,27 +18854,29 @@ tracks/283/imported = true
 tracks/283/enabled = true
 tracks/283/keys = PoolRealArray( 0, 1, 1.19209e-07, -1.78814e-07, 1.78814e-07, -6.70552e-08, -7.45058e-09, -4.996e-16, 1, 1, 1, 1, 0.0666667, 1, 0.000844002, 0.00100875, 0.00256312, -0.00199989, -0.00201527, 0.00145188, 0.999995, 1, 1, 1, 0.133333, 1, 0.00554943, 0.00897759, 0.020105, -0.0153425, -0.0154603, 0.0111384, 0.999701, 1, 1, 1, 0.2, 1, 0.0102739, 0.0293633, 0.0549079, -0.0404748, -0.0407856, 0.0293845, 0.997915, 1, 1, 1, 0.266667, 1, 0.0074296, 0.0656205, 0.101315, -0.0721568, -0.0727111, 0.0523855, 0.993359, 1, 1, 1, 0.4, 1, -0.0301144, 0.171173, 0.196109, -0.13535, -0.13639, 0.0982634, 0.976434, 1, 1, 1, 0.466667, 1, -0.0550008, 0.218098, 0.226961, -0.15751, -0.15872, 0.114351, 0.967947, 1, 1, 1, 0.533333, 1, -0.0692786, 0.239171, 0.236545, -0.167211, -0.168496, 0.121395, 0.963801, 1, 1, 1, 0.666667, 1, -0.075178, 0.192821, 0.164085, -0.152382, -0.153553, 0.110628, 0.970032, 1, 1, 1, 0.733333, 1, -0.071207, 0.230802, 0.222272, -0.164768, -0.166034, 0.119621, 0.964871, 1, 1, 1, 0.8, 1, -0.0718153, 0.22327, 0.21098, -0.162365, -0.163612, 0.117876, 0.965906, 1, 1, 1, 0.866667, 1, -0.0748739, 0.195241, 0.167862, -0.153187, -0.154364, 0.111213, 0.96971, 1, 1, 1, 0.933333, 1, -0.0693791, 0.235071, 0.233147, -0.165335, -0.166605, 0.120032, 0.964624, 1, 1, 1, 1, 1, -0.0648849, 0.192903, 0.200748, -0.147891, -0.149027, 0.107368, 0.971798, 1, 1, 1, 1.06667, 1, -0.0464889, 0.136307, 0.187899, -0.128379, -0.129365, 0.0932024, 0.978824, 1, 1, 1, 1.2, 1, -0.00740373, 0.0340754, 0.187284, -0.0945687, -0.0952952, 0.0686564, 0.988566, 1, 1, 1, 1.26667, 1, 0.000496864, 0.00826889, 0.185789, -0.0854676, -0.0861241, 0.062049, 0.990671, 1, 1, 1, 1.29167, 1, 0.00162542, 0.00432056, 0.185511, -0.0840508, -0.0846965, 0.0610204, 0.990979, 1, 1, 1 )
 
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "Mech09_firing_RocketLauncher001"
+[sub_resource type="SphereShape" id=16]
 
 [sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Mech09_firing_RocketLauncher001"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "01_Idle"
 
-[sub_resource type="AnimationNodeOneShot" id=18]
+[sub_resource type="AnimationNodeOneShot" id=19]
 
-[sub_resource type="AnimationNodeBlend2" id=19]
+[sub_resource type="AnimationNodeBlend2" id=20]
 filter_enabled = true
 filters = [ "rig/Skeleton:DEF-f_pinky.01.L", "rig/Skeleton:DEF-f_pinky.01.L.001", "rig/Skeleton:DEF-f_pinky.01.L.002", "rig/Skeleton:DEF-f_pinky.01.L.003", "rig/Skeleton:DEF-f_pinky.01.R", "rig/Skeleton:DEF-f_pinky.01.R.001", "rig/Skeleton:DEF-f_pinky.01.R.002", "rig/Skeleton:DEF-f_pinky.01.R.003", "rig/Skeleton:DEF-f_pinky.02.L", "rig/Skeleton:DEF-f_pinky.02.L.001", "rig/Skeleton:DEF-f_pinky.02.R", "rig/Skeleton:DEF-f_pinky.02.R.001", "rig/Skeleton:DEF-forearm.L", "rig/Skeleton:DEF-forearm.L.001", "rig/Skeleton:DEF-forearm.L.002", "rig/Skeleton:DEF-forearm.L.003", "rig/Skeleton:DEF-forearm.R", "rig/Skeleton:DEF-forearm.R.001", "rig/Skeleton:DEF-hand.L", "rig/Skeleton:DEF-hand.L.001", "rig/Skeleton:DEF-hand.R", "rig/Skeleton:DEF-upper_arm.L", "rig/Skeleton:DEF-upper_arm.L.001", "rig/Skeleton:DEF-upper_arm.L.002", "rig/Skeleton:DEF-upper_arm.L.003", "rig/Skeleton:DEF-upper_arm.R", "rig/Skeleton:DEF-upper_arm.R.001", "rig/Skeleton:MCH-f_pinky.01.L", "rig/Skeleton:MCH-f_pinky.01.L.001", "rig/Skeleton:MCH-f_pinky.01.L.002", "rig/Skeleton:MCH-f_pinky.01.L.003", "rig/Skeleton:MCH-f_pinky.01.R", "rig/Skeleton:MCH-f_pinky.01.R.001", "rig/Skeleton:MCH-f_pinky.01.R.002", "rig/Skeleton:MCH-f_pinky.01.R.003", "rig/Skeleton:MCH-f_pinky.01_drv.L", "rig/Skeleton:MCH-f_pinky.01_drv.L.001", "rig/Skeleton:MCH-f_pinky.01_drv.L.002", "rig/Skeleton:MCH-f_pinky.01_drv.L.003", "rig/Skeleton:MCH-f_pinky.01_drv.R", "rig/Skeleton:MCH-f_pinky.01_drv.R.001", "rig/Skeleton:MCH-f_pinky.01_drv.R.002", "rig/Skeleton:MCH-f_pinky.01_drv.R.003", "rig/Skeleton:MCH-f_pinky.02.L", "rig/Skeleton:MCH-f_pinky.02.L.001", "rig/Skeleton:MCH-f_pinky.02.R", "rig/Skeleton:MCH-f_pinky.02.R.001", "rig/Skeleton:MCH-f_pinky.02_drv.L", "rig/Skeleton:MCH-f_pinky.02_drv.L.001", "rig/Skeleton:MCH-f_pinky.02_drv.R", "rig/Skeleton:MCH-f_pinky.02_drv.R.001", "rig/Skeleton:MCH-forearm_ik.L", "rig/Skeleton:MCH-forearm_ik.L.001", "rig/Skeleton:MCH-forearm_ik.R", "rig/Skeleton:MCH-forearm_tweak.L", "rig/Skeleton:MCH-forearm_tweak.L.001", "rig/Skeleton:MCH-forearm_tweak.L.002", "rig/Skeleton:MCH-forearm_tweak.L.003", "rig/Skeleton:MCH-forearm_tweak.R", "rig/Skeleton:MCH-forearm_tweak.R.001", "rig/Skeleton:MCH-hand_fk.L", "rig/Skeleton:MCH-hand_fk.L.001", "rig/Skeleton:MCH-hand_fk.R", "rig/Skeleton:MCH-hand_ik.parent.L", "rig/Skeleton:MCH-hand_ik.parent.L.001", "rig/Skeleton:MCH-hand_ik.parent.R", "rig/Skeleton:MCH-hand_tweak.L", "rig/Skeleton:MCH-hand_tweak.L.001", "rig/Skeleton:MCH-hand_tweak.R", "rig/Skeleton:MCH-upper_arm_ik_stretch.L", "rig/Skeleton:MCH-upper_arm_ik_stretch.L.001", "rig/Skeleton:MCH-upper_arm_ik_stretch.R", "rig/Skeleton:MCH-upper_arm_ik_target.L", "rig/Skeleton:MCH-upper_arm_ik_target.L.001", "rig/Skeleton:MCH-upper_arm_ik_target.R", "rig/Skeleton:MCH-upper_arm_ik_target.parent.L", "rig/Skeleton:MCH-upper_arm_ik_target.parent.L.001", "rig/Skeleton:MCH-upper_arm_ik_target.parent.R", "rig/Skeleton:MCH-upper_arm_parent.L", "rig/Skeleton:MCH-upper_arm_parent.L.001", "rig/Skeleton:MCH-upper_arm_parent.R", "rig/Skeleton:MCH-upper_arm_parent_socket.L", "rig/Skeleton:MCH-upper_arm_parent_socket.L.001", "rig/Skeleton:MCH-upper_arm_parent_socket.R", "rig/Skeleton:MCH-upper_arm_tweak.L", "rig/Skeleton:MCH-upper_arm_tweak.L.001", "rig/Skeleton:MCH-upper_arm_tweak.L.002", "rig/Skeleton:MCH-upper_arm_tweak.L.003", "rig/Skeleton:MCH-upper_arm_tweak.R", "rig/Skeleton:MCH-upper_arm_tweak.R.001", "rig/Skeleton:ORG-Bone", "rig/Skeleton:ORG-Bone.001", "rig/Skeleton:ORG-f_pinky.01.L", "rig/Skeleton:ORG-f_pinky.01.L.001", "rig/Skeleton:ORG-f_pinky.01.L.002", "rig/Skeleton:ORG-f_pinky.01.L.003", "rig/Skeleton:ORG-f_pinky.01.R", "rig/Skeleton:ORG-f_pinky.01.R.001", "rig/Skeleton:ORG-f_pinky.01.R.002", "rig/Skeleton:ORG-f_pinky.01.R.003", "rig/Skeleton:ORG-f_pinky.02.L", "rig/Skeleton:ORG-f_pinky.02.L.001", "rig/Skeleton:ORG-f_pinky.02.R", "rig/Skeleton:ORG-f_pinky.02.R.001", "rig/Skeleton:ORG-forearm.L", "rig/Skeleton:ORG-forearm.L.001", "rig/Skeleton:ORG-forearm.R", "rig/Skeleton:ORG-hand.L", "rig/Skeleton:ORG-hand.L.001", "rig/Skeleton:ORG-hand.R", "rig/Skeleton:ORG-hand.R.001", "rig/Skeleton:ORG-palm.04.L", "rig/Skeleton:ORG-palm.04.L.001", "rig/Skeleton:ORG-palm.04.L.002", "rig/Skeleton:ORG-palm.04.R", "rig/Skeleton:ORG-palm.04.R.001", "rig/Skeleton:ORG-palm.04.R.002", "rig/Skeleton:ORG-upper_arm.L", "rig/Skeleton:ORG-upper_arm.L.001", "rig/Skeleton:ORG-upper_arm.R", "rig/Skeleton:f_pinky.01.L", "rig/Skeleton:f_pinky.01.L.001", "rig/Skeleton:f_pinky.01.L.002", "rig/Skeleton:f_pinky.01.L.003", "rig/Skeleton:f_pinky.01.L.004", "rig/Skeleton:f_pinky.01.L.005", "rig/Skeleton:f_pinky.01.L.006", "rig/Skeleton:f_pinky.01.R", "rig/Skeleton:f_pinky.01.R.001", "rig/Skeleton:f_pinky.01.R.002", "rig/Skeleton:f_pinky.01.R.003", "rig/Skeleton:f_pinky.01.R.004", "rig/Skeleton:f_pinky.01.R.005", "rig/Skeleton:f_pinky.01.R.006", "rig/Skeleton:f_pinky.01_master.L", "rig/Skeleton:f_pinky.01_master.L.001", "rig/Skeleton:f_pinky.01_master.L.002", "rig/Skeleton:f_pinky.01_master.R", "rig/Skeleton:f_pinky.01_master.R.001", "rig/Skeleton:f_pinky.01_master.R.002", "rig/Skeleton:f_pinky.02.L", "rig/Skeleton:f_pinky.02.L.001", "rig/Skeleton:f_pinky.02.R", "rig/Skeleton:f_pinky.02.R.001", "rig/Skeleton:forearm_fk.L", "rig/Skeleton:forearm_fk.L.001", "rig/Skeleton:forearm_fk.R", "rig/Skeleton:forearm_tweak.L", "rig/Skeleton:forearm_tweak.L.001", "rig/Skeleton:forearm_tweak.L.002", "rig/Skeleton:forearm_tweak.L.003", "rig/Skeleton:forearm_tweak.R", "rig/Skeleton:forearm_tweak.R.001", "rig/Skeleton:hand_fk.L", "rig/Skeleton:hand_fk.L.001", "rig/Skeleton:hand_fk.R", "rig/Skeleton:hand_ik.L", "rig/Skeleton:hand_ik.L.001", "rig/Skeleton:hand_ik.R", "rig/Skeleton:hand_ik.R.001", "rig/Skeleton:hand_tweak.L", "rig/Skeleton:hand_tweak.L.001", "rig/Skeleton:hand_tweak.R", "rig/Skeleton:upper_arm_fk.L", "rig/Skeleton:upper_arm_fk.L.001", "rig/Skeleton:upper_arm_fk.R", "rig/Skeleton:upper_arm_ik.L", "rig/Skeleton:upper_arm_ik.L.001", "rig/Skeleton:upper_arm_ik.R", "rig/Skeleton:upper_arm_ik_target.L", "rig/Skeleton:upper_arm_ik_target.L.001", "rig/Skeleton:upper_arm_ik_target.R", "rig/Skeleton:upper_arm_parent.L", "rig/Skeleton:upper_arm_parent.L.001", "rig/Skeleton:upper_arm_parent.R", "rig/Skeleton:upper_arm_tweak.L", "rig/Skeleton:upper_arm_tweak.L.001", "rig/Skeleton:upper_arm_tweak.L.002", "rig/Skeleton:upper_arm_tweak.L.003", "rig/Skeleton:upper_arm_tweak.R", "rig/Skeleton:upper_arm_tweak.R.001" ]
 
-[sub_resource type="AnimationNodeBlend2" id=20]
-
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "Mech07_Firing_primary"
+[sub_resource type="AnimationNodeBlend2" id=21]
 
 [sub_resource type="AnimationNodeAnimation" id=22]
+animation = "Mech07_Firing_primary"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "Mech06_Shutdown"
 
-[sub_resource type="AnimationNodeTransition" id=23]
+[sub_resource type="AnimationNodeTransition" id=24]
 input_count = 2
 xfade_time = 0.15
 input_0/name = "Idle"
@@ -18882,50 +18884,50 @@ input_0/auto_advance = false
 input_1/name = "Walk"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "Mech02_Forward"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "Mech03_backward"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "Mech04_Strafe_Left"
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "Mech05_Strafe_Right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=28]
-blend_point_0/node = SubResource( 24 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=29]
+blend_point_0/node = SubResource( 25 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 25 )
+blend_point_1/node = SubResource( 26 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 26 )
+blend_point_2/node = SubResource( 27 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 27 )
+blend_point_3/node = SubResource( 28 )
 blend_point_3/pos = Vector2( 1, 0 )
 
-[sub_resource type="AnimationNodeBlendTree" id=29]
+[sub_resource type="AnimationNodeBlendTree" id=30]
 graph_offset = Vector2( 0, 65.5 )
-nodes/FireLauncher/node = SubResource( 16 )
+nodes/FireLauncher/node = SubResource( 17 )
 nodes/FireLauncher/position = Vector2( 140, 360 )
-nodes/Idle/node = SubResource( 17 )
+nodes/Idle/node = SubResource( 18 )
 nodes/Idle/position = Vector2( -20, 60 )
-nodes/IsLaunching/node = SubResource( 18 )
+nodes/IsLaunching/node = SubResource( 19 )
 nodes/IsLaunching/position = Vector2( 600, 60 )
-nodes/IsShooting/node = SubResource( 19 )
+nodes/IsShooting/node = SubResource( 20 )
 nodes/IsShooting/position = Vector2( 400, 60 )
-nodes/IsShutdown/node = SubResource( 20 )
+nodes/IsShutdown/node = SubResource( 21 )
 nodes/IsShutdown/position = Vector2( 880, 80 )
-nodes/Shooting/node = SubResource( 21 )
+nodes/Shooting/node = SubResource( 22 )
 nodes/Shooting/position = Vector2( 140, 240 )
-nodes/Shutdown/node = SubResource( 22 )
+nodes/Shutdown/node = SubResource( 23 )
 nodes/Shutdown/position = Vector2( 620, 240 )
-nodes/Transition/node = SubResource( 23 )
+nodes/Transition/node = SubResource( 24 )
 nodes/Transition/position = Vector2( 180, 80 )
-nodes/Walk/node = SubResource( 28 )
+nodes/Walk/node = SubResource( 29 )
 nodes/Walk/position = Vector2( -40, 180 )
 nodes/output/position = Vector2( 1100, 120 )
-node_connections = [ "output", 0, "IsShutdown", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "Transition", 0, "Idle", "Transition", 1, "Walk" ]
+node_connections = [ "output", 0, "IsShutdown", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown" ]
 
 [node name="Mech" type="KinematicBody"]
 collision_layer = 51
@@ -20356,7 +20358,7 @@ bones/281/name = "hand_ik.R.001"
 bones/281/parent = 279
 bones/281/rest = Transform( 1, 5.96046e-08, -6.70552e-08, -5.96046e-08, 1, 7.07805e-08, 6.70552e-08, -7.07805e-08, 1, -0.164309, 0.0391208, -0.129907 )
 bones/281/enabled = true
-bones/281/bound_children = [ NodePath("BoneAttachment") ]
+bones/281/bound_children = [  ]
 bones/282/name = "MCH-upper_arm_ik_target.parent.R"
 bones/282/parent = -1
 bones/282/rest = Transform( -0.627147, -0.631967, 0.455307, 0.455307, 0.176836, 0.872596, -0.631966, 0.754551, 0.176836, 0.05364, 1.31855, -1.51458 )
@@ -20369,7 +20371,7 @@ bones/283/enabled = true
 bones/283/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
-transform = Transform( -0.87602, 0.146291, -0.459553, -0.371529, 0.402851, 0.836468, 0.307499, 0.903499, -0.298554, -1.38688, 1.9244, 0.561745 )
+transform = Transform( -0.844091, 0.170336, -0.508427, -0.43186, 0.346054, 0.832913, 0.317819, 0.922623, -0.21854, -1.27971, 1.88055, 0.551693 )
 bone_name = "hand_ik.R.001"
 
 [node name="MechGun" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment"]
@@ -20475,8 +20477,16 @@ anims/Mech06_Shutdown = ExtResource( 5 )
 anims/Mech07_Firing_primary = ExtResource( 9 )
 anims/Mech09_firing_RocketLauncher001 = ExtResource( 6 )
 
+[node name="CutsceneArea" type="Area" parent="Rotation_Helper"]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Rotation_Helper/CutsceneArea"]
+transform = Transform( 1, 0, 0, 0, 2.00513, 0, 0, 0, 1.85092, 0, 0, 0 )
+shape = SubResource( 16 )
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 29 )
+tree_root = SubResource( 30 )
 anim_player = NodePath("../Rotation_Helper/MechJam_mech/AnimationPlayer")
 active = true
 parameters/IsLaunching/active = false

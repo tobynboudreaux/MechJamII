@@ -39,7 +39,6 @@ func set_vars(vel, g_val, dmg, h_g, name):
 	current_player = name
 
 func _on_Area_body_entered(body):
-	print(body)
 	if current_player in body.name:
 		return
 	if "Bomber" in body.name || "Copter" in body.name || "Spider" in body.name || "Boss" in body.name || "Mech" in body.name || "Pilot" in body.name:

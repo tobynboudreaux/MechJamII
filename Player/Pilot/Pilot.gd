@@ -1,6 +1,8 @@
 extends "res://Player/Player.gd"
 class_name Pilot
 
+signal set_lose()
+
 export var MAX_SPEED = 15
 export var ACCEL = 3
 export var DASH_SPEED = 50
@@ -79,14 +81,12 @@ func _ready():
 	
 func _process(delta):
 	if(!is_mech):
+		pass
 #		hud.show()
 #		hud.update_dash_timer(dash_timer.time_left)
 #		hud.update_reload_timer(reload_timer.time_left)
 #		health_bar._on_health_updated(health.current_health)
 #		health_bar._on_max_health_updated(health.max_hp)
-		
-		if current_health <= 0:
-			return get_tree().change_scene("res://World/World1/World1.tscn")
 			
 	if(is_mech):
 		var mech = get_parent().get_node("Mech")
@@ -97,6 +97,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if(!is_mech):
+		process_ui_input()
 		input_movement_vector = process_input()
 		process_movement(delta, MAX_SPEED, MAX_SLOPE_ANGLE, ACCEL, DEACCEL)
 		process_pilot_input()
@@ -104,7 +105,7 @@ func _physics_process(delta):
 		animation_tree["parameters/Walk/blend_position"] = process_camera_rotation(rotation_helper)
 		
 	if global_transform.origin.y < -4:
-		return get_tree().change_scene("res://World/World1/World1.tscn")
+		emit_signal("set_lose")
 	
 func process_pilot_input():
 	# ----------------------------------
@@ -197,3 +198,4 @@ func take_damage(amount):
 	current_health -= amount
 	if current_health < 0:
 		current_health = 0
+		emit_signal("set_lose")

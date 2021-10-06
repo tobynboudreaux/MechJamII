@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Core/MissionInfoUI/MissionInfoUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/RobotoCondensed-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "mission_text_blink"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("InfoUICanvasLayer/CenterContainer/MissionInfo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 2.5, 3, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+
+[node name="MissionInfoUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoUICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="InfoUICanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MissionInfo" type="Label" parent="InfoUICanvasLayer/CenterContainer"]
+visible = false
+margin_left = 428.0
+margin_top = 342.0
+margin_right = 851.0
+margin_bottom = 378.0
+custom_fonts/font = SubResource( 1 )
+text = "Mission 1: ERASE the alien drill bot!"
+
+[node name="MenuInfoAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/mission_text_blink = SubResource( 2 )

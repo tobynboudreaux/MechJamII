@@ -11,6 +11,9 @@ onready var resources = [
 	preload ("res://Pickups/HealthKit/HealthKit.tscn")
 ]
 
+signal cutscene_1_triggered
+signal cutscene_2_triggered
+
 var enemies_spawn = true
 var actual_boss = preload("res://Enemy/ActualBoss1/Boss_1.tscn")
 var actual_2_boss = preload("res://Enemy/ActualBoss2/Boss_2.tscn")
@@ -61,54 +64,43 @@ func _on_ResourceSpawnTime_timeout():
 		
 	r.transform.origin = pos
 	add_child(r)
-	
-func play_cutscene(anim_play):
-#	animation_player.play("ConeAction002")
-	animation_player.animation_set_next("ConeAction002", "ConeAction003")
-	animation_player.animation_set_next("ConeAction003", "ConeAction004")
-	animation_player.animation_set_next("ConeAction004", "ConeAction0042")
-	animation_player.animation_set_next("ConeAction0042", "ConeAction0043")
-	animation_player.animation_set_next("ConeAction0043", "ConeAction005")
-	animation_player.animation_set_next("ConeAction005", "ConeAction006")
-	animation_player.animation_set_next("ConeAction006", "ConeAction008")
-	animation_player.animation_set_next("ConeAction008", "ConeAction009")
-	animation_player.animation_set_next("ConeAction009", "ConeAction0092")
-	animation_player.animation_set_next("ConeAction0092", "ConeAction0093")
-	animation_player.play("ConeAction002")
-
 
 func _on_CutsceneTrigger_body_entered(body):
-	if "Mech" in body.name:
+	if "ech" in body.name:
 		enemies_spawn = false
-		get_node("Camera").set_current_target("boss_1")
-		play_cutscene(animation_player)
-		yield(get_tree().create_timer(5), "timeout")
-		var boss = get_node("Level 1/Boss")
-		var pos = get_node("Level 1/Boss/Cone001").get_global_transform().origin
-		var boss_actual = actual_boss.instance()
-		boss_actual.global_transform.origin = pos
-		boss.set_physics_process(false)
-		boss.queue_free()
-		add_child(boss_actual)
-		get_node("Camera").set_current_target("boss_1_battle")
+		get_node("Camera").current_target = ("boss_1")
+		emit_signal("cutscene_1_triggered")
 
 func _on_CutsceneTrigger_body_exited(body):
 	get_node("CutsceneTrigger").queue_free()
 
 func _on_Cutscene2Trigger_body_entered(body):
-	if "Mech" in body.name:
+	if "ech" in body.name:
 		enemies_spawn = false
-		get_node("Camera").set_current_target("boss_2")
-		$MechJam_Boss2/AnimationPlayer.play("Cutscene")
-		yield(get_tree().create_timer(5), "timeout")
-		var boss = get_node("MechJam_Boss2")
-		var pos = get_node("MechJam_Boss2/Armature/Skeleton/Boss2").get_global_transform().origin
-		var boss_actual = actual_2_boss.instance()
-		boss_actual.global_transform.origin = pos
-		boss.set_physics_process(false)
-		boss.queue_free()
-		add_child(boss_actual)
-		get_node("Camera").set_current_target("boss_2_battle")
+		get_node("Camera").current_target = ("boss_2")
+		emit_signal("cutscene_2_triggered")
 
 func _on_Cutscene2Trigger_body_exited(body):
 	get_node("Cutscene2Trigger").queue_free()
+
+func _on_World1_cutscene_1_triggered():
+	$"Level 1/AnimationPlayer".play("Cutscene")
+	yield($"Level 1/AnimationPlayer", "animation_finished")
+	var boss = get_node("Level 1/Boss")
+	var pos = get_node("Level 1/Boss/Cone001").get_global_transform().origin
+	var boss_actual = actual_boss.instance()
+	boss_actual.global_transform.origin = pos
+	get_node("Camera").set_current_target("mech")
+	boss.queue_free()
+	add_child(boss_actual)
+
+func _on_World2_cutscene_2_triggered():
+	$MechJam_Boss2/AnimationPlayer.play("Cutscene")
+	yield($MechJam_Boss2/AnimationPlayer, "animation_finished")
+	var boss = get_node("MechJam_Boss2")
+	var pos = get_node("MechJam_Boss2/Armature/Skeleton/Boss2").get_global_transform().origin
+	var boss_actual = actual_2_boss.instance()
+	boss_actual.global_transform.origin = pos
+	get_node("Camera").set_current_target("mech")
+	boss.queue_free()
+	add_child(boss_actual)

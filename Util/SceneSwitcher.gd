@@ -5,7 +5,6 @@ var next_level_3d
 var next_level_ui
 var next_level_3d_path
 var next_level_ui_path
-var player_ui #needs to be preloaded in order for player to connect to it
 var player_ui_current_instance
 
 # Ready variables
@@ -19,6 +18,7 @@ onready var fullscreen_max_res = OS.get_screen_size()
 onready var window_max_res = OS.window_size
 onready var is_fullscreen = false
 onready var current_max_res = fullscreen_max_res
+onready var player_ui = preload("res://Core/HUD/PlayerUI.tscn") #needs to be preloaded in order for player to connect to it
 
 # Variables for loading data on startup
 var path = "res://data.json"
@@ -31,7 +31,8 @@ var default_data = {
 		"vsync" : "off"
 	},
 	"levels_completed" : [],
-	"levels_best_time" : []
+	"levels_best_time" : [],
+	"current_level" : 0
 }
 var data = {}
 
@@ -40,7 +41,6 @@ func _ready():
 	# Gather resource packs
 	ProjectSettings.load_resource_pack("res://graphics.pck")
 	ProjectSettings.load_resource_pack("res://audio.pck")
-	player_ui = preload("res://Core/HUD/PlayerUI.tscn")
 	
 	current_level_ui.connect("level_changed", self, "handle_level_changed")
 	current_level_ui.connect("set_options", self, "handle_options")
@@ -78,7 +78,15 @@ func _ready():
 func connect_player(player_instance):
 	print("player connected to player UI")
 	player_instance.connect("set_pause", player_ui_current_instance, "handle_pause")
+	player_instance.connect("set_lose", player_ui_current_instance, "handle_player_lose")
 	player_instance.connect("set_mech_hud", player_ui_current_instance, "handle_mech_hud")
+	
+func connect_boss(boss_node):
+	print("boss should be connected")
+	boss_node.connect("set_win", self, "handle_player_win")
+	
+func handle_player_win():
+	player_ui_current_instance.handle_player_win()
 	
 func set_screen_max_resolution():
 	if(is_fullscreen):
@@ -96,18 +104,34 @@ func set_environment_for_menu():
 	world_env.environment.dof_blur_far_distance = 1.4
 	world_env.environment.dof_blur_far_transition = 5
 	
-func handle_level_changed(current_level_name: String):
+func handle_level_changed(level_to_load: String):
 	
-	match current_level_name:
+	match level_to_load:
 		"menu":
-			# Load main game level
-			next_level_3d_path = "res://World/World1/World1.tscn"
-			next_level_ui_path = "res://Core/Pause/PauseMenu.tscn"
-			
-		"level1":
 			# Load menu level
 			next_level_3d_path = "res://Core/StartScreen/MenuWorld3D.tscn"
 			next_level_ui_path = "res://Core/StartScreen/MainMenuUI.tscn"
+			
+		"level1":
+			# Load level 1
+			next_level_3d_path = "res://World/World1/World1.tscn"
+			next_level_ui_path = "res://Core/HUD/PlayerUI.tscn"
+			
+		"level2":
+			# Load level 2
+			next_level_3d_path = "res://World/World2/World2.tscn"
+			next_level_ui_path = "res://Core/HUD/PlayerUI.tscn"
+			
+		"credits":
+			# Load credits
+			next_level_3d_path = "res://World/CreditsWorld/CreditsWorld3D.tscn"
+			next_level_ui_path = "res://World/CreditsWorld/CreditsUI.tscn"
+			
+		"tutorial":
+			# Load Tutorial
+			next_level_3d_path = "res://World/CreditsWorld/CreditsWorld3D.tscn"
+			next_level_ui_path = "res://World/Tutorial.tscn"
+		
 		_:
 			return
 	
@@ -117,7 +141,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"Transition_In":
 			next_level_3d = load(next_level_3d_path).instance()
-			if(next_level_ui_path != "res://Core/Pause/PauseMenu.tscn"):
+			if(next_level_ui_path != "res://Core/HUD/PlayerUI.tscn"):
 				next_level_ui = load(next_level_ui_path).instance()
 				player_ui_current_instance = null
 				next_level_ui.connect("set_options", self, "handle_options")
@@ -130,10 +154,12 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			viewport_3d.add_child(next_level_3d)
 			self.add_child(next_level_ui)
 			
-			if(next_level_3d_path == "res://World/World1/World1.tscn"):
+			if(next_level_3d_path == "res://World/World1/World1.tscn" or next_level_3d_path == "res://World/World2/World2.tscn"):
 				set_environment_for_level()
 			if(next_level_3d_path == "res://Core/StartScreen/MenuWorld3D.tscn"):
 				set_environment_for_menu()
+			if(next_level_3d_path == "res://World/CreditsWorld/CreditsWorld3D.tscn"):
+				set_environment_for_level()
 				
 			get_tree().paused = false
 			current_level_ui.queue_free()

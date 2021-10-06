@@ -1,0 +1,219 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Core/WinLoseUI/WinLoseUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/GameOverTitleFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Music/Death Screen - MechJamII -23 LUFS.wav" type="AudioStream" id=3]
+[ext_resource path="res://Core/WinLoseUI/WinLoseAudioNode.gd" type="Script" id=4]
+[ext_resource path="res://Assets/SFX/UI/click.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/SFX/UI/clang.wav" type="AudioStream" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "game_over_intro"
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameOverRect/GameOverVBoxContainer/GameOverHSplitContainer/GameLabel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1000, -1500 ), Vector2( 5, 5 ), Vector2( -3, -3 ), Vector2( 2, 2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GameOverRect/GameOverVBoxContainer/GameOverHSplitContainer/OverLabel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1000, -1500 ), Vector2( 92, 5 ), Vector2( 100, -3 ), Vector2( 95, 2 ), Vector2( 97, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameOverRect/GameOverVBoxContainer/GameOverHSplitContainer/GameLabel:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 20, 20 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GameOverRect/GameOverVBoxContainer/GameOverHSplitContainer/OverLabel:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 20, 20 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "victory_bounce"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("WinnerRect/WinVBoxContainer/WinLabel:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 292 ), Vector2( 0, 250 ), Vector2( 0, 292 ) ]
+}
+
+[node name="WinLoseUI" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.199219, 0.0225677, 0.0225677, 0.270588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverVBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -87.0
+margin_right = 87.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverHSplitContainer" type="HSplitContainer" parent="CanvasLayer/GameOverRect/GameOverVBoxContainer"]
+margin_top = 315.0
+margin_right = 174.0
+margin_bottom = 357.0
+split_offset = 25
+
+[node name="GameLabel" type="Label" parent="CanvasLayer/GameOverRect/GameOverVBoxContainer/GameOverHSplitContainer"]
+margin_right = 85.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "Game"
+align = 1
+uppercase = true
+
+[node name="OverLabel" type="Label" parent="CanvasLayer/GameOverRect/GameOverVBoxContainer/GameOverHSplitContainer"]
+margin_left = 97.0
+margin_right = 174.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "Over"
+align = 1
+uppercase = true
+
+[node name="RetryLevelButton" type="Button" parent="CanvasLayer/GameOverRect/GameOverVBoxContainer"]
+margin_top = 361.0
+margin_right = 174.0
+margin_bottom = 381.0
+focus_neighbour_bottom = NodePath("../BackToMenuButton")
+action_mode = 0
+text = "Retry Level"
+
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer/GameOverRect/GameOverVBoxContainer"]
+margin_top = 385.0
+margin_right = 174.0
+margin_bottom = 405.0
+focus_neighbour_top = NodePath("../RetryLevelButton")
+action_mode = 0
+text = "Back to Main Menu"
+
+[node name="WinnerRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0341797, 0.3125, 0.0651042, 0.490196 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinVBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinnerRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -87.0
+margin_right = 87.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinLabel" type="Label" parent="CanvasLayer/WinnerRect/WinVBoxContainer"]
+margin_top = 292.0
+margin_right = 174.0
+margin_bottom = 379.0
+custom_fonts/font = ExtResource( 2 )
+text = "Victory!
+"
+align = 1
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/WinnerRect/WinVBoxContainer"]
+margin_top = 383.0
+margin_right = 174.0
+margin_bottom = 403.0
+focus_neighbour_bottom = NodePath("../BackToMenuButton")
+action_mode = 0
+text = "Next Level"
+
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer/WinnerRect/WinVBoxContainer"]
+margin_top = 407.0
+margin_right = 174.0
+margin_bottom = 427.0
+focus_neighbour_top = NodePath("../NextLevelButton")
+action_mode = 0
+text = "Back to Main Menu"
+
+[node name="WinLoseUIAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+anims/game_over_intro = SubResource( 1 )
+anims/victory_bounce = SubResource( 2 )
+
+[node name="WinLoseAudioNode" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="LoseUIBGM" type="AudioStreamPlayer" parent="WinLoseAudioNode"]
+stream = ExtResource( 3 )
+
+[node name="WinLoseFocusSFX" type="AudioStreamPlayer2D" parent="WinLoseAudioNode"]
+stream = ExtResource( 5 )
+
+[node name="WinLoseSelectSFX" type="AudioStreamPlayer2D" parent="WinLoseAudioNode"]
+stream = ExtResource( 6 )
+
+[connection signal="focus_entered" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/RetryLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/RetryLevelButton" to="." method="_on_RetryLevelButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/RetryLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/WinnerRect/WinVBoxContainer/NextLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/NextLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/WinnerRect/WinVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_pressed"]
