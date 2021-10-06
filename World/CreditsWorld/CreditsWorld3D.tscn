@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://World/CreditsWorld/CreditsWorld3D.gd" type="Script" id=1]
+[ext_resource path="res://World/CreditsWorld/CreditsPlaneMat.tres" type="Material" id=2]
+[ext_resource path="res://Core/StartScreen/PilotModelForMenu.tscn" type="PackedScene" id=3]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 40, 40 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "mech_spin"
+length = 2.0
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("MechSpin")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("MechSpin:rotation_degrees:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("MechSpin:rotation_degrees:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("MechSpin:rotation_degrees:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 180, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/4/type = "transform"
+tracks/4/path = NodePath("SpotLight")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = PoolRealArray(  )
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("SpotLight:translation:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( -3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("SpotLight:translation:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 5, -0.25, 0, 0.25, 0, -5, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, -5, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("SpotLight:translation:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 20, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+
+[node name="CreditsWorld3D" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="BGPlane" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5 )
+mesh = SubResource( 1 )
+material = ExtResource( 2 )
+
+[node name="MechSpin" type="Spatial" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+
+[node name="MechJam_Player" parent="MechSpin" instance=ExtResource( 3 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.2, 0 )
+
+[node name="Credits3DAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/mech_spin = SubResource( 2 )
+
+[node name="Credits3DCamera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.649, 15 )
+current = true
+fov = 40.0
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, 20 )
+spot_range = 30.0

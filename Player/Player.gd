@@ -7,7 +7,7 @@ signal set_pause()
 const GRAVITY = -24.8
 var dir = Vector3()
 var vel = Vector3()
-var scene_switcher
+onready var scene_switcher
 
 # Status check vars
 var is_reloading = false

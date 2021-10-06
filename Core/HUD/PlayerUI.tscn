@@ -17,9 +17,11 @@ __meta__ = {
 
 [node name="PilotHUD" parent="." instance=ExtResource( 2 )]
 visible = true
+mouse_filter = 1
 
 [node name="MechHUD" parent="." instance=ExtResource( 3 )]
 visible = true
+mouse_filter = 2
 
 [node name="PauseMenuControl" parent="." instance=ExtResource( 1 )]
 

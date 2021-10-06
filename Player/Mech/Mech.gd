@@ -68,7 +68,7 @@ func _process(delta):
 			take_damage(17)
 			$Timers/DamageTimer.start()
 
-		print(current_health)
+		#print(current_health)
 		
 		# ----------------------------------
 		# Switch to Pilot

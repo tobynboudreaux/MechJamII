@@ -10,14 +10,14 @@ signal dead
 signal set_win()
 
 var player = null
-var player_ui
+onready var player_ui
 
 onready var pilot = get_parent().get_node("Pilot")
 onready var mech = get_parent().get_node("Mech")
 
 onready var animation_player = get_node("Boss_1/AnimationPlayer")
 
-var max_health = 1000
+var max_health = 1
 var current_health = max_health
 var phase_2_health = max_health * 0.6
 var phase_3_health = max_health * 0.25
@@ -38,7 +38,7 @@ func _ready():
 	animation_player.play("Idle")
 	
 	# Connects to the scene switcher so the level can be won
-	player_ui = get_node("/root/SceneSwitcher/PlayerUI")
+	player_ui = get_node("/root/SceneSwitcher")
 	print("attempt to connect boss to player ui")
 	player_ui.connect_boss(self)
 	
@@ -90,7 +90,7 @@ func _on_health(amount):
 		
 func take_damage(amount):
 	current_health -= amount
-	print(current_health)
+	#print(current_health)
 	
 func _fire_middle_guns():
 	var p0 = p_s.instance()

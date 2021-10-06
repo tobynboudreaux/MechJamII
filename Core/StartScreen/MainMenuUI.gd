@@ -22,7 +22,8 @@ var default_data = {
 		"vsync" : "off"
 	},
 	"levels_completed" : [],
-	"levels_best_time" : []
+	"levels_best_time" : [],
+	"current_level": 0
 }
 var data = {}
 
@@ -31,6 +32,7 @@ var is_fullscreen = false
 func _ready():
 	load_data()
 	setup_options()
+	setup_level_select()
 	
 	if(data["levels_completed"] == []):
 		start_button.grab_focus()
@@ -43,6 +45,7 @@ func _ready():
 # Main menu code
 func _on_StartButton_pressed():
 	emit_signal("level_changed", "level1")
+	save_current_level(1)
 	start_button.disabled = true
 
 func _on_QuitButton_pressed():
@@ -50,15 +53,35 @@ func _on_QuitButton_pressed():
 
 func _on_ContinueButton_pressed():
 	var levels_completed = data["levels_completed"].size()
+	save_current_level(levels_completed+1)
+	continue_button.disabled = true
 	if(levels_completed == 1):
 		emit_signal("level_changed", "level2")
-		continue_button.disabled = true
+	if(levels_completed == 2):
+		emit_signal("level_changed", "credits")
+	
 	
 # Previous level menu code
+func setup_level_select():
+	var levels_completed = data["levels_completed"].size()
+	if(levels_completed == 1):
+		levels_container.get_child(0).disabled = false
+	if(levels_completed == 2):
+		levels_container.get_child(0).disabled = false
+		levels_container.get_child(1).disabled = false
+
 func _on_PrevLevelsButton_pressed():
 	menu_container.visible = false
 	levels_container.visible = true
 	levels_container.get_child(0).grab_focus()
+	
+func _on_Level1Button_pressed():
+	emit_signal("level_changed", "level1")
+	save_current_level(1)
+
+func _on_Level2Button_pressed():
+	emit_signal("level_changed", "level2")
+	save_current_level(2)
 	
 func _on_LevelBackButton_pressed():
 	levels_container.visible = false
@@ -219,6 +242,17 @@ func save_level_data(level_number, level_time):
 	var current_level_index = data["levels_completed"].find(level_number)
 	if(data["levels_best_time"][current_level_index] < level_time):
 		data["levels_best_time"][current_level_index] = level_time
+	
+	file.store_line(to_json(data))
+	
+	file.close()
+	
+func save_current_level(current_level_number):
+	var file = File.new()
+	
+	file.open(path, File.WRITE)
+	
+	data["current_level"] = current_level_number
 	
 	file.store_line(to_json(data))
 	

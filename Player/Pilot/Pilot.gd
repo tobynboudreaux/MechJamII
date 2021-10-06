@@ -63,7 +63,7 @@ onready var footstep_sounds = [
 var input_movement_vector
 #onready var hud = get_node("PilotHUD")
 #onready var health_bar = get_node("PilotHUD/HealthBar")
-var max_health = 100
+var max_health = 1
 var current_health = max_health
 
 var has_energy = false
@@ -88,7 +88,7 @@ func _process(delta):
 #		health_bar._on_max_health_updated(health.max_hp)
 		
 		if current_health <= 0:
-			return get_tree().change_scene("res://World/World1/World1.tscn")
+			emit_signal("set_lose")
 			
 	if(is_mech):
 		var mech = get_parent().get_node("Mech")
@@ -107,7 +107,7 @@ func _physics_process(delta):
 		animation_tree["parameters/Walk/blend_position"] = process_camera_rotation(rotation_helper)
 		
 	if global_transform.origin.y < -4:
-		return get_tree().change_scene("res://World/World1/World1.tscn")
+		emit_signal("set_lose")
 	
 func process_pilot_input():
 	# ----------------------------------

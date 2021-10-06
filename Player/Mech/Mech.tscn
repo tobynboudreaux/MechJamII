@@ -18905,7 +18905,7 @@ blend_point_3/node = SubResource( 27 )
 blend_point_3/pos = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeBlendTree" id=29]
-graph_offset = Vector2( 0, 65.5 )
+graph_offset = Vector2( -201.969, 0 )
 nodes/FireLauncher/node = SubResource( 16 )
 nodes/FireLauncher/position = Vector2( 140, 360 )
 nodes/Idle/node = SubResource( 17 )
@@ -20356,7 +20356,7 @@ bones/281/name = "hand_ik.R.001"
 bones/281/parent = 279
 bones/281/rest = Transform( 1, 5.96046e-08, -6.70552e-08, -5.96046e-08, 1, 7.07805e-08, 6.70552e-08, -7.07805e-08, 1, -0.164309, 0.0391208, -0.129907 )
 bones/281/enabled = true
-bones/281/bound_children = [ NodePath("BoneAttachment") ]
+bones/281/bound_children = [  ]
 bones/282/name = "MCH-upper_arm_ik_target.parent.R"
 bones/282/parent = -1
 bones/282/rest = Transform( -0.627147, -0.631967, 0.455307, 0.455307, 0.176836, 0.872596, -0.631966, 0.754551, 0.176836, 0.05364, 1.31855, -1.51458 )
@@ -20369,7 +20369,7 @@ bones/283/enabled = true
 bones/283/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
-transform = Transform( -0.805804, 0.200326, -0.557272, -0.496599, 0.284054, 0.820185, 0.322599, 0.937648, -0.12941, -1.16366, 1.8336, 0.541324 )
+transform = Transform( -0.831383, 0.180165, -0.525685, -0.454162, 0.324823, 0.829595, 0.320219, 0.928456, -0.188228, -1.23995, 1.86441, 0.54807 )
 bone_name = "hand_ik.R.001"
 
 [node name="MechGun" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World/CreditsWorld/CreditsFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://World/CreditsWorld/CreditsUI.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=2]
+resource_name = "credits_text_scroll"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CreditsCanvasLayer/CreditsColorRect/Credits Text:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 361.5, 1500 ), Vector2( 361.5, 0 ), Vector2( 361.5, -1500 ) ]
+}
+
+[node name="CreditsUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsCanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CreditsColorRect" type="ColorRect" parent="CreditsCanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.243137, 0.243137, 0.243137, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits Text" type="Label" parent="CreditsCanvasLayer/CreditsColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -278.5
+margin_top = 1500.0
+margin_right = 304.5
+margin_bottom = 1500.0
+custom_fonts/font = ExtResource( 1 )
+text = "Lead Developer: Toby B
+
+UI Developer: Dylan M
+
+Sound Dude:
+Michi VGC
+
+Art Man:
+Storyan V"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsUIAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/credits_text_scroll = SubResource( 2 )
+
+[connection signal="animation_finished" from="CreditsUIAnimationPlayer" to="." method="_on_CreditsUIAnimationPlayer_animation_finished"]

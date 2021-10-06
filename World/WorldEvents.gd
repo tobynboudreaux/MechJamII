@@ -96,6 +96,7 @@ func _on_CutsceneTrigger_body_exited(body):
 	get_node("CutsceneTrigger").queue_free()
 
 func _on_Cutscene2Trigger_body_entered(body):
+	print("body: " + str(body.name))
 	if "Mech" in body.name:
 		enemies_spawn = false
 		get_node("Camera").set_current_target("boss_2")

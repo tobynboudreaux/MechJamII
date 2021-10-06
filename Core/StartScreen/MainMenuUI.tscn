@@ -142,9 +142,9 @@ __meta__ = {
 }
 
 [node name="Level1Button" type="Button" parent="LevelsVBoxContainer"]
-margin_top = 258.0
+margin_top = 284.0
 margin_right = 300.0
-margin_bottom = 306.0
+margin_bottom = 332.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
 theme = ExtResource( 8 )
 disabled = true
@@ -153,9 +153,9 @@ text = "Level 1"
 script = SubResource( 3 )
 
 [node name="Level2Button" type="Button" parent="LevelsVBoxContainer"]
-margin_top = 310.0
+margin_top = 336.0
 margin_right = 300.0
-margin_bottom = 358.0
+margin_bottom = 384.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
 theme = ExtResource( 8 )
 disabled = true
@@ -163,21 +163,10 @@ action_mode = 0
 text = "Level 2"
 script = SubResource( 3 )
 
-[node name="Level3Button" type="Button" parent="LevelsVBoxContainer"]
-margin_top = 362.0
-margin_right = 300.0
-margin_bottom = 410.0
-rect_pivot_offset = Vector2( -1057.25, 20 )
-theme = ExtResource( 8 )
-disabled = true
-action_mode = 0
-text = "Level 3"
-script = SubResource( 3 )
-
 [node name="LevelBackButton" type="Button" parent="LevelsVBoxContainer"]
-margin_top = 414.0
+margin_top = 388.0
 margin_right = 300.0
-margin_bottom = 462.0
+margin_bottom = 436.0
 rect_pivot_offset = Vector2( -1057.25, 20 )
 theme = ExtResource( 8 )
 action_mode = 0
@@ -312,8 +301,9 @@ stream = ExtResource( 12 )
 [connection signal="focus_entered" from="MainVBoxContainer/QuitButton" to="MenuMusicSFXHandler" method="_on_QuitButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="focus_entered" from="LevelsVBoxContainer/Level1Button" to="MenuMusicSFXHandler" method="_on_Level1Button_focus_entered"]
+[connection signal="pressed" from="LevelsVBoxContainer/Level1Button" to="." method="_on_Level1Button_pressed"]
 [connection signal="focus_entered" from="LevelsVBoxContainer/Level2Button" to="MenuMusicSFXHandler" method="_on_Level2Button_focus_entered"]
-[connection signal="focus_entered" from="LevelsVBoxContainer/Level3Button" to="MenuMusicSFXHandler" method="_on_Level3Button_focus_entered"]
+[connection signal="pressed" from="LevelsVBoxContainer/Level2Button" to="." method="_on_Level2Button_pressed"]
 [connection signal="focus_entered" from="LevelsVBoxContainer/LevelBackButton" to="MenuMusicSFXHandler" method="_on_LevelBackButton_focus_entered"]
 [connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="MenuMusicSFXHandler" method="_on_LevelBackButton_pressed"]
 [connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="." method="_on_LevelBackButton_pressed"]

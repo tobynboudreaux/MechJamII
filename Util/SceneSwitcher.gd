@@ -31,7 +31,8 @@ var default_data = {
 		"vsync" : "off"
 	},
 	"levels_completed" : [],
-	"levels_best_time" : []
+	"levels_best_time" : [],
+	"current_level" : 0
 }
 var data = {}
 
@@ -80,6 +81,13 @@ func connect_player(player_instance):
 	player_instance.connect("set_lose", player_ui_current_instance, "handle_player_lose")
 	player_instance.connect("set_mech_hud", player_ui_current_instance, "handle_mech_hud")
 	
+func connect_boss(boss_node):
+	print("boss should be connected")
+	boss_node.connect("set_win", self, "handle_player_win")
+	
+func handle_player_win():
+	player_ui_current_instance.handle_player_win()
+	
 func set_screen_max_resolution():
 	if(is_fullscreen):
 		get_viewport().size = fullscreen_max_res
@@ -116,8 +124,8 @@ func handle_level_changed(level_to_load: String):
 			
 		"credits":
 			# Load credits
-			next_level_3d_path = "res://World/World2/World2.tscn"
-			next_level_ui_path = "res://Core/HUD/PlayerUI.tscn"
+			next_level_3d_path = "res://World/CreditsWorld/CreditsWorld3D.tscn"
+			next_level_ui_path = "res://World/CreditsWorld/CreditsUI.tscn"
 		
 		_:
 			return
@@ -145,6 +153,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				set_environment_for_level()
 			if(next_level_3d_path == "res://Core/StartScreen/MenuWorld3D.tscn"):
 				set_environment_for_menu()
+			if(next_level_3d_path == "res://World/CreditsWorld/CreditsWorld3D.tscn"):
+				set_environment_for_level()
 				
 			get_tree().paused = false
 			current_level_ui.queue_free()

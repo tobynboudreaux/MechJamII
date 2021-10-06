@@ -18,24 +18,22 @@ onready var default_data = {
 		"vsync" : "off"
 	},
 	"levels_completed" : [],
-	"levels_best_time" : []
+	"levels_best_time" : [],
+	"current_level": 0
 }
 onready var data
 onready var current_level_number
 
 func _ready():
 	load_data()
-	if(data["levels_completed"].size() == 0):
+	if(data["current_level"] == 1):
 		current_level_number = 1
-	if(data["levels_completed"].size() == 1):
+	if(data["current_level"] == 2):
 		current_level_number = 2
 	
 func change_level(level_name):
 	print("should be changing level")
 	emit_signal("level_changed", level_name)
-	
-func connect_boss(boss_node):
-	boss_node.connect("set_win", self, "handle_player_win")
 	
 # Triggered function by the player.gd script
 func handle_pause():
@@ -49,7 +47,7 @@ func handle_player_lose():
 	win_lose_ui.handle_game_over()
 	
 func handle_player_win():
-	win_lose_ui.handle_win(current_level_number)
+	win_lose_ui.handle_win()
 	
 func load_data():
 	var file = File.new()

@@ -1,6 +1,6 @@
 extends Control
 
-var current_level_number = 1
+var current_level_number
 
 # Variables for loading data on startup
 var path = "res://data.json"
@@ -13,7 +13,8 @@ var default_data = {
 		"vsync" : "off"
 	},
 	"levels_completed" : [],
-	"levels_best_time" : []
+	"levels_best_time" : [],
+	"current_level" : 0
 }
 var data = {}
 
@@ -24,6 +25,7 @@ onready var win_lose_ani_player = get_child(0).get_child(2)
 onready var audio_manager = $WinLoseAudioNode
 
 func _ready():
+	load_data()
 	lose_ui.hide()
 	win_ui.hide()
 
@@ -35,41 +37,87 @@ func handle_game_over():
 		lose_ui.get_child(0).get_child(1).grab_focus()
 		win_lose_ani_player.play("game_over_intro")
 		
-func handle_win(current_level_from_player_ui):
+func handle_win():
 	if(win_ui.visible == false):
-		current_level_number = current_level_from_player_ui
 		get_parent().get_tree().paused = true
 		win_ui.show()
 		win_ui.get_child(0).get_child(1).grab_focus()
+		win_lose_ani_player.play("victory_bounce")
 
 func _on_RetryLevelButton_pressed():
-	get_parent().change_level("level1")
+	load_data()
+	current_level_number = data["current_level"]
+	if(current_level_number == 1):
+		save_current_level(1)
+		get_parent().change_level("level1")
+	if(current_level_number == 2):
+		save_current_level(2)
+		get_parent().change_level("level2")
 
 func _on_BackToMenuButton_pressed():
 	get_parent().change_level("menu")
 
 func _on_NextLevelButton_pressed():
+	load_data()
+	current_level_number = data["current_level"]
 	if(current_level_number == 1):
-		save_level_data(1, 100)
+		save_level_data(1)
+		save_current_level(2)
 		get_parent().change_level("level2")
 	if(current_level_number == 2):
-		save_level_data(2, 100)
-		get_parent().change_level("menu") #TODO: should send to credits screen -> menu
+		save_level_data(2)
+		save_current_level(0)
+		get_parent().change_level("credits")
 	
-func save_level_data(level_number, level_time):
+# File related functions
+func load_data():
+	var file = File.new()
+	
+	if not file.file_exists(path):
+		
+		file.open(path, File.WRITE)
+	
+		data = default_data.duplicate(true)
+	
+		file.store_line(to_json(data))
+	
+		return data
+	
+	file.open(path, file.READ)
+	
+	var text = file.get_as_text()
+	
+	data = parse_json(text)
+	
+	file.close()
+	
+	return data
+	
+func save_level_data(level_number):
+	var levels_array = data["levels_completed"]
+	var array = []
+	for value in data["levels_completed"]:
+		array.push_back(value)
+		
+	print(levels_array.pop_back() != level_number)
+	if(levels_array.pop_back() != level_number):
+		var file = File.new()
+		
+		file.open(path, File.WRITE)
+		
+		array.push_back(level_number)
+		data["levels_completed"] = array
+	
+		file.store_line(to_json(data))
+	
+		file.close()
+	
+func save_current_level(current_level_number):
 	var file = File.new()
 	
 	file.open(path, File.WRITE)
 	
-	if(data["levels_completed"].size() > 0):
-		if(not data["levels_completed"].has(level_number)):
-			data["levels_completed"].push_back(level_number)
-	else:
-		data["levels_completed"].push_back(level_number)
-	
-	var current_level_index = data["levels_completed"].find(level_number)
-	if(data["levels_best_time"][current_level_index] < level_time):
-		data["levels_best_time"][current_level_index] = level_time
+	data["current_level"] = current_level_number
 	
 	file.store_line(to_json(data))
 	

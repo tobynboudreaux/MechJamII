@@ -8,6 +8,8 @@ signal phase_3
 signal dead
 signal enter
 
+signal set_win()
+
 var player = null
 
 onready var pilot = get_parent().get_node("Pilot")
@@ -15,7 +17,7 @@ onready var mech = get_parent().get_node("Mech")
 
 onready var animation_player = get_node("Boss_2/AnimationPlayer")
 
-var max_health = 1000
+var max_health = 10
 var current_health = max_health
 var phase_2_health = max_health * 0.6
 var phase_3_health = max_health * 0.25
@@ -41,9 +43,17 @@ var phase_1_speed = 10
 var phase_2_speed = 15
 var phase_3_speed = 20
 
+# For connecting purposes
+onready var player_ui
+
 func _ready():
 	animation_player.play("00_Idle")
 	emit_signal("enter")
+	
+	# Connects to the scene switcher so the level can be won
+	player_ui = get_node("/root/SceneSwitcher")
+	print("attempt to connect boss to player ui")
+	player_ui.connect_boss(self)
 	
 func _process(delta):
 	_on_health(current_health)
@@ -62,9 +72,6 @@ func choose_action(delta):
 	var target
 	match phase:
 		phases.DEAD:
-			$Timers/DeathTimer.start()
-			yield($Timers/DeathTimer, "timeout")
-			set_physics_process(false)
 			self.queue_free()	
 		
 		phases.PHASE1:
@@ -137,11 +144,11 @@ func _on_health(amount):
 		
 func take_damage(amount):
 	current_health -= amount
-	print(current_health)
+	#print(current_health)
 	
 func _on_Boss_2_dead():
 	phase = phases.DEAD
-	get_tree().change_scene("res://Core/U WIN LOL/U WIN LOL.tscn")
+	emit_signal("set_win")
 
 func _on_Boss_2_phase_2():
 	phase = phases.PHASE2
