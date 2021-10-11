@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Core/HUD/Mech/MechHUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Core/HUD/AmmoHUDFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Fonts/RobotoCondensed-Regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 52
@@ -13,8 +15,21 @@ default_font = SubResource( 1 )
 [sub_resource type="GDScript" id=3]
 script/source = "extends Control
 
+func _ready():
+	self.visible = false
+
+func hide_hud(hide_bool):
+	self.visible = !hide_bool
+	
+func hide_interact(hide_bool):
+	$InteractContainer.visible = !hide_bool
+	if(!hide_bool):
+		$InteractAnimationPlayer.play(\"interact_bob_ani\")
+	else:
+		$InteractAnimationPlayer.stop()
+
 func update_ammo_val(ammo_left):
-	$Ammo.text = ammo_left
+	$AmmoBG/Ammo.text = ammo_left
 	
 func update_dash_timer(timer_val):
 	$DashBar.value = -timer_val
@@ -31,8 +46,39 @@ load_path = "res://.import/sgxcfnI.png-725ba90b94e9cb960d3ba5e5a857f77b.stex"
 flags = 4
 load_path = "res://.import/TkZm5eA.png-1574444c21ca7e857d8f05d04972aa9c.stex"
 
+[sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "interact_bob_ani"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("InteractContainer/InteractText:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("InteractContainer/InteractText:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 33, 400 ), Vector2( 29, 400 ), Vector2( 33, 400 ) ]
+}
+
 [node name="PilotHUD" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource( 2 )
@@ -41,17 +87,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ammo" type="Label" parent="."]
+[node name="AmmoBG" type="ColorRect" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -102.189
-margin_top = -95.136
-margin_right = -1.18921
-margin_bottom = -41.136
+margin_left = -160.0
+margin_top = -160.0
+margin_right = -50.0
+margin_bottom = -70.0
+color = Color( 0.270588, 0.270588, 0.270588, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ammo" type="Label" parent="AmmoBG"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -90.0
+margin_top = -70.0
+margin_right = -21.0
+margin_bottom = -10.0
+rect_pivot_offset = Vector2( 294.14, -87.2552 )
+custom_fonts/font = ExtResource( 3 )
 text = "7/7"
-script = SubResource( 3 )
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -59,9 +122,11 @@ __meta__ = {
 [node name="DashBar" type="TextureProgress" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = -60.0
-rect_scale = Vector2( 0.319999, 0.400001 )
+margin_left = 50.0
+margin_top = -140.0
+margin_right = 518.0
+margin_bottom = -80.0
+rect_scale = Vector2( 0.6, 1 )
 min_value = -3.0
 max_value = 0.0
 step = 0.05
@@ -70,27 +135,54 @@ texture_under = SubResource( 4 )
 texture_progress = SubResource( 5 )
 tint_under = Color( 0, 0.462745, 1, 1 )
 tint_over = Color( 1, 0, 0, 1 )
-tint_progress = Color( 0.266667, 1, 0, 1 )
+tint_progress = Color( 0, 0.717647, 1, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ReloadBar" type="TextureProgress" parent="."]
-margin_left = 520.0
-margin_top = 232.0
-margin_right = 988.0
-margin_bottom = 292.0
-rect_rotation = -90.4706
-rect_scale = Vector2( 0.0416754, 0.0826587 )
+margin_left = 530.0
+margin_top = 300.0
+margin_right = 998.0
+margin_bottom = 360.0
+rect_rotation = -90.0
+rect_scale = Vector2( 0.15, 0.3 )
 max_value = 1.0
 step = 0.05
 texture_under = SubResource( 4 )
 texture_progress = SubResource( 5 )
-tint_under = Color( 0, 0.462745, 1, 1 )
+tint_under = Color( 1, 0.984314, 0, 1 )
 tint_over = Color( 1, 0, 0, 1 )
-tint_progress = Color( 0.266667, 1, 0, 1 )
+tint_progress = Color( 1, 0.611765, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HealthBar" parent="." instance=ExtResource( 2 )]
+margin_left = 7.1272
+margin_top = 2.0
+margin_right = 7.1272
+margin_bottom = 2.0
+rect_pivot_offset = Vector2( 1496.52, 168.638 )
+
+[node name="InteractContainer" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -58.5
+margin_right = 58.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InteractText" type="Label" parent="InteractContainer"]
+margin_left = 8.0
+margin_top = 342.0
+margin_right = 109.0
+margin_bottom = 378.0
+custom_fonts/font = SubResource( 6 )
+text = "Intertact"
+
+[node name="InteractAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/interact_bob_ani = SubResource( 7 )

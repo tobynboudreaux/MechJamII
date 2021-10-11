@@ -25,6 +25,7 @@
 [ext_resource path="res://Assets/SFX/Explosions/explosion_large_no_tail_06.ogg" type="AudioStream" id=25]
 
 [sub_resource type="CapsuleShape" id=1]
+radius = 0.5
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -18855,6 +18856,7 @@ tracks/283/enabled = true
 tracks/283/keys = PoolRealArray( 0, 1, 1.19209e-07, -1.78814e-07, 1.78814e-07, -6.70552e-08, -7.45058e-09, -4.996e-16, 1, 1, 1, 1, 0.0666667, 1, 0.000844002, 0.00100875, 0.00256312, -0.00199989, -0.00201527, 0.00145188, 0.999995, 1, 1, 1, 0.133333, 1, 0.00554943, 0.00897759, 0.020105, -0.0153425, -0.0154603, 0.0111384, 0.999701, 1, 1, 1, 0.2, 1, 0.0102739, 0.0293633, 0.0549079, -0.0404748, -0.0407856, 0.0293845, 0.997915, 1, 1, 1, 0.266667, 1, 0.0074296, 0.0656205, 0.101315, -0.0721568, -0.0727111, 0.0523855, 0.993359, 1, 1, 1, 0.4, 1, -0.0301144, 0.171173, 0.196109, -0.13535, -0.13639, 0.0982634, 0.976434, 1, 1, 1, 0.466667, 1, -0.0550008, 0.218098, 0.226961, -0.15751, -0.15872, 0.114351, 0.967947, 1, 1, 1, 0.533333, 1, -0.0692786, 0.239171, 0.236545, -0.167211, -0.168496, 0.121395, 0.963801, 1, 1, 1, 0.666667, 1, -0.075178, 0.192821, 0.164085, -0.152382, -0.153553, 0.110628, 0.970032, 1, 1, 1, 0.733333, 1, -0.071207, 0.230802, 0.222272, -0.164768, -0.166034, 0.119621, 0.964871, 1, 1, 1, 0.8, 1, -0.0718153, 0.22327, 0.21098, -0.162365, -0.163612, 0.117876, 0.965906, 1, 1, 1, 0.866667, 1, -0.0748739, 0.195241, 0.167862, -0.153187, -0.154364, 0.111213, 0.96971, 1, 1, 1, 0.933333, 1, -0.0693791, 0.235071, 0.233147, -0.165335, -0.166605, 0.120032, 0.964624, 1, 1, 1, 1, 1, -0.0648849, 0.192903, 0.200748, -0.147891, -0.149027, 0.107368, 0.971798, 1, 1, 1, 1.06667, 1, -0.0464889, 0.136307, 0.187899, -0.128379, -0.129365, 0.0932024, 0.978824, 1, 1, 1, 1.2, 1, -0.00740373, 0.0340754, 0.187284, -0.0945687, -0.0952952, 0.0686564, 0.988566, 1, 1, 1, 1.26667, 1, 0.000496864, 0.00826889, 0.185789, -0.0854676, -0.0861241, 0.062049, 0.990671, 1, 1, 1, 1.29167, 1, 0.00162542, 0.00432056, 0.185511, -0.0840508, -0.0846965, 0.0610204, 0.990979, 1, 1, 1 )
 
 [sub_resource type="SphereShape" id=16]
+radius = 0.5
 
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Mech09_firing_RocketLauncher001"
@@ -18927,7 +18929,7 @@ nodes/Transition/position = Vector2( 180, 80 )
 nodes/Walk/node = SubResource( 29 )
 nodes/Walk/position = Vector2( -40, 180 )
 nodes/output/position = Vector2( 1100, 120 )
-node_connections = [ "output", 0, "IsShutdown", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown" ]
+node_connections = [ "output", 0, "IsShutdown", "Transition", 0, "Idle", "Transition", 1, "Walk", "IsShutdown", 0, "IsLaunching", "IsShutdown", 1, "Shutdown", "IsShooting", 0, "Transition", "IsShooting", 1, "Shooting", "IsLaunching", 0, "IsShooting", "IsLaunching", 1, "FireLauncher" ]
 
 [node name="Mech" type="KinematicBody"]
 collision_layer = 51
@@ -20371,7 +20373,7 @@ bones/283/enabled = true
 bones/283/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Rotation_Helper/MechJam_mech/rig/Skeleton"]
-transform = Transform( -0.844091, 0.170336, -0.508427, -0.43186, 0.346054, 0.832913, 0.317819, 0.922623, -0.21854, -1.27971, 1.88055, 0.551693 )
+transform = Transform( -0.823528, 0.186305, -0.535811, -0.467526, 0.312037, 0.827075, 0.321281, 0.931624, -0.169869, -1.21603, 1.85473, 0.545925 )
 bone_name = "hand_ik.R.001"
 
 [node name="MechGun" type="MeshInstance" parent="Rotation_Helper/MechJam_mech/rig/Skeleton/BoneAttachment"]
@@ -20482,7 +20484,7 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Rotation_Helper/CutsceneArea"]
-transform = Transform( 1, 0, 0, 0, 2.00513, 0, 0, 0, 1.85092, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 2.00513, 0, 0, 0, 1.85092, 0, 1.2, 0 )
 shape = SubResource( 16 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

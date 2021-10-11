@@ -2,12 +2,12 @@
 
 [ext_resource path="res://Core/StartScreen/MainMenuUI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/FashionVictim.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Music/ERASE - Menu.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Images/MechTitle.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Images/BackArrow.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Fonts/MenuOptionsFont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Assets/Themes/MenuButtonTheme.tres" type="Theme" id=8]
 [ext_resource path="res://Core/StartScreen/MenuMusicSFXHandler.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Music/MJamIIMenuSketch.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Assets/SFX/UI/clang.wav" type="AudioStream" id=12]
 [ext_resource path="res://Assets/SFX/UI/click.wav" type="AudioStream" id=13]
 
@@ -288,8 +288,7 @@ __meta__ = {
 script = ExtResource( 10 )
 
 [node name="MenuBGMusicPlayer" type="AudioStreamPlayer" parent="MenuMusicSFXHandler"]
-stream = ExtResource( 11 )
-volume_db = -10.0
+stream = ExtResource( 3 )
 autoplay = true
 
 [node name="FocusSFX" type="AudioStreamPlayer" parent="MenuMusicSFXHandler"]
@@ -299,21 +298,21 @@ stream = ExtResource( 13 )
 stream = ExtResource( 12 )
 
 [connection signal="focus_entered" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_focus_entered"]
-[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="MainVBoxContainer/StartButton" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/StartButton" to="MenuMusicSFXHandler" method="_on_StartButton_pressed"]
 [connection signal="focus_entered" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_focus_entered"]
-[connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/ContinueButton" to="MenuMusicSFXHandler" method="_on_ContinueButton_pressed"]
 [connection signal="focus_entered" from="MainVBoxContainer/PrevLevelsButton" to="MenuMusicSFXHandler" method="_on_PrevLevelsButton_focus_entered"]
-[connection signal="pressed" from="MainVBoxContainer/PrevLevelsButton" to="MenuMusicSFXHandler" method="_on_PrevLevelsButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/PrevLevelsButton" to="." method="_on_PrevLevelsButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/PrevLevelsButton" to="MenuMusicSFXHandler" method="_on_PrevLevelsButton_pressed"]
 [connection signal="focus_entered" from="MainVBoxContainer/OptionsButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_focus_entered"]
-[connection signal="pressed" from="MainVBoxContainer/OptionsButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/OptionsButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_pressed"]
 [connection signal="focus_entered" from="MainVBoxContainer/How2PlayButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_focus_entered"]
-[connection signal="pressed" from="MainVBoxContainer/How2PlayButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/How2PlayButton" to="." method="_on_How2PlayButton_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/How2PlayButton" to="MenuMusicSFXHandler" method="_on_OptionsButton_pressed"]
 [connection signal="focus_entered" from="MainVBoxContainer/QuitButton" to="MenuMusicSFXHandler" method="_on_QuitButton_focus_entered"]
 [connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="focus_entered" from="LevelsVBoxContainer/Level1Button" to="MenuMusicSFXHandler" method="_on_Level1Button_focus_entered"]
@@ -321,17 +320,17 @@ stream = ExtResource( 12 )
 [connection signal="focus_entered" from="LevelsVBoxContainer/Level2Button" to="MenuMusicSFXHandler" method="_on_Level2Button_focus_entered"]
 [connection signal="pressed" from="LevelsVBoxContainer/Level2Button" to="." method="_on_Level2Button_pressed"]
 [connection signal="focus_entered" from="LevelsVBoxContainer/LevelBackButton" to="MenuMusicSFXHandler" method="_on_LevelBackButton_focus_entered"]
-[connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="MenuMusicSFXHandler" method="_on_LevelBackButton_pressed"]
 [connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="." method="_on_LevelBackButton_pressed"]
+[connection signal="pressed" from="LevelsVBoxContainer/LevelBackButton" to="MenuMusicSFXHandler" method="_on_LevelBackButton_pressed"]
 [connection signal="focus_entered" from="OptionsVBoxContainer/ResolutionHSlider" to="MenuMusicSFXHandler" method="_on_ResolutionHSlider_focus_entered"]
-[connection signal="value_changed" from="OptionsVBoxContainer/ResolutionHSlider" to="MenuMusicSFXHandler" method="_on_ResolutionHSlider_value_changed"]
 [connection signal="value_changed" from="OptionsVBoxContainer/ResolutionHSlider" to="." method="_on_ResolutionHSlider_value_changed"]
+[connection signal="value_changed" from="OptionsVBoxContainer/ResolutionHSlider" to="MenuMusicSFXHandler" method="_on_ResolutionHSlider_value_changed"]
 [connection signal="focus_entered" from="OptionsVBoxContainer/GraphicsOptionButton" to="MenuMusicSFXHandler" method="_on_GraphicsOptionButton_focus_entered"]
-[connection signal="item_selected" from="OptionsVBoxContainer/GraphicsOptionButton" to="MenuMusicSFXHandler" method="_on_GraphicsOptionButton_item_selected"]
 [connection signal="item_selected" from="OptionsVBoxContainer/GraphicsOptionButton" to="." method="_on_GraphicsOptionButton_item_selected"]
+[connection signal="item_selected" from="OptionsVBoxContainer/GraphicsOptionButton" to="MenuMusicSFXHandler" method="_on_GraphicsOptionButton_item_selected"]
 [connection signal="focus_entered" from="OptionsVBoxContainer/AAOptionButton" to="MenuMusicSFXHandler" method="_on_AAOptionButton_focus_entered"]
-[connection signal="item_selected" from="OptionsVBoxContainer/AAOptionButton" to="MenuMusicSFXHandler" method="_on_AAOptionButton_item_selected"]
 [connection signal="item_selected" from="OptionsVBoxContainer/AAOptionButton" to="." method="_on_AAOptionButton_item_selected"]
+[connection signal="item_selected" from="OptionsVBoxContainer/AAOptionButton" to="MenuMusicSFXHandler" method="_on_AAOptionButton_item_selected"]
 [connection signal="focus_entered" from="OptionsVBoxContainer/FullscreenButton" to="MenuMusicSFXHandler" method="_on_FullscreenButton_focus_entered"]
 [connection signal="pressed" from="OptionsVBoxContainer/FullscreenButton" to="MenuMusicSFXHandler" method="_on_FullscreenButton_pressed"]
 [connection signal="toggled" from="OptionsVBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]
@@ -339,5 +338,5 @@ stream = ExtResource( 12 )
 [connection signal="pressed" from="OptionsVBoxContainer/VsyncButton" to="MenuMusicSFXHandler" method="_on_VsyncButton_pressed"]
 [connection signal="toggled" from="OptionsVBoxContainer/VsyncButton" to="." method="_on_VsyncButton_toggled"]
 [connection signal="focus_entered" from="OptionsVBoxContainer/OptionsBackButton" to="MenuMusicSFXHandler" method="_on_OptionsBackButton_focus_entered"]
-[connection signal="pressed" from="OptionsVBoxContainer/OptionsBackButton" to="MenuMusicSFXHandler" method="_on_OptionsBackButton_pressed"]
 [connection signal="pressed" from="OptionsVBoxContainer/OptionsBackButton" to="." method="_on_OptionsBackButton_pressed"]
+[connection signal="pressed" from="OptionsVBoxContainer/OptionsBackButton" to="MenuMusicSFXHandler" method="_on_OptionsBackButton_pressed"]

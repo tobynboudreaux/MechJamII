@@ -32,7 +32,7 @@ func _ready():
 		current_level_number = 2
 	
 func change_level(level_name):
-	print("should be changing level")
+	#print("should be changing level")
 	emit_signal("level_changed", level_name)
 	
 # Triggered function by the player.gd script
@@ -40,8 +40,33 @@ func handle_pause():
 	if(lose_ui.visible == false and win_ui.visible == false):
 		pause_menu.handle_pause()
 	
-func handle_mech_hud():
-	mech_hud.visible = !mech_hud.visible
+func handle_hide_mech_hud(hide_bool):
+	#print("hide mech hud bool: " + str(hide_bool))
+	$MechHUD.hide_hud(hide_bool)
+	
+func handle_hide_pilot_hud(hide_bool):
+	#print("hide pilot hud bool: " + str(hide_bool))
+	$PilotHUD.hide_hud(hide_bool)
+	
+func handle_mech_hud(set_method, value):
+	if(set_method == "update"):
+		$MechHUD.set_health_bar(value)
+	if(set_method == "max"):
+		$MechHUD.set_health_bar_max(value)
+		
+func handle_pilot_hud(set_method, value):
+	if(set_method == "ammo"):
+		$PilotHUD.update_ammo_val(value)
+	if(set_method == "dash"):
+		$PilotHUD.update_dash_timer(value)
+	if(set_method == "reload"):
+		$PilotHUD.update_reload_timer(value)
+	if(set_method == "health"):
+		$PilotHUD/HealthBar.set_health_bar(value)
+	if(set_method == "max"):
+		$PilotHUD/HealthBar.set_health_bar_max(value)
+	if(set_method == "interact"):
+		$PilotHUD.hide_interact(value)
 	
 func handle_player_lose():
 	win_lose_ui.handle_game_over()

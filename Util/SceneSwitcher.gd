@@ -79,11 +79,18 @@ func connect_player(player_instance):
 	print("player connected to player UI")
 	player_instance.connect("set_pause", player_ui_current_instance, "handle_pause")
 	player_instance.connect("set_lose", player_ui_current_instance, "handle_player_lose")
+	player_instance.connect("hide_mech_hud", player_ui_current_instance, "handle_hide_mech_hud")
+	player_instance.connect("hide_pilot_hud", player_ui_current_instance, "handle_hide_pilot_hud")
 	player_instance.connect("set_mech_hud", player_ui_current_instance, "handle_mech_hud")
+	player_instance.connect("set_pilot_hud", player_ui_current_instance, "handle_pilot_hud")
 	
 func connect_boss(boss_node):
 	print("boss should be connected")
 	boss_node.connect("set_win", self, "handle_player_win")
+	
+func connect_interactable(interactable_node):
+	print("interactable script should be connected")
+	interactable_node.connect("set_pilot_hud", player_ui_current_instance, "handle_pilot_hud")
 	
 func handle_player_win():
 	player_ui_current_instance.handle_player_win()
@@ -97,8 +104,8 @@ func set_screen_max_resolution():
 		current_max_res = window_max_res
 		
 func set_environment_for_level():
-	world_env.environment.dof_blur_far_distance = 19
-	world_env.environment.dof_blur_far_transition = 8.67
+	world_env.environment.dof_blur_far_distance = 13
+	world_env.environment.dof_blur_far_transition = 6
 	
 func set_environment_for_menu():
 	world_env.environment.dof_blur_far_distance = 1.4

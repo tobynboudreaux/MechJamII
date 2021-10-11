@@ -13,7 +13,8 @@ __meta__ = {
 }
 
 [node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 5
+follow_viewport_enable = true
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenuCanvasLayer"]
 anchor_right = 1.0

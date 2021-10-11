@@ -26,7 +26,6 @@ flags = 4
 load_path = "res://.import/TkZm5eA.png-1574444c21ca7e857d8f05d04972aa9c.stex"
 
 [node name="HealthBar" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
@@ -39,9 +38,9 @@ margin_left = 30.0
 margin_top = 30.0
 margin_right = 468.0
 margin_bottom = 60.0
-value = 60.0
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
+tint_under = Color( 1, 0, 0, 1 )
 tint_progress = Color( 0.647059, 0.0705882, 0.0705882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -50,10 +49,11 @@ __meta__ = {
 [node name="HealthOver" type="TextureProgress" parent="."]
 margin_left = 30.0
 margin_top = 30.0
-margin_right = 40.0
-margin_bottom = 40.0
-value = 50.0
+margin_right = 498.0
+margin_bottom = 90.0
+rect_pivot_offset = Vector2( -220.905, 224.308 )
 texture_progress = SubResource( 3 )
+tint_under = Color( 1, 0, 0, 1 )
 tint_progress = Color( 0.168627, 0.988235, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false

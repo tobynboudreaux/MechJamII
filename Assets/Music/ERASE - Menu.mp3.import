@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ERASE - Menu.mp3-b23ec34c91439ab793e8f47e56590985.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/ERASE - Menu.mp3"
+dest_files=[ "res://.import/ERASE - Menu.mp3-b23ec34c91439ab793e8f47e56590985.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

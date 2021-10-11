@@ -2,6 +2,8 @@ extends "res://Player/Player.gd"
 class_name Pilot
 
 signal set_lose()
+signal hide_pilot_hud(hide_boolean)
+signal set_pilot_hud(set_method, value)
 
 export var MAX_SPEED = 15
 export var ACCEL = 3
@@ -71,7 +73,7 @@ var can_interact_mech = true
 
 func _ready():
 	rotation_helper = $Rotation_Helper
-#	hud.hide()
+	emit_signal("hide_pilot_hud", true)
 	self.hide()
 	$CollisionShape.disabled = true
 	
@@ -81,7 +83,11 @@ func _ready():
 	
 func _process(delta):
 	if(!is_mech):
-		pass
+		emit_signal("hide_pilot_hud", false)
+		emit_signal("set_pilot_hud", "dash", dash_timer.time_left)
+		emit_signal("set_pilot_hud", "reload", reload_timer.time_left)
+		emit_signal("set_pilot_hud", "health", current_health)
+		emit_signal("set_pilot_hud", "max", max_health)
 #		hud.show()
 #		hud.update_dash_timer(dash_timer.time_left)
 #		hud.update_reload_timer(reload_timer.time_left)
@@ -89,6 +95,7 @@ func _process(delta):
 #		health_bar._on_max_health_updated(health.max_hp)
 			
 	if(is_mech):
+		emit_signal("hide_pilot_hud", true)
 		var mech = get_parent().get_node("Mech")
 		self.global_transform.origin = mech.get_global_transform().origin
 		
@@ -139,6 +146,7 @@ func process_pilot_input():
 			
 	if reload_timer.time_left == 0:
 		is_reloading = false
+		emit_signal("set_pilot_hud", "ammo", str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 #		hud.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 	# ----------------------------------
 	
@@ -158,6 +166,7 @@ func process_animations():
 		var random_sound = randi() % 4
 		pistol_sounds[random_sound].play()
 		mag_size -= 1
+		emit_signal("set_pilot_hud", "ammo", str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 #		hud.update_ammo_val(str(mag_size) + "/" + str(DEFAULT_MAG_SIZE))
 		fire_timer.start()
 	elif Input.is_action_pressed("fire") && mag_size == 0 && fire_timer.time_left == 0 && is_reloading != true:
@@ -192,6 +201,7 @@ func swap_to_mech():
 		mech.animation_tree["parameters/Transition/current"] = 0
 		mech.animation_tree["parameters/IsShutdown/blend_amount"] = 0
 		mech.set_health(mech.max_health)
+		emit_signal("hide_pilot_hud", true)
 #		hud.hide()
 
 func take_damage(amount):

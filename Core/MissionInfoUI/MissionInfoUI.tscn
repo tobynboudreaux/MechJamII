@@ -1,28 +1,54 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Core/MissionInfoUI/MissionInfoUI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/RobotoCondensed-Regular.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StreamTexture" id=1]
+resource_local_to_scene = true
+flags = 4
+load_path = "res://.import/leftArrow.svg-265ee8d7efab2d8b06cca8a4ecfd3f13.stex"
+
+[sub_resource type="StreamTexture" id=2]
+resource_local_to_scene = true
+flags = 4
+load_path = "res://.import/nwArrow.svg-b508a8bb8d775329e21e246e6f197319.stex"
+
+[sub_resource type="DynamicFont" id=3]
 size = 30
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "mission_text_blink"
-length = 4.0
+[sub_resource type="StreamTexture" id=4]
+resource_local_to_scene = true
+flags = 4
+load_path = "res://.import/leftArrow.svg-265ee8d7efab2d8b06cca8a4ecfd3f13.stex"
+
+[sub_resource type="Animation" id=5]
+length = 5.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("InfoUICanvasLayer/CenterContainer/MissionInfo:visible")
+tracks/0/path = NodePath("InfoUICanvasLayer/CenterContainer/MissionHSplitContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.5, 2.5, 3, 3.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 1, 1.5, 2.5, 3, 4, 4.5, 5.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ true, false, true, false, true, false ]
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("InfoUICanvasLayer/CenterContainer/MissionHSplitContainer/MissionDirection:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 36, 36 ), Vector2( 36, 36 ) ]
 }
 
 [node name="MissionInfoUI" type="Control"]
@@ -33,6 +59,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+forward_arrow = SubResource( 1 )
+nw_arrow = SubResource( 2 )
 
 [node name="InfoUICanvasLayer" type="CanvasLayer" parent="."]
 
@@ -43,14 +71,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MissionInfo" type="Label" parent="InfoUICanvasLayer/CenterContainer"]
+[node name="MissionHSplitContainer" type="HSplitContainer" parent="InfoUICanvasLayer/CenterContainer"]
 visible = false
-margin_left = 428.0
-margin_top = 342.0
-margin_right = 851.0
-margin_bottom = 378.0
-custom_fonts/font = SubResource( 1 )
+margin_left = 640.0
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 360.0
+
+[node name="MissionInfo" type="Label" parent="InfoUICanvasLayer/CenterContainer/MissionHSplitContainer"]
+margin_right = 423.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 3 )
 text = "Mission 1: ERASE the alien drill bot!"
 
+[node name="MissionDirection" type="TextureRect" parent="InfoUICanvasLayer/CenterContainer/MissionHSplitContainer"]
+margin_left = 435.0
+margin_right = 471.0
+margin_bottom = 36.0
+texture = SubResource( 4 )
+expand = true
+
 [node name="MenuInfoAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/mission_text_blink = SubResource( 2 )
+anims/mission_text_blink = SubResource( 5 )

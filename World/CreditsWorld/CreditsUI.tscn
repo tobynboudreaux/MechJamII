@@ -3,7 +3,7 @@
 [ext_resource path="res://World/CreditsWorld/CreditsFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://World/CreditsWorld/CreditsUI.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "credits_text_scroll"
 length = 10.0
 tracks/0/type = "value"
@@ -62,6 +62,6 @@ __meta__ = {
 }
 
 [node name="CreditsUIAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/credits_text_scroll = SubResource( 2 )
+anims/credits_text_scroll = SubResource( 1 )
 
 [connection signal="animation_finished" from="CreditsUIAnimationPlayer" to="." method="_on_CreditsUIAnimationPlayer_animation_finished"]

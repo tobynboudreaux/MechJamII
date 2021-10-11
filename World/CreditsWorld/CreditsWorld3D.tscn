@@ -98,7 +98,7 @@ material = ExtResource( 2 )
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 
 [node name="MechJam_Player" parent="MechSpin" instance=ExtResource( 3 )]
-transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.2, 0 )
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.32, 0 )
 
 [node name="Credits3DAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/mech_spin = SubResource( 2 )
@@ -110,4 +110,7 @@ fov = 40.0
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, 20 )
+light_color = Color( 1, 0.937255, 0, 1 )
+light_energy = 10.0
 spot_range = 30.0
+spot_angle = 25.7

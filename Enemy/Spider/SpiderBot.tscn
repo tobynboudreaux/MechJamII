@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Models/Enemies/SpiderBotEnemy/Material.material" type="Material" id=1]
 [ext_resource path="res://Assets/Models/Enemies/SpiderBotEnemy/04_Fire.anim" type="Animation" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Core/Health/Health.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
+radius = 0.864258
+height = 0.0981107
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -5465,16 +5467,27 @@ nodes/OneShot/position = Vector2( 300, 60 )
 nodes/Transition/node = SubResource( 20 )
 nodes/Transition/position = Vector2( 574, 109 )
 nodes/output/position = Vector2( 840, 100 )
-node_connections = [ "output", 0, "Transition", "OneShot", 0, "Blend3", "OneShot", 1, "Animation 4", "Blend3", 0, "Animation 2", "Blend3", 1, "Animation", "Blend3", 2, "Animation 3", "Transition", 0, "OneShot", "Transition", 1, "Animation 5" ]
+node_connections = [ "output", 0, "Transition", "Blend3", 0, "Animation 2", "Blend3", 1, "Animation", "Blend3", 2, "Animation 3", "OneShot", 0, "Blend3", "OneShot", 1, "Animation 4", "Transition", 0, "OneShot", "Transition", 1, "Animation 5" ]
 
 [sub_resource type="SphereShape" id=22]
+radius = 1.4737
+
+[sub_resource type="SpatialMaterial" id=23]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_color = Color( 0.239216, 0.239216, 0.239216, 1 )
+
+[sub_resource type="StreamTexture" id=24]
+flags = 4
+load_path = "res://.import/TkZm5eA.png-2de46d10b05e6eb165cc304d6e9bc882.stex"
 
 [node name="SpiderBot" type="KinematicBody"]
 collision_layer = 3
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, 0 )
 shape = SubResource( 1 )
 
 [node name="SpiderBot" type="Spatial" parent="."]
@@ -6270,6 +6283,13 @@ one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="Timers"]
 one_shot = true
+
+[node name="EnemyHealthBar" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47132, 0 )
+
+[node name="HealthBar3D" type="Sprite3D" parent="EnemyHealthBar"]
+material_override = SubResource( 23 )
+texture = SubResource( 24 )
 
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]

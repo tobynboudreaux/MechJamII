@@ -1,6 +1,10 @@
 extends Control
 
-onready var mission_info_text = $InfoUICanvasLayer/CenterContainer/MissionInfo
+export (Texture) var forward_arrow
+export (Texture) var nw_arrow
+
+onready var mission_info_text = $InfoUICanvasLayer/CenterContainer/MissionHSplitContainer/MissionInfo
+onready var mission_direction = $InfoUICanvasLayer/CenterContainer/MissionHSplitContainer/MissionDirection
 onready var mission_info_ani_player = $MenuInfoAnimationPlayer
 
 # Variables for loading data on startup
@@ -23,8 +27,10 @@ func _ready():
 	load_data()
 	if(data["current_level"] == 1):
 		mission_info_text.text = "Mission 1: ERASE the alien drill bot!"
+		mission_direction.texture = forward_arrow
 	if(data["current_level"] == 2):
 		mission_info_text.text = "Mission 2: ERASE the evil alien aircraft!"
+		mission_direction.texture = nw_arrow
 	mission_info_ani_player.play("mission_text_blink")
 	
 	# File related functions

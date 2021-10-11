@@ -33,10 +33,11 @@
 [ext_resource path="res://Assets/SFX/Pilot/footstep_concrete_run_17.ogg" type="AudioStream" id=32]
 [ext_resource path="res://Core/Interactable/Interactable.tscn" type="PackedScene" id=33]
 
-[sub_resource type="CapsuleShape" id=1]
-radius = 0.5
+[sub_resource type="CapsuleShape" id=27]
+radius = 0.35
+height = 0.2
 
-[sub_resource type="ArrayMesh" id=2]
+[sub_resource type="ArrayMesh" id=28]
 resource_name = "Pistol"
 surfaces/0 = {
 "aabb": AABB( -1.45101, 1.2035, -0.200498, 0.553922, 0.0764414, 0.398421 ),
@@ -51,7 +52,7 @@ surfaces/0 = {
 "vertex_count": 217
 }
 
-[sub_resource type="Skin" id=3]
+[sub_resource type="Skin" id=29]
 resource_name = "Skin"
 bind_count = 218
 bind/0/name = "root"
@@ -709,7 +710,7 @@ bind/217/name = "thigh_ik_target.R"
 bind/217/bone = -1
 bind/217/pose = Transform( 1, 0, 0, 0, -0.0229725, -0.999736, 0, 0.999736, -0.0229725, 0.119595, 0.786249, -0.437565 )
 
-[sub_resource type="ArrayMesh" id=4]
+[sub_resource type="ArrayMesh" id=30]
 resource_name = "Pistol_flash"
 surfaces/0 = {
 "aabb": AABB( -1.38486, 1.13966, 0.145154, 0.0767039, 0.194644, 1.00136e-05 ),
@@ -724,7 +725,7 @@ surfaces/0 = {
 "vertex_count": 8
 }
 
-[sub_resource type="ArrayMesh" id=5]
+[sub_resource type="ArrayMesh" id=31]
 resource_name = "Player001"
 surfaces/0 = {
 "aabb": AABB( -0.220605, 0.800569, -0.370777, 0.441221, 0.119215, 0.146049 ),
@@ -739,7 +740,7 @@ surfaces/0 = {
 "vertex_count": 48
 }
 
-[sub_resource type="ArrayMesh" id=6]
+[sub_resource type="ArrayMesh" id=32]
 resource_name = "Player_jet"
 surfaces/0 = {
 "aabb": AABB( -1.17491, 0.00603987, -0.363018, 2.34982, 1.81121, 0.673478 ),
@@ -766,7 +767,7 @@ surfaces/1 = {
 "vertex_count": 8
 }
 
-[sub_resource type="ArrayMesh" id=7]
+[sub_resource type="ArrayMesh" id=33]
 resource_name = "Sword"
 surfaces/0 = {
 "aabb": AABB( 1.00035, 1.18458, -0.140163, 0.13304, 0.101404, 1.1764 ),
@@ -781,10 +782,10 @@ surfaces/0 = {
 "vertex_count": 160
 }
 
-[sub_resource type="BoxShape" id=8]
+[sub_resource type="BoxShape" id=34]
 extents = Vector3( 0.5, 0.5, 0.5 )
 
-[sub_resource type="ArrayMesh" id=9]
+[sub_resource type="ArrayMesh" id=35]
 surfaces/0 = {
 "aabb": AABB( 0.422647, 1.22456, 0.299449, 0.555773, 1.00136e-05, 0.720611 ),
 "array_data": PoolByteArray( 250, 217, 118, 63, 98, 190, 156, 63, 97, 81, 153, 62, 0, 129, 0, 0, 127, 0, 0, 127, 0, 0, 0, 60, 144, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 190, 121, 122, 63, 98, 190, 156, 63, 81, 145, 130, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 0, 0, 60, 144, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 15, 179, 45, 63, 98, 190, 156, 63, 1, 174, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 0, 0, 60, 144, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 58, 101, 216, 62, 98, 190, 156, 63, 97, 31, 107, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 0, 0, 60, 144, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 194, 196, 32, 63, 98, 190, 156, 63, 218, 196, 66, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 0, 0, 60, 144, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 60, 74, 69, 63, 98, 190, 156, 63, 179, 151, 31, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 0, 0, 60, 144, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0 ),
@@ -798,7 +799,7 @@ surfaces/0 = {
 "vertex_count": 6
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=36]
 length = 0.208333
 loop = true
 tracks/0/type = "transform"
@@ -2340,7 +2341,7 @@ tracks/218/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=37]
 resource_local_to_scene = true
 resource_name = "06_Shooting (copy) (copy)"
 length = 0.208333
@@ -3961,7 +3962,7 @@ nodes/Transition/position = Vector2( -380, 140 )
 nodes/Walk/node = SubResource( 25 )
 nodes/Walk/position = Vector2( -800, 240 )
 nodes/output/position = Vector2( 360, 140 )
-node_connections = [ "output", 0, "IsItDashing", "TimeScale", 0, "Walk", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Slice", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash" ]
+node_connections = [ "output", 0, "IsItDashing", "TimeScale", 0, "Walk", "Transition", 0, "Idle", "Transition", 1, "TimeScale", "IsItShooting", 0, "Transition", "IsItShooting", 1, "Shoot", "IsItSlicing", 0, "IsItShooting", "IsItSlicing", 1, "Slice", "IsItDashing", 0, "IsItSlicing", "IsItDashing", 1, "Dash" ]
 
 [node name="Pilot" type="KinematicBody"]
 collision_layer = 35
@@ -3969,9 +3970,8 @@ script = ExtResource( 13 )
 MAX_SPEED = 6
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 2, 0, 0, 0, 5, 3.39973e-14, 0, -8.49933e-14, 2, 0, 0.804786, 0.0164717 )
-visible = false
-shape = SubResource( 1 )
+transform = Transform( 2, 0, 0, 0, 5, 3.39973e-14, 0, -8.49933e-14, 2, 0.00235176, 0.804786, -0.000802321 )
+shape = SubResource( 27 )
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 8 )
@@ -5080,8 +5080,8 @@ bones/217/enabled = true
 bones/217/bound_children = [  ]
 
 [node name="Pistol" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
-mesh = SubResource( 2 )
-skin = SubResource( 3 )
+mesh = SubResource( 28 )
+skin = SubResource( 29 )
 material/0 = null
 
 [node name="WeaponMuzzle" type="Position3D" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Pistol"]
@@ -5089,19 +5089,19 @@ transform = Transform( -4.54545, 0, -3.97376e-07, 0, 3.0303, 0, 1.2227e-07, 0, -
 
 [node name="Pistol_flash" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 visible = false
-mesh = SubResource( 4 )
-skin = SubResource( 3 )
+mesh = SubResource( 30 )
+skin = SubResource( 29 )
 material/0 = null
 
 [node name="Player_Jet" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 visible = false
-mesh = SubResource( 5 )
-skin = SubResource( 3 )
+mesh = SubResource( 31 )
+skin = SubResource( 29 )
 material/0 = null
 
 [node name="Player" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
-mesh = SubResource( 6 )
-skin = SubResource( 3 )
+mesh = SubResource( 32 )
+skin = SubResource( 29 )
 material/0 = null
 material/1 = null
 
@@ -5198,8 +5198,8 @@ stream = ExtResource( 32 )
 unit_db = 10.0
 
 [node name="Sword" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
-mesh = SubResource( 7 )
-skin = SubResource( 3 )
+mesh = SubResource( 33 )
+skin = SubResource( 29 )
 material/0 = null
 
 [node name="Hitbox" type="Area" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Sword"]
@@ -5207,12 +5207,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95225, 1.15147 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Rotation_Helper/MechJam_Player/rig/Skeleton/Sword/Hitbox"]
 transform = Transform( 1, 0, 0, 0, 1.75205, 0, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 34 )
 
 [node name="Sword_trail" type="MeshInstance" parent="Rotation_Helper/MechJam_Player/rig/Skeleton"]
 visible = false
-mesh = SubResource( 9 )
-skin = SubResource( 3 )
+mesh = SubResource( 35 )
+skin = SubResource( 29 )
 material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Rotation_Helper/MechJam_Player"]
@@ -5223,8 +5223,8 @@ anims/03_Backward = ExtResource( 3 )
 anims/04_Strafe_left = ExtResource( 5 )
 anims/05_Strafe_right = ExtResource( 11 )
 anims/06_Shooting = ExtResource( 4 )
-"anims/06_Shooting (copy)" = SubResource( 10 )
-"anims/06_Shooting (copy) (copy)" = SubResource( 11 )
+"anims/06_Shooting (copy)" = SubResource( 36 )
+"anims/06_Shooting (copy) (copy)" = SubResource( 37 )
 anims/07_Slicing = ExtResource( 8 )
 anims/08_Dash = ExtResource( 10 )
 

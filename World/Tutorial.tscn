@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Fonts/RobotoCondensed-Light.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://World/Tutorial.gd" type="Script" id=2]
+[ext_resource path="res://World/CreditsWorld/TutorialFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://World/CreditsWorld/TutorialTitleFont.tres" type="DynamicFont" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -19,7 +21,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TutColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -27,58 +29,94 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Controls" type="Label" parent="ColorRect"]
-margin_right = 348.0
-margin_bottom = 118.0
+[node name="TutVBoxContainer" type="VBoxContainer" parent="TutColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -324.5
+margin_right = 324.5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutTitle" type="Label" parent="TutColorRect/TutVBoxContainer"]
+margin_top = 59.0
+margin_right = 649.0
+margin_bottom = 148.0
+custom_fonts/font = ExtResource( 4 )
 text = "Controls:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Controls2" type="Label" parent="ColorRect"]
-margin_top = 354.0
-margin_right = 1176.0
-margin_bottom = 472.0
-text = "E to get in mech/pick up items"
+[node name="TutMove" type="Label" parent="TutColorRect/TutVBoxContainer"]
+margin_top = 152.0
+margin_right = 649.0
+margin_bottom = 212.0
+custom_fonts/font = ExtResource( 3 )
+text = "- WASD to Move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Controls3" type="Label" parent="ColorRect"]
-margin_top = 236.0
-margin_right = 702.0
-margin_bottom = 354.0
-text = "Left Click to shoot"
+[node name="TutPickUp" type="Label" parent="TutColorRect/TutVBoxContainer"]
+margin_top = 216.0
+margin_right = 649.0
+margin_bottom = 276.0
+custom_fonts/font = ExtResource( 3 )
+text = "- E to get in mech/pick up items"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Controls4" type="Label" parent="ColorRect"]
-margin_top = 118.0
-margin_right = 537.0
-margin_bottom = 236.0
-text = "Mouse to Aim"
+[node name="TutShooting" type="Label" parent="TutColorRect/TutVBoxContainer"]
+margin_top = 280.0
+margin_right = 649.0
+margin_bottom = 340.0
+custom_fonts/font = ExtResource( 3 )
+text = "- Left Click to shoot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Controls5" type="Label" parent="ColorRect"]
-margin_left = 387.494
-margin_right = 962.494
-margin_bottom = 118.0
-text = "WASD to Move"
+[node name="TutAiming" type="Label" parent="TutColorRect/TutVBoxContainer"]
+margin_top = 344.0
+margin_right = 649.0
+margin_bottom = 404.0
+custom_fonts/font = ExtResource( 3 )
+text = "- Mouse to Aim"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Controls6" type="Label" parent="ColorRect"]
+[node name="TutSecondary" type="Label" parent="TutColorRect/TutVBoxContainer"]
+margin_top = 408.0
+margin_right = 649.0
+margin_bottom = 468.0
+custom_fonts/font = ExtResource( 3 )
+text = "- Spacebar for secondary weapon"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutDash" type="Label" parent="TutColorRect/TutVBoxContainer"]
 margin_top = 472.0
-margin_right = 792.0
-margin_bottom = 590.0
-text = "Spacebar for special"
+margin_right = 649.0
+margin_bottom = 532.0
+custom_fonts/font = ExtResource( 3 )
+text = "- Shift to dash as pilot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Controls7" type="Label" parent="ColorRect"]
-margin_top = 590.0
-margin_right = 796.0
-margin_bottom = 708.0
-text = "Shift to dash as pilot"
-
-[node name="Button" type="Button" parent="ColorRect"]
-margin_left = 862.711
-margin_top = 521.051
-margin_right = 1220.71
-margin_bottom = 645.051
+[node name="TutBackButton" type="Button" parent="TutColorRect/TutVBoxContainer"]
+margin_top = 536.0
+margin_right = 649.0
+margin_bottom = 660.0
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="ColorRect/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="TutColorRect/TutVBoxContainer/TutBackButton" to="." method="_on_TutBackButton_pressed"]

@@ -116,7 +116,7 @@ func attack_player():
 	get_parent().add_child(p)
 
 	p.transform = $SpiderBot/MechJam_SpiderBot/rig/Skeleton/BoneAttachment2/Barrel_shield/Muzzle.global_transform
-	p.velocity = -p.transform.basis.z * p.muzzle_velocity
+	p.velocity = p.transform.basis.z * p.muzzle_velocity
 	$AnimationTree["parameters/OneShot/active"] = true
 	
 func take_damage(amount):

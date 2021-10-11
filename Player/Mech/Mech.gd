@@ -1,5 +1,8 @@
 extends "res://Player/Player.gd"
 
+signal hide_mech_hud(hide_boolean)
+signal set_mech_hud(set_method, value)
+
 onready var animation_tree = $AnimationTree
 
 export var MAX_SPEED = 15
@@ -25,7 +28,7 @@ onready var footstep_timer = get_node("Timers/FootstepTimer")
 onready var to_pilot_timer = get_node("Timers/ToPilotTimer")
 
 #onready var health_bar = get_node("MechHUD/HealthBar")
-export var max_health = 500
+export var max_health = 100
 var current_health = max_health
 #onready var hud = get_node("MechHUD")
 
@@ -54,19 +57,21 @@ onready var ex_sounds = [
 var is_last = false
 
 func _ready():
-#	hud.hide()
+	emit_signal("hide_mech_hud", true)
 	animation_tree["parameters/IsShooting/blend_amount"] = 0
 	animation_tree["parameters/Transition/current"] = 0
 	camera.set_current_target("mech")
 	
 func _process(delta):
 	if(is_mech):
-#		hud.show()
+		emit_signal("hide_mech_hud", false)
+		emit_signal("set_mech_hud", "update", current_health)
+		emit_signal("set_mech_hud", "max", max_health)
 #		health_bar._on_health_updated(health.current_health)
 #		health_bar._on_max_health_updated(health.max_hp)
 		
 		if $Timers/DamageTimer.time_left == 0:
-			take_damage(17)
+			take_damage(20)
 			$Timers/DamageTimer.start()
 		
 		# ----------------------------------
@@ -164,11 +169,10 @@ func swap_to_pilot():
 		else:
 			camera.set_current_target("pilot")
 		set_mech(false)
-#		pilot.hud.show()
 		pilot.is_mech = false
 		pilot.get_node("CollisionShape").disabled = false
 		pilot.animation_tree["parameters/Transition/current"] = 0
-#		hud.hide()
+		emit_signal("hide_mech_hud", true)
 
 func take_damage(amount):
 	current_health -= amount
