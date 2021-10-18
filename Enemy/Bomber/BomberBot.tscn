@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Assets/Models/Enemies/BomberEnemy/Material_001.material" type="Material" id=1]
 [ext_resource path="res://Enemy/Bomber/BomberBot.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/SFX/Explosions/explosion_large_04.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Assets/SFX/Explosions/explosion_large_no_tail_01.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Assets/SFX/Explosions/explosion_large_no_tail_06.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Enemy/HealthBar3D.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -431,7 +432,7 @@ nodes/TimeScale/position = Vector2( -360, 180 )
 "nodes/TimeScale 3/node" = SubResource( 21 )
 "nodes/TimeScale 3/position" = Vector2( 1.84375, 256.875 )
 nodes/output/position = Vector2( 890, 270 )
-node_connections = [ "output", 0, "IsAlive", "TimeScale 2", 0, "Idle", "IsExplode", 0, "IsScan", "IsExplode", 1, "Attack", "TimeScale", 0, "Forward", "IsMove", 0, "TimeScale 2", "IsMove", 1, "TimeScale", "IsScan", 0, "IsMove", "IsScan", 1, "TimeScale 3", "IsAlive", 0, "IsExplode", "IsAlive", 1, "Dead", "TimeScale 3", 0, "Scan" ]
+node_connections = [ "output", 0, "IsAlive", "IsExplode", 0, "IsScan", "IsExplode", 1, "Attack", "IsMove", 0, "TimeScale 2", "IsMove", 1, "TimeScale", "TimeScale 3", 0, "Scan", "TimeScale", 0, "Forward", "IsScan", 0, "IsMove", "IsScan", 1, "TimeScale 3", "IsAlive", 0, "IsExplode", "IsAlive", 1, "Dead", "TimeScale 2", 0, "Idle" ]
 
 [sub_resource type="SphereShape" id=24]
 
@@ -558,6 +559,11 @@ shape = SubResource( 24 )
 
 [node name="DeathTimer" type="Timer" parent="Timers"]
 one_shot = true
+
+[node name="EnemyHealthBar" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="HealthBar3D" parent="EnemyHealthBar" instance=ExtResource( 11 )]
 
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]

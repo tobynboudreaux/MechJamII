@@ -28,7 +28,7 @@ onready var footstep_timer = get_node("Timers/FootstepTimer")
 onready var to_pilot_timer = get_node("Timers/ToPilotTimer")
 
 #onready var health_bar = get_node("MechHUD/HealthBar")
-export var max_health = 100
+export var max_health = 500
 var current_health = max_health
 #onready var hud = get_node("MechHUD")
 
@@ -164,6 +164,7 @@ func swap_to_pilot():
 		pilot.show()
 		pilot.transform.origin = self.transform.origin + Vector3(2,0,0)
 		animation_tree["parameters/IsShutdown/blend_amount"] = 1
+		print("camera current target: " + str(camera))
 		if is_last:
 			camera.set_current_target("boss_battle_2")
 		else:

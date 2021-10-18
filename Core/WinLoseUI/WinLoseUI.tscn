@@ -207,14 +207,14 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [connection signal="focus_entered" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/RetryLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/RetryLevelButton" to="." method="_on_RetryLevelButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/RetryLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/RetryLevelButton" to="." method="_on_RetryLevelButton_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverRect/GameOverVBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/WinnerRect/WinVBoxContainer/NextLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/NextLevelButton" to="WinLoseAudioNode" method="_on_RetryLevelButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/WinnerRect/WinVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_focus_entered"]
-[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/BackToMenuButton" to="WinLoseAudioNode" method="_on_BackToMenuButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinnerRect/WinVBoxContainer/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]

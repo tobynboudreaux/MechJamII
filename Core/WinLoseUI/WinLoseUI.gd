@@ -38,6 +38,9 @@ func handle_game_over():
 		win_lose_ani_player.play("game_over_intro")
 		
 func handle_win():
+	load_data()
+	current_level_number = data["current_level"]
+	save_level_data(current_level_number)
 	if(win_ui.visible == false):
 		get_parent().get_tree().paused = true
 		win_ui.show()
@@ -61,11 +64,9 @@ func _on_NextLevelButton_pressed():
 	load_data()
 	current_level_number = data["current_level"]
 	if(current_level_number == 1):
-		save_level_data(1)
 		save_current_level(2)
 		get_parent().change_level("level2")
 	if(current_level_number == 2):
-		save_level_data(2)
 		save_current_level(0)
 		get_parent().change_level("credits")
 	
@@ -94,13 +95,16 @@ func load_data():
 	return data
 	
 func save_level_data(level_number):
+	print("current level num: " + str(current_level_number))
 	var levels_array = data["levels_completed"]
 	var array = []
 	for value in data["levels_completed"]:
+		print("current val: " + str(value))
 		array.push_back(value)
+	print("array: " + str(array))
 		
-	print(levels_array.pop_back() != level_number)
-	if(levels_array.pop_back() != level_number):
+	print("is current level inside array?: " + str(array.has(level_number)))
+	if(not array.has(level_number)):
 		var file = File.new()
 		
 		file.open(path, File.WRITE)

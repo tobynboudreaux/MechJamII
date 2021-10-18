@@ -26,6 +26,7 @@ onready var mech = get_parent().get_node("Mech")
 var vel
 var stop_move
 var p_s = preload("res://Player/Projectile/Projectile.tscn")
+onready var healthBar3D = $EnemyHealthBar/HealthBar3D
 
 export var max_health = 50
 var current_health = max_health
@@ -107,4 +108,5 @@ func _on_DetectRadius_body_exited(body):
 	state = states.DEAD
 	
 func take_damage(amount):
+	healthBar3D.update(amount)
 	current_health -= amount

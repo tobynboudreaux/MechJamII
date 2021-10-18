@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Models/Bosses/FirstBoss/Material.material" type="Material" id=1]
 [ext_resource path="res://Enemy/ActualBoss1/Boss_1.gd" type="Script" id=2]
+[ext_resource path="res://Enemy/HealthBar3D.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -732,6 +733,12 @@ one_shot = true
 [node name="CollisionShape" type="CollisionShape" parent="AttackRadius"]
 transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0 )
 shape = SubResource( 13 )
+
+[node name="BossHealthBar" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
+
+[node name="HealthBar3D" parent="BossHealthBar" instance=ExtResource( 3 )]
+max_health = 1000.0
 
 [connection signal="dead" from="." to="." method="_on_Boss_1_dead"]
 [connection signal="phase_2" from="." to="." method="_on_Boss_1_phase_2"]

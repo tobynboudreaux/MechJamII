@@ -18,8 +18,9 @@ onready var pilot = get_parent().get_node("Pilot")
 onready var mech = get_parent().get_node("Mech")
 
 onready var animation_player = get_node("Boss_1/AnimationPlayer")
+onready var healthBar3D = $BossHealthBar/HealthBar3D
 
-var max_health = 1000
+var max_health = 100
 var current_health = max_health
 var phase_2_health = max_health * 0.6
 var phase_3_health = max_health * 0.25
@@ -88,6 +89,7 @@ func _on_health(amount):
 		emit_signal("dead")
 		
 func take_damage(amount):
+	healthBar3D.update(amount)
 	current_health -= amount
 	print(current_health)
 	

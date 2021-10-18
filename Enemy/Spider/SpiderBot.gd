@@ -27,6 +27,7 @@ var vel
 var stop_move
 onready var attack_timer = get_node("AttackTimer")
 var p_s = preload("res://Player/Projectile/Projectile.tscn")
+onready var healthBar3D = $EnemyHealthBar/HealthBar3D
 
 export var max_health = 50
 var current_health = max_health
@@ -120,4 +121,5 @@ func attack_player():
 	$AnimationTree["parameters/OneShot/active"] = true
 	
 func take_damage(amount):
+	healthBar3D.update(amount)
 	current_health -= amount

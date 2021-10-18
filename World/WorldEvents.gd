@@ -66,7 +66,9 @@ func _on_ResourceSpawnTime_timeout():
 	add_child(r)
 
 func _on_CutsceneTrigger_body_entered(body):
-	if "ech" in body.name:
+	print("body name: " + body.name)
+	print("mech in body name?: " + str("Mech" in body.name))
+	if "Mech" in body.name:
 		enemies_spawn = false
 		get_node("Camera").current_target = ("boss_1")
 		emit_signal("cutscene_1_triggered")
@@ -75,7 +77,9 @@ func _on_CutsceneTrigger_body_exited(body):
 	get_node("CutsceneTrigger").queue_free()
 
 func _on_Cutscene2Trigger_body_entered(body):
-	if "ech" in body.name:
+	print("body name: " + body.name)
+	print("mech in body name?: " + str("Mech" in body.name))
+	if "Mech" in body.name:
 		enemies_spawn = false
 		get_node("Camera").current_target = ("boss_2")
 		emit_signal("cutscene_2_triggered")
